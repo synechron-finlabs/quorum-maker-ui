@@ -1,0 +1,184 @@
+@import '~sass/variables';
+@import '~sass/mixins';
+@import '~sass/fonts';
+.dashboard {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 35px;
+}
+
+img {
+    vertical-align: 0 !important;
+}
+
+.dataTable {
+    position: relative;
+    height: 184px;
+    border-radius: 6px;
+    display: inline-block;
+    color: white;
+    background-color: #222941;
+    width: 100%;
+    .privte {
+        padding: 27px 0 0 36px;
+        .leftcontant {
+            h2 {
+                font-size: 26px;
+                color: #00ffc8;
+                font-family: Heebo-Regular;
+            }
+            p {
+                font-size: 13px;
+                color: #ffffff;
+                font-family: Heebo-Light;
+            }
+        }
+        .leftbottom {
+            h3 {
+                font-size: 24px;
+                color: #628fed;
+                font-family: Heebo-Regular;
+            }
+            p {
+                font-size: 13px;
+                color: #ffffff;
+                font-family: Heebo-Light;
+            }
+        }
+    }
+    .public {
+        padding: 27px 36px 0 0;
+        .rightcontant {
+            border-left: 1px solid #61696d;
+            padding-left: 25px;
+            h2 {
+                font-size: 26px;
+                color: #f5ba64;
+                font-family: Heebo-Regular;
+            }
+            p {
+                font-size: 13px;
+                color: #ffffff;
+                font-family: Heebo-Light;
+            }
+        }
+        .rightbottom {
+            border-left: 1px solid #61696d;
+            padding-left: 25px;
+            h3 {
+                font-size: 24px;
+                color: #628fed;
+                font-family: Heebo-Regular;
+            }
+            p {
+                font-size: 13px;
+                color: #ffffff;
+                font-family: Heebo-Light;
+            }
+        }
+    }
+}
+
+.nodeTable {
+    height: 184px;
+    border-radius: 6px;
+    display: block;
+    text-align: center;
+    background-image: url('/assets/images/active-node1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    .activeNode {
+        position: absolute;
+        bottom: 30px;
+        left: 20px;
+        h3 {
+            font-size: 28px;
+            color: $WhiteColor;
+            margin: 0;
+            padding: 0;
+            font-family: $Heebo-Regular;
+        }
+        p {
+            font-size: 14px;
+            color: $WhiteColor;
+            font-family: $Heebo-Light;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+.timeTable {
+    position: relative;
+    height: 184px;
+    border-radius: 6px;
+    color: $WhiteColor;
+    background-image: url('/assets/images/uptime-1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    .timeUp {
+        position: absolute;
+        bottom: 25px;
+        left: 20px;
+        h3 {
+            font-size: 28px;
+            color: $WhiteColor;
+            margin: 0;
+            padding: 0;
+            font-family: $Heebo-Regular;
+        }
+        p {
+            font-size: 14px;
+            color: $WhiteColor;
+            font-family: $Heebo-Light;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+.transactionTable {
+    position: relative;
+    height: 184px;
+    border-radius: 6px;
+    background-color: #222941;
+    display: block;
+    h3 {
+        padding: 25px 15px;
+        font-family: $Heebo-Regular;
+        color: $WhiteColor;
+        font-size: 22px;
+    }
+    img {
+        width: auto;
+        display: block;
+        margin: auto;
+    }
+}
+
+table {
+    thead {
+        th {
+            background-color: #222941;
+            font-size: 13px;
+            color: #ffffff;
+            font-family: Heebo-Light;
+            border-bottom: 1px solid #222941;
+            border-top: 1px solid #2b3045;
+            padding: 10px;
+        }
+    }
+    tr {
+        background-color: #2b3045;
+        font-size: 12px;
+        color: #ffffff;
+        font-family: Heebo-Light;
+        td {
+            border-top: 1px solid #222941;
+            padding: 10px;
+        }
+    }
+}
+

@@ -1,0 +1,359 @@
+@import '~sass/variables';
+@import '~sass/mixins';
+@import '~sass/fonts';
+body {
+    background-color: #1b2136;
+    background-image: url('/assets/images/bg.jpg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+@media (min-width: 1366px) {
+    .container {
+        width: 1310px;
+    }
+}
+
+.network-container {
+    width: 714px;
+    display: block;
+    border-radius: 4px;
+    text-align: left;
+    font-size: 12px;
+    padding: 20px 25px;
+    background: $WhiteColor;
+    margin: 35px auto 0;
+    .ui-widget {
+        ul {
+            li {
+                font-family: $Heebo-Light;
+                font-size: 14px;
+                text-align: center;
+                border: 0;
+                margin: 0;
+                &.ui-state-default {
+                    &.ui-state-active {
+                        color: $DarkGreyColor;
+                        font-family: $Heebo-Medium;
+                        border: 0;
+                        border-bottom: 1px solid $DarkGreyColor;
+                    }
+                }
+                &.ui-state-default {
+                    background: none;
+                    border-bottom: 1px solid $GreyBoderColor;
+                }
+                &:not(.ui-state-active):not(.ui-state-disabled):hover {
+                    background: none;
+                }
+            }
+        }
+    }
+    label {
+        letter-spacing: 0.5px;
+        text-align: left;
+        color: $LightGreyColor;
+        font-family: $Heebo-Bold;
+        text-transform: uppercase;
+    }
+    input.form-control {
+        border-radius: 3px;
+        border: solid 1px $InputBorderColor;
+        transition: none;
+        font-family: $Heebo-Light;
+        font-size: 13px;
+        color: $GreyGridColor;
+        padding: 9px 15px;
+        &:focus {
+            box-shadow: none;
+        }
+    }
+    .info_img {
+        height: 13px;
+        width: 13px;
+        opacity: 0.6;
+    }
+}
+
+.icon-background1 {
+    color: #618acd;
+}
+
+.fa-info-circle:before {
+    content: "\f05a";
+}
+
+.btn-green {
+    border-radius: 4px;
+    background-color: $GreenColorBtn;
+    font-family: $Heebo-Medium;
+    border: 0;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 8px 35px;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 2px 0 0 0;
+    display: block;
+}
+
+.ui-tooltip-text {
+    width: fit-content;
+    &.ui-shadow {
+        &.ui-corner-all {
+            font-family: $Heebo-Regular;
+            font-size: 12px;
+            color: $WhiteColor;
+            white-space: nowrap;
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 5px;
+    border-radius: 8px;
+    &-track {
+        background-color: #efefef;
+        border-radius: 8px;
+    }
+    &-thumb {
+        background-color: $WhiteColor;
+        border-radius: 8px;
+    }
+    &-button {
+        display: none;
+    }
+}
+
+.ui-growl {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+}
+
+.loader-bg {
+    background: url(/assets/images/loader.gif) center center no-repeat;
+}
+
+.form-group {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.form-footer .form-group {
+    padding-bottom: 0;
+    margin-bottom: 3px;
+}
+
+.block-inner {
+    background: $blockGreyColor;
+    border-radius: 3px;
+    padding: 15px 8px 15px 15px;
+    h3 {
+        display: block;
+        overflow: hidden;
+        em {
+            display: block;
+            float: left;
+            margin-right: 10px;
+            height: 20px;
+            img {
+                vertical-align: top !important;
+            }
+        }
+        span {
+            float: left;
+            color: $WhiteColor;
+            font-size: 14px;
+            font-family: $Heebo-Light;
+            display: block;
+            margin-top: 1px;
+        }
+    }
+    .block-inner-list-wrapper {
+        height: 275px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            width: 4px;
+            height: 5px;
+            border-radius: 6px;
+            &-track {
+                background-color: #424962;
+                border-radius: 6px;
+            }
+            &-thumb {
+                background-color: #626b8f;
+                border-radius: 6px;
+            }
+            &-button {
+                display: none;
+            }
+        }
+        .block-inner-scroll-space {
+            display: block;
+            margin-right: 8px;
+        }
+        .block-list {
+            border-radius: 6px;
+            h4 {
+                display: block;
+                span {
+                    color: #20dcca;
+                    font-size: 14px;
+                    font-family: $Heebo-Light;
+                }
+                em {
+                    color: #f5ba64;
+                    font-size: 14px;
+                    font-family: $Heebo-Light;
+                }
+            }
+            .ui-accordion-content {
+                padding: 0;
+                background: #31364a;
+                color: inherit;
+                .block-list-inner {
+                    .table {
+                        &.toptable {
+                            margin: 10px 0 0 0;
+                        }
+                    }
+                    .table {
+                        &.bottable {
+                            margin: 0 0 15px;
+                        }
+                        td {
+                            padding: 5px 10px;
+                            border: 0;
+                            vertical-align: middle;
+                            font-size: 13px;
+                            font-family: $Heebo-Light;
+                            &.col-md-4 {
+                                color: #9b9b9b;
+                                span {
+                                    text-align: right;
+                                }
+                            }
+                            &.col-md-8 {
+                                color: $WhiteColor;
+                                text-align: left;
+                                span {
+                                    text-align: left;
+                                }
+                            }
+                            &.parentHash {
+                                color: #9b9b9b;
+                                width: 20%;
+                                span {
+                                    text-align: right;
+                                    width: auto;
+                                }
+                            }
+                            &.parentDetail {
+                                color: $WhiteColor;
+                                text-align: left;
+                                span {
+                                    text-align: left;
+                                    width: 380px;
+                                    display: inline-block;
+                                }
+                            }
+                            &.transaction-title {
+                                color: #9b9b9b;
+                            }
+                            span {
+                                white-space: nowrap;
+                                width: 107px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: inline-block;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                    .col-md-6 {
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+            }
+            .ui-accordion-header {
+                background: #31364a !important;
+                border: 0;
+                overflow: hidden;
+                margin-bottom: 1px;
+                &:not(.ui-state-active),
+                &:not(.ui-state-disabled):hover,
+                &:not(.ui-state-active),
+                &:not(.ui-state-disabled):hover {
+                    background: none;
+                    border: 0;
+                    color: inherit;
+                }
+                .ui-accordion-toggle-icon {
+                    float: left;
+                    height: 24px;
+                    width: 24px;
+                    font-size: 0;
+                    line-height: 0;
+                    text-indent: -5000px;
+                    &:before {
+                        content: "";
+                    }
+                    &.fa-caret-right {
+                        background: url(/assets/images/img-block-arrow-down.png) no-repeat 0 0;
+                    }
+                    &.fa-caret-down {
+                        background: url(/assets/images/img-block-arrow-up.png) no-repeat 0 0;
+                    }
+                }
+                .block-header {
+                    float: left;
+                    width: 94%;
+                    h4 {
+                        margin: 0;
+                        padding: 0;
+                        .row {
+                            margin-bottom: 10px;
+                        }
+                        .block-title {
+                            color: #f8e71c;
+                            font-size: 13px;
+                            font-family: $Heebo-Light;
+                            padding: 6px 0 0 25px;
+                        }
+                        .block-time {
+                            text-align: right;
+                            color: #f5ba64;
+                            font-size: 12px;
+                            font-family: $Heebo-Light;
+                        }
+                        .hash-title {
+                            text-align: left;
+                            color: #9b9b9b;
+                            font-size: 13px;
+                            font-family: $Heebo-Light;
+                            padding: 0 0 0 25px;
+                        }
+                        .hash-detail {
+                            text-align: left;
+                            color: #9b9b9b;
+                            font-size: 13px;
+                            font-family: $Heebo-Light;
+                            padding: 0;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

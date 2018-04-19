@@ -1,0 +1,36 @@
+{
+  "customMessage": {
+    "nodename": "Please Enter Node Name",
+    "currentIP": "Please Enter IP Address",
+    "rpcPort": "Please Enter RCP Port",
+    "whisperPort": "Please Network Listening Port",
+    "constellationPort": "Please Enter Constellation Port",
+    "raftPort": "Please Enter Raft Port",
+    "nodeManagerPort": "Please Enter Node Manager Port",
+    "masterIP": "Please Enter Main IP Address",
+    "masterNodeManagerPort": "Please Enter Main Node Manager Port"
+  },
+
+  "customMessageCreate": {
+    "nodename": "Please enter sutaible name for the node to create a network.",
+    "currentIP": "Enter IP address of this node on which you are creating a network.",
+    "rpcPort": "please enter RPC(Remote Procedure Call) port for remote interactions.",
+    "whisperPort": "Please enter a port for data to travel from one node to another over a network.",
+    "constellationPort": "Please enter a port to make transactons between nodes.",
+    "raftPort": "Please enter a port to achieve raft concensus for quorum.",
+    "nodeManagerPort": "Please enter a port to start a service."
+
+  },
+
+  "customMessageJoin": {
+    "nodename": "Please enter sutaible name for the node to join a network.",
+    "currentIP": "Enter IP address of this node to join a network.",
+    "rpcPort": "Please enter RPC(Remote Procedure Call) port for remote interactions.",
+    "whisperPort": "Please enter a port for data to travel from one node to another over a network.",
+    "constellationPort": "Please enter a port to make transactons between nodes.",
+    "raftPort": "Please enter a port to achieve raft concensus for quorum.",
+    "nodeManagerPort": "Please enter a service port of already created node.",
+    "masterIP": "Please enter a IP address of already created node to join a network.",
+    "masterNodeManagerPort": "Please enter a port to start a service."
+  }
+}

@@ -1,0 +1,177 @@
+<p-growl [value]="msgs"></p-growl>
+<div class="dashboard">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="dataTable">
+        <div class="row">
+          <div class="privte col-md-6">
+            <div class="leftcontant ">
+              <h2>#5,010,732</h2>
+              <p>Best Block</p>
+            </div>
+            <div class="leftbottom">
+              <h3>#38,204</h3>
+              <p>Private Transaction</p>
+            </div>
+          </div>
+          <div class="public col-md-6">
+            <div class="rightcontant ">
+              <h2>07 sec ago</h2>
+              <p>Last Block</p>
+            </div>
+            <div class="rightbottom">
+              <h3>#76,155</h3>
+              <p>Public Transaction</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 ">
+      <div class="nodeTable">
+        <div class="activeNode">
+          <h3>50/50</h3>
+          <p>Active nodes</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="timeTable">
+        <div class="timeUp">
+          <h3>100%</h3>
+          <p>Up Time</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="transactionTable">
+        <h3>Transactions</h3>
+        <div class="graph">
+          <img src="/assets/images/img-graph.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="grid-container">
+  <h2>Node Table</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>
+          <img src="/assets/images/checkIn.png">
+        </th>
+        <th>Node Name</th>
+        <th>Role</th>
+        <th>Public Key</th>
+        <th>IP Address</th>
+        <th>Node Latency</th>
+        <th>Enode ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <img src="/assets/img/checkIn.png">
+        </td>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>
+          <img src="/assets/img/checkIn.png">
+        </td>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>
+          <img src="/assets/img/checkIn.png">
+        </td>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+<div class="block-wrapper">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="block-inner">
+        <h3>
+          <em>
+            <img src="/assets/images/blockIcons.png" />
+          </em>
+          <span>Blocks</span>
+        </h3>
+        <div class="block-inner-list-wrapper">
+          <div class="block-inner-scroll-space">
+            <p-accordion>
+              <p-accordionTab class="block-list" *ngFor="let getBlocks of getBlockList">
+                <p-header class="block-header" (click)="ExpandBlockDetails(getBlocks?.number);">
+                  <h4>
+                    <div class="row">
+                      <div class="block-title col-md-8">{{getBlocks?.number}}</div>
+                      <div class="block-time col-md-4">23 sec ago</div>
+                    </div>
+                    <div class="row">
+                      <div class="hash-title col-md-2">Hash</div>
+                      <div class="hash-detail col-md-10">{{getBlocks?.hash}}</div>
+                    </div>
+                  </h4>
+                </p-header>
+                <app-hash-block [BlockDetails]="BlockDetails" [isExpanded]="isExpanded" [getBlocks]="getBlocks"></app-hash-block>
+              </p-accordionTab>
+            </p-accordion>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="block-inner">
+        <h3>
+          <em>
+            <img src="/assets/images/transcationIcons.png" />
+          </em>
+          <span>Transactions</span>
+        </h3>
+        <div class="block-inner-list-wrapper">
+          <div class="block-inner-scroll-space">
+            <p-accordion>
+              <p-accordionTab class="block-list" *ngFor="let getBlocks of getBlockList">
+                <p-header class="block-header">
+                  <h4>
+                    <div class="row">
+                      <div class="block-title col-md-2">Block Number 01</div>
+                      <div class="block-time col-md-10">23 sec ago</div>
+                    </div>
+                    <div class="row">
+                      <div class="hash-title col-md-2">Hash</div>
+                      <div class="hash-detail col-md-10">Hashdsd</div>
+                    </div>
+                  </h4>
+                </p-header>
+                <app-transcation-block [getBlocks]="getBlocks"></app-transcation-block>
+              </p-accordionTab>
+            </p-accordion>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

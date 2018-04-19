@@ -1,0 +1,29 @@
+.header {
+    display: block;
+    padding: 15px 0;
+    height: 70px;
+    .navbar-header {
+        float: left;
+        a {
+            &.navbar-brand {
+                text-decoration: none;
+                outline: none;
+                font-size: 0;
+            }
+        }
+    }
+    .iconeRight {
+        position: relative;
+        padding-top: 7px;
+        ul {
+            flex-direction: inherit;
+            li {
+                float: left;
+                padding-right: 20px;
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}
