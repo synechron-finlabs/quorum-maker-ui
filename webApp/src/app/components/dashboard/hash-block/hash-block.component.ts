@@ -7,7 +7,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 })
 export class HashBlockComponent implements OnInit, OnChanges {
   @Input() getBlocks: any;
-  @Input() isExpanded: boolean;
+  //@Input() isExpanded: boolean;
   @Input() BlockDetails: any;
   constructor() { }
 

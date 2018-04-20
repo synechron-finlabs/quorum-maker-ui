@@ -51,4 +51,11 @@ export class CommonService {
     return this.http.get(this.apiURL + 'block/' + BlkNum + '')
       .map(data => data.json());
   }
+
+   // Retrive the transcation Details...
+   getTxNDetails(hashKey) {
+    console.log('this.apiURL >>>>>..', this.apiURL + 'txnrcpt/' + hashKey + '')
+    return this.http.get(this.apiURL + 'txnrcpt/' + hashKey + '')
+      .map(data => data.json());
+  }
 }

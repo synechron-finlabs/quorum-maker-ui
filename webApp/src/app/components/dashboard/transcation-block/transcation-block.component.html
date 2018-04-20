@@ -1,13 +1,13 @@
-<div class="block-list-inner" [class.expanded]="isExpanded">
+<div class="block-list-inner">
   <div class="col-md-12">
     <div class="row">
       <table class="table toptable">
         <tr>
           <td class="parentHash">
-            <span>ParentHash</span>
+            <span>BlockHash</span>
           </td>
           <td class="parentDetail">
-            <span>ParentHashdsdsds</span>
+            <span>{{TxNDetails?.blockHash || '--'}}</span>
           </td>
         </tr>
       </table>
@@ -17,69 +17,26 @@
         <table class="table bottable">
           <tr>
             <td class="col-md-4">
-              <span>Nonce</span>
+              <span>Block Number</span>
             </td>
             <td class="col-md-8">
-              <span>0x0000000000000000</span>
+              <span>{{TxNDetails?.blockNumber || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Logs Bloom</span>
+              <span>Contract Address</span>
             </td>
             <td class="col-md-8">
-              <span>0x000000000</span>
+              <span>{{TxNDetails?.contractAddress || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>State Root</span>
+              <span>Cumulative Gas Used</span>
             </td>
             <td class="col-md-8">
-              <span>0x000000000</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>Difficulty</span>
-            </td>
-            <td class="col-md-8">
-              <span>131072</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>Extra Data</span>
-            </td>
-            <td class="col-md-8">
-              <span>0x</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>Gas Limit</span>
-            </td>
-            <td class="col-md-8">
-              <span>3144658</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>Timestamp</span>
-            </td>
-            <td class="col-md-8">
-              <span>1.51496E+18</span>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" class="transaction-title col-md-12">Transactions (Array)</td>
-          </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>Block Hash</span>
-            </td>
-            <td class="col-md-8">
-              <span>0x494897f527fc4d708c</span>
+              <span>{{TxNDetails?.cumulativeGasUsed || '0'}}</span>
             </td>
           </tr>
           <tr>
@@ -87,47 +44,51 @@
               <span>From</span>
             </td>
             <td class="col-md-8">
-              <span>0x12cd73865def668</span>
+              <span>{{TxNDetails?.from || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Gas Price</span>
+              <span>Transaction Index</span>
             </td>
             <td class="col-md-8">
-              <span>00</span>
+              <span>{{TxNDetails?.transactionIndex || '--'}}</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2" class="transaction-title col-md-12">logs</td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Address</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{TxNDetails?.logs[0]?.address || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Input</span>
+              <span>BlockHash</span>
             </td>
             <td class="col-md-8">
-              <span>0x</span>
+              <span>{{TxNDetails?.logs[0]?.blockHash || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>To</span>
+              <span>Block Number</span>
             </td>
             <td class="col-md-8">
-              <span>0x12cd73865def668cc6</span>
+              <span>{{TxNDetails?.logs[0]?.blockNumber || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Value</span>
+              <span>Data</span>
             </td>
             <td class="col-md-8">
-              <span>1000000</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>R</span>
-            </td>
-            <td class="col-md-8">
-              <span>0x51299c676c4d740</span>
+              <span>{{TxNDetails?.logs[0]?.data || '--'}}</span>
             </td>
           </tr>
         </table>
@@ -136,58 +97,42 @@
         <table class="table">
           <tr>
             <td class="col-md-4">
-              <span>Sha3Uncles</span>
+              <span>Transaction Hash</span>
             </td>
             <td class="col-md-8">
-              <span>0x0000000000000000</span>
+              <span>{{TxNDetails?.transactionHash || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Transactions Root</span>
+              <span>Logsbloom</span>
             </td>
             <td class="col-md-8">
-              <span>0x000000000</span>
+              <span>{{TxNDetails?.logsBloom || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Miner</span>
+              <span>Root</span>
             </td>
             <td class="col-md-8">
-              <span>0x000000000</span>
+              <span>{{TxNDetails?.root || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Total Difficulty</span>
+              <span>to</span>
             </td>
             <td class="col-md-8">
-              <span>131072</span>
+              <span>{{TxNDetails?.to || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Size</span>
+              <span>Transaction Type</span>
             </td>
             <td class="col-md-8">
-              <span>0x</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>Gas Used</span>
-            </td>
-            <td class="col-md-8">
-              <span>3144658</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>Uncles</span>
-            </td>
-            <td class="col-md-8">
-              <span>1.51496E+18</span>
+              <span>{{TxNDetails?.transactionType || '--'}}</span>
             </td>
           </tr>
           <tr>
@@ -195,60 +140,37 @@
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Block Number</span>
+              <span>Log Index</span>
             </td>
             <td class="col-md-8">
-              <span>01</span>
+              <span>{{TxNDetails?.logs[0]?.logIndex || '0'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Gas</span>
+              <span>Topics</span>
             </td>
             <td class="col-md-8">
-              <span>9000</span>
+              <span>{{TxNDetails?.logs[0]?.topics[0] || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Hash</span>
+              <span>TransactionHash</span>
             </td>
             <td class="col-md-8">
-              <span>0xfefaebf1bed66fb..</span>
+              <span>{{TxNDetails?.logs[0]?.transactionHash || '--'}}</span>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Nonce</span>
+              <span>transactionIndex</span>
             </td>
             <td class="col-md-8">
-              <span>00</span>
+              <span>{{TxNDetails?.logs[0]?.transactionIndex || '0'}}</span>
             </td>
           </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>Transaction Index</span>
-            </td>
-            <td class="col-md-8">
-              <span>00</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>V</span>
-            </td>
-            <td class="col-md-8">
-              <span>0x1b</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="col-md-4">
-              <span>S</span>
-            </td>
-            <td class="col-md-8">
-              <span>0x5e8c4bbf8714be</span>
-            </td>
-          </tr>
+
         </table>
       </div>
     </div>

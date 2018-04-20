@@ -351,9 +351,66 @@ body {
                             text-overflow: ellipsis;
                             display: inline-block;
                         }
+                        .txn-wrapper {
+                            margin-bottom: 3px;
+                            .col-md-2 {
+                                font-size: 12px;
+                                font-family: $Heebo-Light;
+                                color: $WhiteColor;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: inline-block;
+                                margin: 0;
+                                padding: 0 0 0 12px;
+                                width: 50px;
+                            }
+                            .col-md-4 {
+                                font-size: 12px;
+                                font-family: $Heebo-Light;
+                                color: #b5d3f7;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: inline-block;
+                                margin: 0;
+                                padding: 0;
+                                width: 100px;
+                            }
+                            .block-time {
+                                padding-top: 8px;
+                            }
+                        }
+                        .margin-bottom-0 {
+                            margin-bottom: 3px;
+                        }
+                    }
+                    .public {
+                        font-size: 12px;
+                        font-family: $Heebo-Light;
+                        color: #7ed321;
+                        padding: 0 0 0 28px;
                     }
                 }
             }
+        }
+        .loader-bg {
+            min-height: 250px;
+        }
+    }
+}
+
+.selected {
+    .ui-accordion-header {
+        border: 1px solid #f8e71c !important;
+        &.ui-state-active {
+            border-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+    }
+    .ui-accordion-content-wrapper {
+        border: 1px solid #f8e71c;
+        border-top: 0;
+        &.ui-accordion-content-wrapper-overflown {
+            border: 0;
         }
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-transcation-block',
@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transcation-block.component.scss']
 })
 export class TranscationBlockComponent implements OnInit {
-
+  @Input() getBlocks: any;
+  @Input() TxNDetails: any;
+  //@Input() redClassBool: boolean;
   constructor() { }
 
   ngOnInit() {

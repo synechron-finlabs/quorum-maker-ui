@@ -120,10 +120,11 @@
           <span>Blocks</span>
         </h3>
         <div class="block-inner-list-wrapper">
+          <div class="loader-bg" *ngIf="!getBlockList"></div>
           <div class="block-inner-scroll-space">
             <p-accordion>
               <p-accordionTab class="block-list" *ngFor="let getBlocks of getBlockList">
-                <p-header class="block-header" (click)="ExpandBlockDetails(getBlocks?.number);">
+                <p-header class="block-header" (click)="ExpandBlockDetails(getBlocks?.number);blockFilter(getBlocks?.hash);">
                   <h4>
                     <div class="row">
                       <div class="block-title col-md-8">{{getBlocks?.number}}</div>
@@ -135,7 +136,7 @@
                     </div>
                   </h4>
                 </p-header>
-                <app-hash-block [BlockDetails]="BlockDetails" [isExpanded]="isExpanded" [getBlocks]="getBlocks"></app-hash-block>
+                <app-hash-block [BlockDetails]="BlockDetails" [getBlocks]="getBlocks"></app-hash-block>
               </p-accordionTab>
             </p-accordion>
           </div>
@@ -151,22 +152,35 @@
           <span>Transactions</span>
         </h3>
         <div class="block-inner-list-wrapper">
+          <div class="loader-bg" *ngIf="!getBlockList"></div>
           <div class="block-inner-scroll-space">
             <p-accordion>
-              <p-accordionTab class="block-list" *ngFor="let getBlocks of getBlockList">
-                <p-header class="block-header">
+              <p-accordionTab class="block-list" *ngFor="let getBlocks of getBlockList" [ngClass]="{'selected': getBlocks?.hash == selectedBlock}">
+                <p-header class="block-header" (click)="ExpandTxNDetails(getBlocks?.transactions[0].hash);">
                   <h4>
-                    <div class="row">
-                      <div class="block-title col-md-2">Block Number 01</div>
-                      <div class="block-time col-md-10">23 sec ago</div>
+                    <div class="row margin-bottom-0">
+                      <div class="hash-title col-md-2">TXNdd</div>
+                      <div class="hash-detail col-md-10">{{getBlocks?.transactions[0]?.hash}}</div>
+                    </div>
+                    <div class="row txn-wrapper">
+                      <div class="col-md-9">
+                        <div class="col-md-2">From</div>
+                        <div class="col-md-4">{{getBlocks?.transactions[0]?.from}}</div>
+                        <div class="col-md-2">To</div>
+                        <div class="col-md-4">{{getBlocks?.transactions[0]?.to}}</div>
+                      </div>
+                      <div class="col-md-3 block-time">
+                        23 sec ago
+                      </div>
                     </div>
                     <div class="row">
-                      <div class="hash-title col-md-2">Hash</div>
-                      <div class="hash-detail col-md-10">Hashdsd</div>
+                      <div class="col-md-12 public">
+                        {{getBlocks?.transactions[0]?.transactionType}}
+                      </div>
                     </div>
                   </h4>
                 </p-header>
-                <app-transcation-block [getBlocks]="getBlocks"></app-transcation-block>
+                <app-transcation-block [TxNDetails]="TxNDetails" [getBlocks]="getBlocks"></app-transcation-block>
               </p-accordionTab>
             </p-accordion>
           </div>
