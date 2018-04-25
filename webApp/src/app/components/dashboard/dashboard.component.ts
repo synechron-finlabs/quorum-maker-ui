@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonService } from '../../service/common-service';
 import { Message } from 'primeng/api';
+import { MessageService } from '../../service/utility.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+  selected: any;
+  getNodeInfoList: any;
   transactionsElement: any;
   hashElement: any;
   TxNDetails: any;
@@ -18,11 +21,23 @@ export class DashboardComponent implements OnInit {
   isExpanded: boolean = false;
   _BlkNum: number;
   selectedBlock: any;
+  isBlocks: boolean = false;
+  isNodeData: boolean = false;
+  isSelected: any;
 
-  constructor(private _CommonService: CommonService, ) { }
+  constructor(private _CommonService: CommonService, private messageService: MessageService) { }
 
   ngOnInit() {
     this.getBlocklisting();
+    this.getNodeInfo();
+    this.isNodeData = true;
+
+    if ('nodeManager') {
+      this.isSelected = 'nodeClass';
+    }
+
+
+
   }
 
   blockFilter(_hash) {
@@ -64,5 +79,36 @@ export class DashboardComponent implements OnInit {
       this.TxNDetails = data;
       console.log('---TxNDetails Details ---', this.TxNDetails);
     });
+  }
+
+  getNodeInfo() {
+    this._CommonService.getNodeInfo().subscribe(result => {
+      this.getNodeInfoList = result.json();
+      this.messageService.sendMessage(this.getNodeInfoList);
+      console.log(' this.getNodeInfo>>>>>>', this.getNodeInfoList);
+    },
+      err => {
+        console.log("Error occured", err);
+      }
+    );
+  }
+
+  isShowCont(isActive) {
+    if (isActive == 'getBlocks') {
+      this.isSelected = 'blockClass';
+      this.isBlocks = true;
+      this.isNodeData = false;
+    } else {
+      if (isActive == 'nodeManager') {
+        this.isSelected = 'nodeClass';
+        this.isNodeData = true;
+        this.isBlocks = false;
+      }
+    }
+  }
+
+  ngOnDestroy() {
+    this.messageService.clearMessage();
+    console.log('Destroy in dashboard')
   }
 }

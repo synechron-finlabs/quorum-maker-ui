@@ -7,8 +7,15 @@ label.required:after {
     top: 7px;
 }
 
-.network-container .has-error .form-control {
-    border-bottom-color: #a94442;
+.network-container {
+    .has-error {
+        .form-control {
+            border-bottom-color: #a94442;
+        }
+    }
+    .ng-invalid {
+        animation-name: fadeIn;
+    }
 }
 
 .errorMsg {

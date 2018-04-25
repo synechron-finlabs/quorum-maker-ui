@@ -5,7 +5,7 @@
       <div class="col-md-12">
         <p-tabView>
           <p-tabPanel header="CREATE NETWORK">
-            <form novalidate [formGroup]="CreateNetworkForm">
+            <form novalidate [formGroup]="CreateNetworkForm" class="animated">
               <div class="row">
                 <div class="col-md-12 form-group" [ngClass]="displayFieldCssCreate('nodename')">
                   <label>Node Name:</label>
@@ -64,7 +64,7 @@
             </form>
           </p-tabPanel>
           <p-tabPanel header="JOIN NETWORK">
-            <form novalidate [formGroup]="JoinNetworkForm">
+            <form novalidate [formGroup]="JoinNetworkForm" class="animated">
               <div class="row">
                 <div class="col-md-12 form-group" [ngClass]="displayFieldCssJoin('nodename')">
                   <label>Node Name:</label>

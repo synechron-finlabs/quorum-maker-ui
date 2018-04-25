@@ -1,61 +1,48 @@
 <p-growl [value]="msgs"></p-growl>
 <div class="dashboard">
   <div class="row">
-    <div class="col-md-4">
-      <div class="dataTable">
-        <div class="row">
-          <div class="privte col-md-6">
-            <div class="leftcontant ">
-              <h2>#5,010,732</h2>
-              <p>Best Block</p>
-            </div>
-            <div class="leftbottom">
-              <h3>#38,204</h3>
-              <p>Private Transaction</p>
-            </div>
-          </div>
-          <div class="public col-md-6">
-            <div class="rightcontant ">
-              <h2>07 sec ago</h2>
-              <p>Last Block</p>
-            </div>
-            <div class="rightbottom">
-              <h3>#76,155</h3>
-              <p>Public Transaction</p>
-            </div>
-          </div>
+    <div class="col-md-12">
+      <div class="rect-block" [ngClass]="(isSelected == 'blockClass')?'active':''" (click)="isShowCont('getBlocks')">
+        <div class="rect-block-inner">
+          <h5>Current Block Number</h5>
+          <h3>{{getNodeInfoList?.blockNumber}}</h3>
+          <p>
+            <strong>Last Block :</strong>
+            <span>07 Sec ago</span>
+          </p>
         </div>
       </div>
-    </div>
-    <div class="col-md-2 ">
-      <div class="nodeTable">
-        <div class="activeNode">
-          <h3>50/50</h3>
-          <p>Active nodes</p>
+      <div class="rect-block" [ngClass]="(isSelected == 'nodeClass')?'active':''" (click)="isShowCont('nodeManager')">
+        <div class="rect-block-inner">
+          <h5 class="active-node">Active Nodes</h5>
+          <h3 class="active-node">{{getNodeInfoList?.nodeCount}}</h3>
+          <p>
+            <strong>Total Network Nodes :</strong>
+            <span>{{getNodeInfoList?.nodeCount}}</span>
+          </p>
         </div>
       </div>
-    </div>
-    <div class="col-md-2">
-      <div class="timeTable">
-        <div class="timeUp">
-          <h3>100%</h3>
-          <p>Up Time</p>
+      <div class="pending-transaction">
+        <div class="inner">
+          <h5>Pending Transactions</h5>
+          <h3>{{getNodeInfoList?.pendingTxCount}}</h3>
         </div>
       </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="transactionTable">
-        <h3>Transactions</h3>
-        <div class="graph">
-          <img src="/assets/images/img-graph.png" />
+      <div class="ip-address">
+        <div class="inner">
+          <h5>IP ADDRESS</h5>
+          <h3>{{getNodeInfoList?.connectionInfo?.ip}}</h3>
+          <p>
+            <strong>RPC Port :</strong>
+            <span>{{getNodeInfoList?.connectionInfo?.port}}</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- <div class="grid-container">
+<div class="grid-container animated " *ngIf="isNodeData" [ngClass]="(isSelected == 'nodeClass')?'fadeIn':''">
   <h2>Node Table</h2>
   <table class="table table-hover">
     <thead>
@@ -107,9 +94,9 @@
       </tr>
     </tbody>
   </table>
-</div> -->
+</div>
 
-<div class="block-wrapper">
+<div class="block-wrapper animated " *ngIf="isBlocks" [ngClass]="(isSelected == 'blockClass')?'fadeIn':''">
   <div class="row">
     <div class="col-md-6">
       <div class="block-inner">

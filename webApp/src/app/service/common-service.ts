@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class CommonService {
   private apiURL = environment.apiURL;
+  private nodeURL = environment.nodeURL;
   private messagesUrl = 'assets/data/custom_messages.json';
 
   constructor(private http: Http) { }
@@ -52,10 +53,31 @@ export class CommonService {
       .map(data => data.json());
   }
 
-   // Retrive the transcation Details...
-   getTxNDetails(hashKey) {
+  // Retrive the transcation Details...
+  getTxNDetails(hashKey) {
     console.log('this.apiURL >>>>>..', this.apiURL + 'txnrcpt/' + hashKey + '')
     return this.http.get(this.apiURL + 'txnrcpt/' + hashKey + '')
       .map(data => data.json());
   }
+
+  // Retrive the transcation Details...
+  getNodeInfo() {
+    console.log('this.nodeURL >>>>>..', this.nodeURL + 'peer')
+    return this.http.get(this.nodeURL + 'peer');
+  }
+
+  // Retrive the transcation Details...
+  getPendingRequest() {
+    console.log('this.nodeURL >>>>>..', this.nodeURL + 'pendingJoinRequests')
+    return this.http.get(this.nodeURL + 'pendingJoinRequests');
+  }
+
+  postjoinNetwork(params) {
+    console.log('params', params);
+    const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const options = new RequestOptions({ headers: headers });
+    return this.http.post(this.nodeURL + 'joinRequestResponse', params, options);
+  }
 }
+
+

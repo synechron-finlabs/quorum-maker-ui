@@ -1,8 +1,11 @@
+<p-growl [value]="msgs"></p-growl>
 <div class="container-fluid header">
   <div class="navbar-header">
     <a class="navbar-brand logo">
-      <img src="/assets/images/quorum-maker.png">
+      <img src="/assets/images/logo.png">
     </a>
+    <span>{{getNodeInfoList?.nodeName}}</span>
+    <em *ngIf="getNodeInfoList">{{getNodeInfoList?.active}}</em>
   </div>
   <div class="iconeRight pull-right">
     <ul class="nav navbar-nav ">
@@ -11,26 +14,19 @@
           <img src="/assets/images/search.png">
         </a>
       </li>
-      <li>
-        <a href="#">
-          <img src="/assets/images/crossroad.png">
-        </a>
-        <div class="dropdown">
-
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#">Node A</a>
-            </li>
-            <li>
-              <a href="#">Node B</a>
-            </li>
-            <li>
-              <a href="#">Node C</a>
-            </li>
-            <li>
-              <a href="#">Node D</a>
-            </li>
-          </ul>
+      <li class="dropdown" *ngIf="pendingRequest?.length > 0">
+        <img src="/assets/images/crossroad.png" (click)="toggle()">
+        <div class="dropdown-menu-list animated" *ngIf="show">
+          <h2>Pending Request for join Network</h2>
+          <div class="dropdown-inner"[ngClass]="pendingRequest?.length >= 5 ? 'vscroll' : '' ">
+            <ul>
+              <li *ngFor="let item of pendingRequest">
+                <span>{{item?.nodeName}}</span>
+                <a class="reject" (click)="submitStatus(item, 'NO')">reject</a>
+                <a class="accept" (click)="submitStatus(item, 'YES')">Accept</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </li>
       <li>
@@ -38,9 +34,6 @@
           <img src="/assets/images/top-bar.png">
         </a>
       </li>
-
     </ul>
-
-
   </div>
 </div>

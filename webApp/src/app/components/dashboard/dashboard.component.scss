@@ -11,74 +11,6 @@ img {
     vertical-align: 0 !important;
 }
 
-.dataTable {
-    position: relative;
-    height: 184px;
-    border-radius: 6px;
-    display: inline-block;
-    color: white;
-    background-color: #222941;
-    width: 100%;
-    .privte {
-        padding: 27px 0 0 36px;
-        .leftcontant {
-            h2 {
-                font-size: 26px;
-                color: #00ffc8;
-                font-family: Heebo-Regular;
-            }
-            p {
-                font-size: 13px;
-                color: #ffffff;
-                font-family: Heebo-Light;
-            }
-        }
-        .leftbottom {
-            h3 {
-                font-size: 24px;
-                color: #628fed;
-                font-family: Heebo-Regular;
-            }
-            p {
-                font-size: 13px;
-                color: #ffffff;
-                font-family: Heebo-Light;
-            }
-        }
-    }
-    .public {
-        padding: 27px 36px 0 0;
-        .rightcontant {
-            border-left: 1px solid #61696d;
-            padding-left: 25px;
-            h2 {
-                font-size: 26px;
-                color: #f5ba64;
-                font-family: Heebo-Regular;
-            }
-            p {
-                font-size: 13px;
-                color: #ffffff;
-                font-family: Heebo-Light;
-            }
-        }
-        .rightbottom {
-            border-left: 1px solid #61696d;
-            padding-left: 25px;
-            h3 {
-                font-size: 24px;
-                color: #628fed;
-                font-family: Heebo-Regular;
-            }
-            p {
-                font-size: 13px;
-                color: #ffffff;
-                font-family: Heebo-Light;
-            }
-        }
-    }
-}
-
 .nodeTable {
     height: 184px;
     border-radius: 6px;
@@ -109,55 +41,6 @@ img {
     }
 }
 
-.timeTable {
-    position: relative;
-    height: 184px;
-    border-radius: 6px;
-    color: $WhiteColor;
-    background-image: url('/assets/images/uptime-1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0 0;
-    .timeUp {
-        position: absolute;
-        bottom: 25px;
-        left: 20px;
-        h3 {
-            font-size: 28px;
-            color: $WhiteColor;
-            margin: 0;
-            padding: 0;
-            font-family: $Heebo-Regular;
-        }
-        p {
-            font-size: 14px;
-            color: $WhiteColor;
-            font-family: $Heebo-Light;
-            margin: 0;
-            padding: 0;
-        }
-    }
-}
-
-.transactionTable {
-    position: relative;
-    height: 184px;
-    border-radius: 6px;
-    background-color: #222941;
-    display: block;
-    h3 {
-        padding: 25px 15px;
-        font-family: $Heebo-Regular;
-        color: $WhiteColor;
-        font-size: 22px;
-    }
-    img {
-        width: auto;
-        display: block;
-        margin: auto;
-    }
-}
-
 table {
     thead {
         th {
@@ -182,3 +65,153 @@ table {
     }
 }
 
+.rect-block {
+    width: 230px;
+    padding: 0 6px;
+    margin: 0;
+    float: left;
+    .rect-block-inner {
+        height: 134px;
+        border-radius: 6px;
+        background-color: #222941;
+        padding: 15px 12px;
+        h5 {
+            color: $WhiteColor;
+            letter-spacing: 0.3px;
+            font-size: 13px;
+            font-family: $Heebo-Bold;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 0 0 8px 0;
+            &.active-node {
+                font-family: $Heebo-Regular;
+                color: #747fa3;
+            }
+        }
+        h3 {
+            color: #00ffc8;
+            letter-spacing: 1px;
+            font-size: 42px;
+            font-family: $Heebo-Light;
+            margin: 0;
+            padding: 0 0 8px 0;
+            &.active-node {
+                color: $WhiteColor;
+            }
+        }
+        &:hover,
+        &:active {
+            box-shadow: 0 0 5px 0 #20dcca;
+            cursor: pointer;
+        }
+        p {
+            display: block;
+            overflow: hidden;
+            strong {
+                float: left;
+                margin-right: 10px;
+                font-family: $Heebo-Light;
+                color: #647197;
+                font-size: 13px;
+            }
+            span {
+                float: left;
+                font-family: $Heebo-Light;
+                font-size: 13px;
+                color: #628fed;
+                strong {
+                    font-family: $Heebo-Bold;
+                }
+            }
+        }
+    }
+    &.active {
+        .rect-block-inner {
+            box-shadow: 0 0 5px 0 #20dcca;
+        }
+    }
+}
+
+.pending-transaction {
+    float: left;
+    padding: 0 6px;
+    .inner {
+        background: url(/assets/images/active-node.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center 0;
+        width: 313px;
+        height: 134px;
+        padding: 20px 15px;
+        border-radius: 6px;
+        h5 {
+            color: $WhiteColor;
+            font-size: 14px;
+            font-family: $Heebo-Bold;
+            letter-spacing: 0.3px;
+            margin: 0;
+            padding: 0 0 8px 0;
+            text-transform: uppercase;
+        }
+        h3 {
+            color: $WhiteColor;
+            letter-spacing: 0.7px;
+            font-size: 75px;
+            font-family: $Heebo-Light;
+            line-height: 75px;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+.ip-address {
+    float: left;
+    padding: 0 6px 0 0;
+    .inner {
+        background-image: url(/assets/images/ipbackground.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center 0;
+        width: 313px;
+        height: 134px;
+        padding: 20px 15px;
+        border-radius: 6px;
+        h5 {
+            color: $WhiteColor;
+            font-size: 14px;
+            font-family: $Heebo-Bold;
+            letter-spacing: 0.3px;
+            margin: 0;
+            padding: 0 0 8px 0;
+            text-transform: uppercase;
+        }
+        h3 {
+            color: $WhiteColor;
+            letter-spacing: 0.7px;
+            font-size: 42px;
+            font-family: $Heebo-Light;
+            margin: 0;
+            padding: 0 0 8px 0;
+        }
+        p {
+            display: block;
+            overflow: hidden;
+            color: $WhiteColor;
+            strong {
+                float: left;
+                margin-right: 10px;
+                font-family: $Heebo-Light;
+                font-size: 13px;
+            }
+            span {
+                float: left;
+                font-family: $Heebo-Light;
+                font-size: 13px;
+                strong {
+                    font-family: $Heebo-Bold;
+                }
+            }
+        }
+    }
+}
