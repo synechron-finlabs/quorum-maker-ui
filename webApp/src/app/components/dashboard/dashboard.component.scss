@@ -41,26 +41,72 @@ img {
     }
 }
 
-table {
-    thead {
-        th {
-            background-color: #222941;
-            font-size: 13px;
-            color: #ffffff;
-            font-family: Heebo-Light;
-            border-bottom: 1px solid #222941;
-            border-top: 1px solid #2b3045;
-            padding: 10px;
-        }
+.grid-container {
+    h2 {
+        font-family: $Heebo-Regular;
+        color: $WhiteColor;
+        font-size: 16px;
+        padding: 10px 0 12px 0;
     }
-    tr {
-        background-color: #2b3045;
-        font-size: 12px;
-        color: #ffffff;
-        font-family: Heebo-Light;
-        td {
-            border-top: 1px solid #222941;
-            padding: 10px;
+    .table {
+        &.table-hover {
+            tr {
+                &:hover {
+                    background-color: #303549;
+                }
+            }
+        }
+        thead {
+            th {
+                background-color: #222941;
+                font-size: 13px;
+                color: $WhiteColor;
+                font-family: $Heebo-Light;
+                border-bottom: 1px solid #222941;
+                border-top: 1px solid #2b3045;
+                padding: 8px 10px 13px 10px;
+                letter-spacing: 0.3px;
+            }
+        }
+        tr {
+            background-color: #2b3045;
+            td {
+                border-top: 1px solid #222941;
+                padding: 8px 10px 8px 10px;
+                font-size: 12px;
+                color: #676b7a;
+                font-family: $Heebo-Light;
+                vertical-align: middle;
+                span {
+                    &.checkIcon {
+                        background: url('/assets/images/check.png') no-repeat 0 0;
+                        height: 20px;
+                        width: 20px;
+                        font-size: 0;
+                        line-height: 0;
+                        text-indent: -5000px;
+                        display: block;
+                        &.checkiconCopy {
+                            background: url('/assets/images/check-copy.png') no-repeat 0 0;
+                        }
+                    }
+                }
+                &.node {
+                    white-space: nowrap;
+                    width: 355px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: inline-block;
+                    padding: 11px 10px 11px 10px;
+                    border-top: 0;
+                    &.pubkey {
+                        color: #20dcca;
+                    }
+                    &.enodeid {
+                        color: #f5ba64;
+                    }
+                }
+            }
         }
     }
 }

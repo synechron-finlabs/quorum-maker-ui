@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { CommonService } from '../../service/common-service';
 import { Message } from 'primeng/api';
 import { MessageService } from '../../service/utility.service';
@@ -9,13 +9,17 @@ import { MessageService } from '../../service/utility.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  display: boolean = false;
+  getNodeInfoDetails: any;
+  getPeerDetails: any;
+  getNodeListData: any;
   selected: any;
   getNodeInfoList: any;
   transactionsElement: any;
   hashElement: any;
   TxNDetails: any;
   BlockDetails: any;
-  getBlockList: any;
+  getBlockList: any = [];
   msgs: Message[];
   index: number;
   isExpanded: boolean = false;
@@ -24,26 +28,47 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isBlocks: boolean = false;
   isNodeData: boolean = false;
   isSelected: any;
+  //private noOfItemsToShowInitially: number = 5;
+  private itemsToLoad: number = 5;
+  itemsToShow: any;
+  referenceNo = null;
 
-  constructor(private _CommonService: CommonService, private messageService: MessageService) { }
+  constructor(private _CommonService: CommonService, private messageService: MessageService, private _el: ElementRef) { }
 
   ngOnInit() {
-    this.getBlocklisting();
+    this.getBlocklisting(null);
     this.getNodeInfo();
+    this.getNodeList()
     this.isNodeData = true;
-
     if ('nodeManager') {
       this.isSelected = 'nodeClass';
     }
+  }
 
-
-
+  onScroll() {
+    console.log("scrolled Down");
+    //this.noOfItemsToShowInitially += this.itemsToLoad;
+    this.referenceNo = this.referenceNo - 5;
+    this.itemsToShow = this.getBlocklisting(this.referenceNo);
+    console.log("scrolled Down");
+    console.log('this.referenceNo>>>>>>>', this.referenceNo)
   }
 
   blockFilter(_hash) {
     console.log('hash>>>>', _hash);
-    this.selectedBlock = _hash;
-
+    if (_hash == this.selectedBlock) {
+      this.selectedBlock = '';
+    } else {
+      this.selectedBlock = _hash;
+      let parentElement = this._el.nativeElement.querySelectorAll('.block-inner-list-wrapper')[1];
+      let selectedElement: any;
+      setTimeout(() => {
+        selectedElement = this._el.nativeElement.querySelectorAll('.selected')[0].offsetTop - 45;
+        console.log('selectedElement>......', selectedElement);
+        document.getElementsByClassName('block-inner-list-wrapper')[1].scrollTo(0, selectedElement)
+      }, 100);
+      console.log('parentElement>......', parentElement);
+    }
   }
 
   ExpandBlockDetails(_BlkNum) {
@@ -56,10 +81,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     console.log('this.BlockDetails ExpandBlockDetails>>>>', _hashKey);
   }
 
-  getBlocklisting() {
-    this._CommonService.getBlockData().subscribe(result => {
-      this.getBlockList = result.json();
-      console.log(' this.getBlockList>>>>>>', this.getBlockList)
+  getBlocklisting(referenceNo) {
+    this._CommonService.getBlockData(referenceNo).subscribe(result => {
+      console.log(this.getBlockList, '==this.getBlockList==');
+      console.log(result.json(), '==data==');
+      let data: any = [];
+      data = result.json();
+      data.forEach(element => {
+        if (element.transactions) {
+          this.getBlockList.push(element);
+        }
+      });
+      if (this.referenceNo == null) this.referenceNo = this.getBlockList[0].number - this._CommonService.showEl;
+      console.log(this.getBlockList, '==this.getBlockList==');
     },
       err => {
         console.log("Error occured", err);
@@ -93,6 +127,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
 
+  getNodeList() {
+    this._CommonService.getNodeList().subscribe(result => {
+      this.getNodeListData = result.json();
+      console.log(' this.getNodeListData>>>>>>', this.getNodeListData);
+      this.getNodeListData.forEach((element, index) => {
+        if (index == 0) {
+          element['isActive'] = true;
+        }
+      });
+    },
+      err => {
+        console.log("Error occured", err);
+      }
+    );
+  }
+
   isShowCont(isActive) {
     if (isActive == 'getBlocks') {
       this.isSelected = 'blockClass';
@@ -105,6 +155,37 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.isBlocks = false;
       }
     }
+  }
+
+  getNodeDetailist(_NodeKey) {
+    this._CommonService.nodeDetail(_NodeKey).subscribe(data => {
+      this.getNodeInfoDetails = data.json();
+      console.log('---getNodeInfoDetails ---', this.getNodeInfoDetails);
+    });
+  }
+
+  getNodeDetails(item) {
+    //console.log('item onClick', item);
+    if (item.isActive == true) {
+      this.display = true;
+      this._CommonService.peerDetails().subscribe(result => {
+        this.getPeerDetails = result.json();
+        console.log(' this.getPeerDetails>>>>>>', this.getPeerDetails);
+      },
+        err => {
+          console.log("Error occured", err);
+        }
+      );
+    } else {
+      this.display = true;
+      this.getNodeDetailist(item.enode);
+      console.log(' item.enode>>>>>>', item.enode);
+    }
+  }
+
+  closeFlag($event) {
+    this.display = $event
+    console.log('closeFlag >>>>>>>>>>', this.display)
   }
 
   ngOnDestroy() {

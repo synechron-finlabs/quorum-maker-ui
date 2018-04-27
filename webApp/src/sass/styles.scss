@@ -176,9 +176,10 @@ body {
         }
     }
     .block-inner-list-wrapper {
-        height: 275px;
+        height: 310px;
         overflow-x: hidden;
         overflow-y: scroll;
+        scroll-behavior: smooth;
         &::-webkit-scrollbar {
             width: 4px;
             height: 5px;
@@ -307,10 +308,10 @@ body {
                         content: "";
                     }
                     &.fa-caret-right {
-                        background: url(/assets/images/img-block-arrow-down.png) no-repeat 0 0;
+                        background: url(/assets/images/img-block-arrow-down-blue.png) no-repeat 0 0;
                     }
                     &.fa-caret-down {
-                        background: url(/assets/images/img-block-arrow-up.png) no-repeat 0 0;
+                        background: url(/assets/images/img-block-arrow-up-blue.png) no-repeat 0 0;
                     }
                 }
                 .block-header {
@@ -390,6 +391,16 @@ body {
                         padding: 0 0 0 28px;
                     }
                 }
+                &.ui-state-active {
+                    .ui-accordion-toggle-icon {
+                        &.fa-caret-right {
+                            background: url(/assets/images/img-block-arrow-down.png) no-repeat 0 0;
+                        }
+                        &.fa-caret-down {
+                            background: url(/assets/images/img-block-arrow-up.png) no-repeat 0 0;
+                        }
+                    }
+                }
             }
         }
         .loader-bg {
@@ -401,6 +412,14 @@ body {
 .selected {
     .ui-accordion-header {
         border: 1px solid #f8e71c !important;
+        .ui-accordion-toggle-icon {
+            &.fa-caret-right {
+                background: url(/assets/images/img-block-arrow-down.png) no-repeat 0 0 !important;
+            }
+            &.fa-caret-down {
+                background: url(/assets/images/img-block-arrow-up.png) no-repeat 0 0 !important;
+            }
+        }
         &.ui-state-active {
             border-bottom: 0 !important;
             margin-bottom: 0 !important;

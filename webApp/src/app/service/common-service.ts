@@ -7,9 +7,12 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class CommonService {
+
   private apiURL = environment.apiURL;
   private nodeURL = environment.nodeURL;
   private messagesUrl = 'assets/data/custom_messages.json';
+  public showEl: number = 7;
+
 
   constructor(private http: Http) { }
 
@@ -20,10 +23,13 @@ export class CommonService {
   }
 
   //Retrive the data...
-  getBlockData() {
-    //console.log('dsdsdsd----', this.apiURL + 'block?' + 'number' + "=" + 5 + "&" + 'reference' + "=" + 5);
-    return this.http.get(this.apiURL + 'block?' + 'number' + "=" + 5)
-
+  getBlockData(referenceNo) {
+    console.log('getBlockData----', this.apiURL + 'block?' + 'number' + "=" + this.showEl + "&" + 'reference' + "=");
+    var urlStr = this.apiURL + 'block?' + 'number' + "=" + this.showEl;
+    if (referenceNo != null)
+      urlStr = urlStr + "&" + 'reference' + "=" + referenceNo
+    // return this.http.get(this.apiURL + 'block?' + 'number' + "=" + this.showEl + "&" + 'reference' + "=" + noOfItemsToShowInitially)
+    return this.http.get(urlStr);
   }
 
   //Post the createNetwork data...
@@ -78,6 +84,23 @@ export class CommonService {
     const options = new RequestOptions({ headers: headers });
     return this.http.post(this.nodeURL + 'joinRequestResponse', params, options);
   }
+
+  // Retrive the transcation Details...
+  getNodeList() {
+    console.log('this.apiURL + nodeList >>>>>..', this.apiURL + 'nodeList')
+    return this.http.get(this.apiURL + 'nodeList');
+  }
+
+  peerDetails() {
+    console.log('peerDetails----', this.nodeURL + 'peer');
+    return this.http.get(this.nodeURL + 'peer');
+  }
+
+  nodeDetail(NodeKey) {
+    console.log('NodeDetails----', this.nodeURL + 'peer/' + NodeKey + '');
+    return this.http.get(this.nodeURL + 'peer/' + NodeKey + '');
+  }
+
 }
 
 

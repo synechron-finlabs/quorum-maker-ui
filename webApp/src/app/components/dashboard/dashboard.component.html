@@ -48,7 +48,7 @@
     <thead>
       <tr>
         <th>
-          <img src="/assets/images/checkIn.png">
+          &nbsp;
         </th>
         <th>Node Name</th>
         <th>Role</th>
@@ -59,43 +59,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let getNodeItem of getNodeListData;" (click)="getNodeDetails(getNodeItem)">
         <td>
-          <img src="/assets/img/checkIn.png">
+          <span class="checkIcon" [ngClass]="(getNodeItem.isActive === true)?'checkiconCopy':'checkIcon'">&nbsp;</span>
         </td>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>
-          <img src="/assets/img/checkIn.png">
-        </td>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>
-          <img src="/assets/img/checkIn.png">
-        </td>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        <td>{{getNodeItem?.nodeName}}</td>
+        <td>{{getNodeItem?.role}}</td>
+        <td class="node pubkey" title="{{getNodeItem?.publicKey}}">{{getNodeItem?.publicKey}}</td>
+        <td>{{getNodeItem?.ip}}</td>
+        <td>32 ms</td>
+        <td class="node enodeid" title="{{getNodeItem?.enode}}">{{getNodeItem?.enode}}</td>
       </tr>
     </tbody>
   </table>
 </div>
-
 <div class="block-wrapper animated " *ngIf="isBlocks" [ngClass]="(isSelected == 'blockClass')?'fadeIn':''">
   <div class="row">
     <div class="col-md-6">
@@ -106,7 +83,8 @@
           </em>
           <span>Blocks</span>
         </h3>
-        <div class="block-inner-list-wrapper">
+        <div class="block-inner-list-wrapper" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" [scrollWindow]="false"
+          (scrolled)="onScroll()">
           <div class="loader-bg" *ngIf="!getBlockList"></div>
           <div class="block-inner-scroll-space">
             <p-accordion>
@@ -143,18 +121,18 @@
           <div class="block-inner-scroll-space">
             <p-accordion>
               <p-accordionTab class="block-list" *ngFor="let getBlocks of getBlockList" [ngClass]="{'selected': getBlocks?.hash == selectedBlock}">
-                <p-header class="block-header" (click)="ExpandTxNDetails(getBlocks?.transactions[0].hash);">
+                <p-header class="block-header" *ngIf="getBlocks.transactions" (click)="ExpandTxNDetails(getBlocks?.transactions[0].hash);">
                   <h4>
                     <div class="row margin-bottom-0">
                       <div class="hash-title col-md-2">TXNdd</div>
-                      <div class="hash-detail col-md-10">{{getBlocks?.transactions[0]?.hash}}</div>
+                      <div class="hash-detail col-md-10">{{getBlocks?.transactions[0].hash}}</div>
                     </div>
                     <div class="row txn-wrapper">
                       <div class="col-md-9">
                         <div class="col-md-2">From</div>
-                        <div class="col-md-4">{{getBlocks?.transactions[0]?.from}}</div>
+                        <div class="col-md-4">{{getBlocks?.transactions[0].from}}</div>
                         <div class="col-md-2">To</div>
-                        <div class="col-md-4">{{getBlocks?.transactions[0]?.to}}</div>
+                        <div class="col-md-4">{{getBlocks?.transactions[0].to}}</div>
                       </div>
                       <div class="col-md-3 block-time">
                         23 sec ago
@@ -162,7 +140,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12 public">
-                        {{getBlocks?.transactions[0]?.transactionType}}
+                        {{getBlocks?.transactions[0].transactionType}}
                       </div>
                     </div>
                   </h4>
@@ -176,3 +154,5 @@
     </div>
   </div>
 </div>
+
+<app-info-overlay [display]="display" (showEvent)="closeFlag($event)"></app-info-overlay>
