@@ -155,4 +155,4 @@
   </div>
 </div>
 
-<app-info-overlay [display]="display" (showEvent)="closeFlag($event)"></app-info-overlay>
+<app-info-overlay [display]="display" [listItem]="getPeerDetails" (showEvent)="closeFlag($event)"></app-info-overlay>
