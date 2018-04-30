@@ -5,10 +5,10 @@
       <div class="rect-block" [ngClass]="(isSelected == 'blockClass')?'active':''" (click)="isShowCont('getBlocks')">
         <div class="rect-block-inner">
           <h5>Current Block Number</h5>
-          <h3>{{getNodeInfoList?.blockNumber}}</h3>
+          <h3>{{latestBlockData?.latestBlockNumber}}</h3>
           <p>
             <strong>Last Block :</strong>
-            <span>07 Sec ago</span>
+            <span>{{latestTimeElapsedToDisplay}} ago</span>
           </p>
         </div>
       </div>

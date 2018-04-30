@@ -2,6 +2,9 @@ import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { CommonService } from '../../service/common-service';
 import { Message } from 'primeng/api';
 import { MessageService } from '../../service/utility.service';
+import { Observable } from "rxjs";
+import { TimerObservable } from "rxjs/observable/TimerObservable";
+import 'rxjs/add/operator/takeWhile';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,8 +35,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private itemsToLoad: number = 5;
   itemsToShow: any;
   referenceNo = null;
+  latestBlockData: any;
+  private alive: boolean; // used to unsubscribe from the TimerObservable when OnDestroy is called.
+  serviceCallInterval: number;
+  timerIncrementInterval: number;
+  latestTimeElapsed;
+  latestTimeElapsedToDisplay;
 
-  constructor(private _CommonService: CommonService, private messageService: MessageService, private _el: ElementRef) { }
+  constructor(private _CommonService: CommonService, private messageService: MessageService, private _el: ElementRef) {
+    this.alive = true;
+    this.serviceCallInterval = 600; // in seconds
+    this.timerIncrementInterval = 1; // in seconds
+  }
 
   ngOnInit() {
     this.getBlocklisting(null);
@@ -43,6 +56,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if ('nodeManager') {
       this.isSelected = 'nodeClass';
     }
+    this.getLatestBlock();
+    this.incrementTimer();
   }
 
   onScroll() {
@@ -107,6 +122,53 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.log('---Block Details ---', this.BlockDetails);
     });
   }
+
+  getLatestBlock() {
+    TimerObservable.create(0, this.serviceCallInterval * 1000)
+      .takeWhile(() => this.alive)
+      .subscribe(() => {
+        this._CommonService.getLatestBlock().subscribe(data => {
+          this.latestBlockData = data.json();
+          this.latestTimeElapsed = this.latestBlockData.TimeElapsed;
+          console.log("latestTimeElapsed", this.latestTimeElapsed);
+          this.latestTimeElapsedToDisplay = this.changeTimeformat(this.latestTimeElapsed);
+        },
+          err => {
+            console.log("Error occured", err);
+          });
+      });
+  }
+
+  incrementTimer() {
+    setInterval(() => {
+      this.latestTimeElapsed += this.timerIncrementInterval;
+      this.latestTimeElapsedToDisplay = this.changeTimeformat(this.latestTimeElapsed);
+    }, this.timerIncrementInterval * 1000);
+  }
+
+  changeTimeformat(latestTime) {
+    let days = Math.floor(latestTime / (3600 * 24));
+    latestTime -= days * 3600 * 24;
+    let hours = Math.floor(latestTime / 3600);
+    latestTime -= hours * 3600;
+    let minutes = Math.floor(latestTime / 60);
+    let seconds = latestTime - minutes * 60;
+    // latestTime = `${hours} H ${minutes} M ${seconds} S`
+    // return latestTime;
+    let finalTime;
+    if (!days) {
+      finalTime = this.str_pad_left(hours, '0', 2) + ':' + this.str_pad_left(minutes, '0', 2) + ':' + this.str_pad_left(seconds, '0', 2);
+    }
+    else {
+      finalTime = days + ':' + this.str_pad_left(hours, '0', 2) + ':' + this.str_pad_left(minutes, '0', 2) + ':' + this.str_pad_left(seconds, '0', 2);
+    }
+    return finalTime;
+  }
+
+  str_pad_left(string, pad, length) {
+    return (new Array(length + 1).join(pad) + string).slice(-length);
+  }
+
 
   getTxNDetails(_hashKey) {
     this._CommonService.getTxNDetails(_hashKey).subscribe(data => {

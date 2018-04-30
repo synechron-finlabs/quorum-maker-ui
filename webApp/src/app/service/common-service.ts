@@ -101,6 +101,11 @@ export class CommonService {
     return this.http.get(this.nodeURL + 'peer/' + NodeKey + '');
   }
 
+  getLatestBlock(){
+    console.log('NodeDetails----', this.apiURL + 'latestBlock');
+    return this.http.get(this.apiURL + 'latestBlock');
+  } 
+
 }
 
 
