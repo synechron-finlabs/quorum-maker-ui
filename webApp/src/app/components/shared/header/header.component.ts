@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../../../service/common-service';
-import { MessageService } from '../../../service/utility.service';
+import { MessageService } from '../../../service/message.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Message } from 'primeng/api';
 

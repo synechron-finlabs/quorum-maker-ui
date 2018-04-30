@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { CommonService } from '../../service/common-service';
 import { Message } from 'primeng/api';
-import { MessageService } from '../../service/utility.service';
+import { MessageService } from '../../service/message.service';
 import { Observable } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 import 'rxjs/add/operator/takeWhile';

@@ -15,7 +15,7 @@ import { TranscationBlockComponent } from './transcation-block/transcation-block
 import { InfoOverlayComponent } from './info-overlay/info-overlay.component';
 
 // import { CommonServiceService } from "../../service/common-service.service";
-// import { MessageService } from '../../service/utility.service';
+// import { MessageService } from '../../service/message.service';
 // import { StatisticsGraphComponent } from './statistics-graph/statistics-graph.component';
 
 
