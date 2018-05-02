@@ -130,7 +130,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this._CommonService.getLatestBlock().subscribe(data => {
           this.latestBlockData = data.json();
           this.latestTimeElapsed = this.latestBlockData.TimeElapsed;
-          // console.log("latestTimeElapsed", this.latestTimeElapsed);
+          // console.log("latestTimeElapsed", this.latestBlockData);
           this.latestTimeElapsedToDisplay = this.changeTimeformat(this.latestTimeElapsed);
         },
           err => {
@@ -153,20 +153,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     latestTime -= hours * 3600;
     let minutes = Math.floor(latestTime / 60);
     let seconds = latestTime - minutes * 60;
-    let finalTime;
-    if (!days) {
-      finalTime = this.str_pad_left(hours, '0', 2) + ':' + this.str_pad_left(minutes, '0', 2) + ':' + this.str_pad_left(seconds, '0', 2);
-    }
-    else {
-      finalTime = days + ' Day' + (days > 1 ? 's' : '') ;
+    let finalTime = this.twoDigit(hours) + ':' + this.twoDigit(minutes) + ':' + this.twoDigit(seconds);
+
+    if (days > 0) {
+      finalTime = days + ' Day' + (days > 1 ? 's' : '');
+      // if days and time both need to be shown below to be used
+      // finalTime = days + ' Day' + (days > 1 ? 's' : '') + ' & '
+      //   + this.twoDigit(hours) + ':' + this.twoDigit(minutes) + ':' + this.twoDigit(seconds) + ' hrs';
     }
     return finalTime;
   }
 
-  str_pad_left(string, pad, length) {
-    return (new Array(length + 1).join(pad) + string).slice(-length);
+  private twoDigit(num) {
+    return ("0" + num).slice(-2);
   }
-
 
   getTxNDetails(_hashKey) {
     this._CommonService.getTxNDetails(_hashKey).subscribe(data => {
