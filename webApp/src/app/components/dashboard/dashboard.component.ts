@@ -130,7 +130,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this._CommonService.getLatestBlock().subscribe(data => {
           this.latestBlockData = data.json();
           this.latestTimeElapsed = this.latestBlockData.TimeElapsed;
-          console.log("latestTimeElapsed", this.latestTimeElapsed);
+          // console.log("latestTimeElapsed", this.latestTimeElapsed);
           this.latestTimeElapsedToDisplay = this.changeTimeformat(this.latestTimeElapsed);
         },
           err => {
@@ -142,7 +142,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   incrementTimer() {
     setInterval(() => {
       this.latestTimeElapsed += this.timerIncrementInterval;
-      this.latestTimeElapsedToDisplay = this.changeTimeformat(this.latestTimeElapsed);
+      this.latestTimeElapsedToDisplay = this.changeTimeformat(3563);
     }, this.timerIncrementInterval * 1000);
   }
 
@@ -153,8 +153,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     latestTime -= hours * 3600;
     let minutes = Math.floor(latestTime / 60);
     let seconds = latestTime - minutes * 60;
-    // latestTime = `${hours} H ${minutes} M ${seconds} S`
-    // return latestTime;
     let finalTime;
     if (!days) {
       finalTime = this.str_pad_left(hours, '0', 2) + ':' + this.str_pad_left(minutes, '0', 2) + ':' + this.str_pad_left(seconds, '0', 2);
