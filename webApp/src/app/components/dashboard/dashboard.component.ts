@@ -142,7 +142,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   incrementTimer() {
     setInterval(() => {
       this.latestTimeElapsed += this.timerIncrementInterval;
-      this.latestTimeElapsedToDisplay = this.changeTimeformat(3563);
+      this.latestTimeElapsedToDisplay = this.changeTimeformat(this.latestTimeElapsed);
     }, this.timerIncrementInterval * 1000);
   }
 
@@ -158,7 +158,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       finalTime = this.str_pad_left(hours, '0', 2) + ':' + this.str_pad_left(minutes, '0', 2) + ':' + this.str_pad_left(seconds, '0', 2);
     }
     else {
-      finalTime = days + ':' + this.str_pad_left(hours, '0', 2) + ':' + this.str_pad_left(minutes, '0', 2) + ':' + this.str_pad_left(seconds, '0', 2);
+      finalTime = days + ' Day' + (days > 1 ? 's' : '') ;
     }
     return finalTime;
   }
