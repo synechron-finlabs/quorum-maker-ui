@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getNodeInfoDetails: any;
   getPeerDetails: any;
   getNodeListData: any;
+  nodeLatency: any;
   selected: any;
   getNodeInfoList: any;
   transactionsElement: any;
@@ -49,6 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.getNodeLatency();
     this.getBlocklisting(null);
     this.getNodeInfo();
     this.getNodeList()
@@ -194,8 +196,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.getNodeListData.forEach((element, index) => {
         if (index == 0) {
           element['isActive'] = true;
+          element['time'] = "";
         }
       });
+    },
+      err => {
+        console.log("Error occured", err);
+      }
+    );
+  }
+
+  getNodeLatency() {
+    this._CommonService.getNodeLatency().subscribe(result => {
+      this.nodeLatency = result.json();
+      console.log(' this.nodeLatency>>>>>>', this.nodeLatency);
+      // below logic to set time in getNodeListData array to show latency in template
+      for (let element of this.nodeLatency) {
+        for (let obj of this.getNodeListData) {
+          if (element['enode-id'] == obj['enode']) {
+            obj['time'] = element['latency'] + " ms";
+          }
+        }
+      }
     },
       err => {
         console.log("Error occured", err);

@@ -67,7 +67,7 @@
         <td>{{getNodeItem?.role}}</td>
         <td class="node pubkey" title="{{getNodeItem?.publicKey}}">{{getNodeItem?.publicKey}}</td>
         <td>{{getNodeItem?.ip}}</td>
-        <td>32 ms</td>
+        <td>{{getNodeItem?.time}}</td>
         <td class="node enodeid" title="{{getNodeItem?.enode}}">{{getNodeItem?.enode}}</td>
       </tr>
     </tbody>
@@ -93,7 +93,7 @@
                   <h4>
                     <div class="row">
                       <div class="block-title col-md-8">{{getBlocks?.number}}</div>
-                      <div class="block-time col-md-4">23 sec ago</div>
+                      <div class="block-time col-md-4">{{getBlocks?.TimeElapsed}} ago</div>
                     </div>
                     <div class="row">
                       <div class="hash-title col-md-2">Hash</div>
@@ -135,7 +135,7 @@
                         <div class="col-md-4">{{getBlocks?.transactions[0].to}}</div>
                       </div>
                       <div class="col-md-3 block-time">
-                        23 sec ago
+                         {{getBlocks?.TimeElapsed}} ago
                       </div>
                     </div>
                     <div class="row">

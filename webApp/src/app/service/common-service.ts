@@ -91,6 +91,11 @@ export class CommonService {
     return this.http.get(this.apiURL + 'nodeList');
   }
 
+  getNodeLatency(){
+    console.log('this.apiURL + nodeList >>>>>..', this.apiURL + 'latency')
+    return this.http.get(this.apiURL + 'latency');
+  }
+
   peerDetails() {
     console.log('peerDetails----', this.nodeURL + 'peer');
     return this.http.get(this.nodeURL + 'peer');
