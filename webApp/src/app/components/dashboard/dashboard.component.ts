@@ -54,9 +54,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getBlocklisting(null);
     this.getNodeInfo();
     this.getNodeList()
-    this.isNodeData = true;
+    this.isBlocks = true; // on page load block and transaction would show by default on dashboard
     if ('nodeManager') {
-      this.isSelected = 'nodeClass';
+      this.isSelected = 'nodeManager';
     }
     this.getLatestBlock();
     this.incrementTimer();
@@ -111,6 +111,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
       if (this.referenceNo == null) this.referenceNo = this.getBlockList[0].number - this._CommonService.showEl;
       console.log(this.getBlockList, '==this.getBlockList==');
+      // below logic added to show list with blockNumber greater than 0 
+      this.getBlockList = this.getBlockList.filter(
+        block => block.number > 0
+      );
     },
       err => {
         console.log("Error occured", err);
