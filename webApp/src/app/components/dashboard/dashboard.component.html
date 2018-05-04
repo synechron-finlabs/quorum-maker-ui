@@ -93,7 +93,7 @@
                   <h4>
                     <div class="row">
                       <div class="block-title col-md-8">{{getBlocks?.number}}</div>
-                      <div class="block-time col-md-4">{{getBlocks?.TimeElapsed}} ago</div>
+                      <div class="block-time col-md-4">{{changeTimeformat(getBlocks?.TimeElapsed)}} ago</div>
                     </div>
                     <div class="row">
                       <div class="hash-title col-md-2">Hash</div>
@@ -125,22 +125,22 @@
                   <h4>
                     <div class="row margin-bottom-0">
                       <div class="hash-title col-md-2">TXNdd</div>
-                      <div class="hash-detail col-md-10">{{getBlocks?.transactions[0].hash}}</div>
+                      <div class="hash-detail col-md-10">{{getBlocks?.transactions[0]?.hash}}</div>
                     </div>
                     <div class="row txn-wrapper">
                       <div class="col-md-9">
                         <div class="col-md-2">From</div>
-                        <div class="col-md-4">{{getBlocks?.transactions[0].from}}</div>
+                        <div class="col-md-4">{{getBlocks?.transactions[0]?.from}}</div>
                         <div class="col-md-2">To</div>
-                        <div class="col-md-4">{{getBlocks?.transactions[0].to}}</div>
+                        <div class="col-md-4">{{getBlocks?.transactions[0]?.to}}</div>
                       </div>
                       <div class="col-md-3 block-time">
-                         {{getBlocks?.TimeElapsed}} ago
+                        {{changeTimeformat(getBlocks?.TimeElapsed)}} ago
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12 public">
-                        {{getBlocks?.transactions[0].transactionType}}
+                        {{getBlocks?.transactions[0]?.transactionType}}
                       </div>
                     </div>
                   </h4>

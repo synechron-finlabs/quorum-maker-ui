@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable()
 export class UtilityService {
-
-  constructor() { }
-
+  networkRoleNodeList: any;
+  constructor() {
+  }
+  getNetworkRoleNodeList() {
+    return this.networkRoleNodeList;
+  }
 }

@@ -1,0 +1,57 @@
+@import '~sass/variables';
+label.required:after {
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 5px;
+    top: 7px;
+
+}
+
+.network-container .has-error .form-control {
+    border-bottom-color: #a94442;
+}
+
+.errorMsg {
+    color: #d00;
+    font-family: $Heebo-Light;
+    font-size: 11px;
+    display: none;
+    position: absolute;
+    left: 15px;
+    bottom: -11px;
+}
+
+.has-error .errorMsg {
+    display: block;
+}
+
+.drop-display{
+    display: block;
+    width: 100%;
+}
+.button-right{
+    margin-left: 570px;
+    border-radius: 2px;
+    background-color: #eaedf1;
+    border: solid 1px #c2c6c9;
+}
+ul.fileList{ 
+    list-style-type: none;
+    min-width: 696px;
+	list-style: none;
+	padding-top: 20px;
+   & .listSpace{
+       display: inline;
+        border: 1px solid #87a4d3;
+        background: #87a4d3;
+        padding: 2px 10px;
+        margin: 0 10px 10px 0;
+        border-radius: 9px;
+        font-size: 12px;
+   }
+}
+
+.cancel-icon{
+    margin-left:10px;
+}

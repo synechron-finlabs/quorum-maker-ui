@@ -144,7 +144,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   incrementTimer() {
     setInterval(() => {
       this.latestTimeElapsed += this.timerIncrementInterval;
-      this.latestTimeElapsedToDisplay = this.changeTimeformat(this.latestTimeElapsed);
+      this.latestTimeElapsedToDisplay = this.changeTimeformat(234860);
     }, this.timerIncrementInterval * 1000);
   }
 

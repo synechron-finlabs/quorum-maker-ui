@@ -85,6 +85,7 @@ export class CommonService {
     return this.http.post(this.nodeURL + 'joinRequestResponse', params, options);
   }
 
+
   // Retrive the transcation Details...
   getNodeList() {
     console.log('this.apiURL + nodeList >>>>>..', this.apiURL + 'nodeList')
@@ -106,10 +107,15 @@ export class CommonService {
     return this.http.get(this.nodeURL + 'peer/' + NodeKey + '');
   }
 
-  getLatestBlock(){
+  getLatestBlock() {
     console.log('NodeDetails----', this.apiURL + 'latestBlock');
     return this.http.get(this.apiURL + 'latestBlock');
-  } 
+  }
+
+  deployContract(params) {
+    console.log('this.apiURL contract deploy >>>>', this.apiURL + 'deployContract')
+    return this.http.post(this.apiURL + 'deployContract', params)
+  }
 
 }
 

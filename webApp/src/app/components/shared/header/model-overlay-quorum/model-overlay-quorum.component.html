@@ -1,0 +1,40 @@
+<p-dialog header="Compile & Deploy Contracts" [(visible)]="display" modal="modal" [responsive]="true" [width]="auto" [minWidth]="200"
+    [minY]="70" closeOnEscape="true" dismissableMask = "true" (onHide)="onClose()">
+    <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <br>Suspendisse consequat mi a purus dignissim.</p>
+    </div>
+
+    <form novalidate [formGroup]="CompileDeployContractForm">
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>CHOOSE CONTRACT FILE</label>
+                <input style="display: none" type="file" multiple id="chooseFile" class="form-control" (change)="onFileChange($event)" #fileInput/>
+                <div class="form-control ">
+                    <button class="button-right" (click)="fileInput.click()">Choose File</button>
+                </div>
+                <ul class="fileList">
+                    <li class="listSpace" *ngFor="let file of filesToUpload">{{file.name}}
+                        <span class="cancel-icon">
+                            <a (click)="clearFile(file.name)">x</a>
+                        </span>
+                    </li>
+                </ul>
+                <span class="errorMsg">{{customMgs?.customMessageContract?.chooseFile}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group" [ngClass]="displayFieldCssContract('networkRole')">
+                <label for="networkRole">NETWORK ROLE</label>
+                <p-multiSelect [options]="networkRoleNodeList" formControlName="networkRole" [style]="{'width':'100%'}" placeholder="Select a Network Role"
+                    optionLabel="label"></p-multiSelect>
+                <span class="errorMsg">{{customMgs?.customMessageContract?.networkRole}}</span>
+            </div>
+        </div>
+        <div class="row form-footer">
+            <div class="col-md-12 form-group">
+                <button type="submit" (click)="contractSubmit(CompileDeployContractForm.value)" class="btn btn-green pull-right">SUBMIT</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>

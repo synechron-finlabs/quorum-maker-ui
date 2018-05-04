@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { CommonService } from '../../../service/common-service';
 import { MessageService } from '../../../service/message.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -18,8 +18,9 @@ export class HeaderComponent implements OnInit {
   subscription: Subscription;
   public show: boolean = false;
   msgs: Message[];
+  display: boolean = false;
 
-  constructor(private messageService: MessageService, private _CommonService: CommonService, ) {
+  constructor(private messageService: MessageService, private cd: ChangeDetectorRef, private _CommonService: CommonService, ) {
     this.subscription = this.messageService.getMessage().subscribe(message => {
       this.getNodeInfoList = message;
       console.log('this.message subscribe >>>>>>>>>>>', this.message);
@@ -34,6 +35,17 @@ export class HeaderComponent implements OnInit {
     this.show = !this.show;
   }
 
+  compileAndDeployContracts(){
+    this.display = true;
+    // this.cd.detectChanges(); 
+     console.log('open >>>>>>>>>>', this.display)
+  }
+
+  closeFlag($event) {
+    this.display = $event
+    console.log('closeFlag >>>>>>>>>>', this.display)
+    // this.cd.detectChanges();
+  }
 
   getPendingRequest() {
     this._CommonService.getPendingRequest().subscribe(result => {
