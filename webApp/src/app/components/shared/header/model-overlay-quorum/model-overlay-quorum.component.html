@@ -1,5 +1,5 @@
-<p-dialog header="Compile & Deploy Contracts" [(visible)]="display" modal="modal" [responsive]="true" [width]="auto" [minWidth]="200"
-    [minY]="70" closeOnEscape="true" dismissableMask = "true" (onHide)="onClose()">
+<p-dialog header="Compile & Deploy Contracts" [(visible)]="display" modal="modal" [responsive]="true" [width]="760" [minWidth]="200"
+    [minY]="70" closeOnEscape="true" dismissableMask="true" (onHide)="onClose()">
     <div>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             <br>Suspendisse consequat mi a purus dignissim.</p>
@@ -23,11 +23,22 @@
                 <span class="errorMsg">{{customMgs?.customMessageContract?.chooseFile}}</span>
             </div>
         </div>
+
+        <div class="row">
+            <ul class="col-md-8">
+                <li class= "listItem" *ngFor="let file of fileUploadResponse">
+                <strong>address :</strong> <span>{{file.address || '--'}}</span><br>
+                <strong>bytecode :</strong> <span>{{file.bytecode|| '--'}}</span> <br>
+                <strong>interface :</strong><span> {{file.interface|| '--'}}</span>
+                </li>
+            </ul>
+        </div>
+
         <div class="row">
             <div class="col-md-12 form-group" [ngClass]="displayFieldCssContract('networkRole')">
                 <label for="networkRole">NETWORK ROLE</label>
                 <p-multiSelect [options]="networkRoleNodeList" formControlName="networkRole" [style]="{'width':'100%'}" placeholder="Select a Network Role"
-                    optionLabel="label"></p-multiSelect>
+                    optionLabel="label" displaySelectedLabel="displayValue"></p-multiSelect>
                 <span class="errorMsg">{{customMgs?.customMessageContract?.networkRole}}</span>
             </div>
         </div>

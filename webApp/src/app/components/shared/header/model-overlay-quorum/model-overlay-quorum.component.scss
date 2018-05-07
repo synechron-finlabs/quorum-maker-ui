@@ -51,7 +51,19 @@ ul.fileList{
         font-size: 12px;
    }
 }
+.listItem{
+    text-align: left;
+    span {
+            overflow: hidden;
+    display: block;
+    white-space: normal;
+    text-overflow: ellipsis;
+        // text-align: left;
+        // width: 380px;
+        // display: inline-block;
+    }
 
+}
 .cancel-icon{
     margin-left:10px;
 }

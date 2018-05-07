@@ -25,6 +25,11 @@ export class ModelOverlayQuorumComponent implements OnInit {
   filesToUpload: Array<File> = [];
   fileUploadResponse: any;
   msgs: Message[];
+  displayValue;
+  address;
+  interface;
+  bytecode;
+
   @Input() display: boolean;
   @Output() showOverlay = new EventEmitter();
 
@@ -46,6 +51,12 @@ export class ModelOverlayQuorumComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.networkRoleNodeList = [
+      { label: 'Wells fargo Node', value: 'oOp0/cdK2/YK8IyUy/74vKp2OMKzlXApXSlGrjAcxHA=' },
+      { label: 'ABC Node', value: 'XB6tdKvVBT5e5R+M62mtoIUEPVf2lrPFVgQJLIAtsTM=' },
+      { label: 'XYZ Node', value: 'LDN' },
+      { label: 'syc Node', value: 'IST' },
+    ];
     this._CommonService.getMessages().subscribe(
       res => {
         this.customMgs = res;
@@ -130,10 +141,11 @@ export class ModelOverlayQuorumComponent implements OnInit {
     if (this.CompileDeployContractForm.valid) {
       this._CommonService.deployContract(formModel).subscribe(data => {
         this.fileUploadResponse = data.json();
+        // this.showResponse(this.fileUploadResponse);
         this.msgs = [];
         this.msgs.push({ severity: 'success', summary: 'contract has been deployed Sucessfully...' });
-        this.display = false;
-        this.showOverlay.emit(false);
+        // this.display = false;
+        // this.showOverlay.emit(false);
         console.log('contract has been deployed Sucessfully...', this.fileUploadResponse);
         // setTimeout((router: Router) => {
         //   this.router.navigate(["dashboard"]);
@@ -146,11 +158,21 @@ export class ModelOverlayQuorumComponent implements OnInit {
         });
     }
   }
-  // clearValues(){
-  //   resetFilterOnHide
+  // showResponse(arr) {
+  //   for (let val of arr) {
+  //     console.log('error', val);
+  //     this.address = val.address;
+  //     this.interface = val.interface;
+  //     this.bytecode = val.bytecode;
+
+  //   }
+  //   // resetFilterOnHide
   // }
   onClose() {
     console.log("close function called")
+    this.filesToUpload = [];
+    this.fileUploadResponse = [];
+    this.displayValue = false
     this.display = false;
     this.showOverlay.emit(false);
   }
