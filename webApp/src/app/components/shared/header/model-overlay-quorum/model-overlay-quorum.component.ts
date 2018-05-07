@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { count } from 'rxjs/operator/count';
 import { UtilityService } from '../../../../service/utility.service';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-model-overlay-quorum',
@@ -22,6 +23,8 @@ export class ModelOverlayQuorumComponent implements OnInit {
   networkRoleValues: any;
   isNetworkSelected: Boolean = false;
   filesToUpload: Array<File> = [];
+  fileUploadResponse: any;
+  msgs: Message[];
   @Input() display: boolean;
   @Output() showOverlay = new EventEmitter();
 
@@ -67,7 +70,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
     let input = new FormData();
 
     input.append('privateFor', this.networkRoleValues);
-    this.filesToUpload.forEach((element,index)=>{
+    this.filesToUpload.forEach((element, index) => {
       input.append("file" + (index + 1), this.filesToUpload[index]); // naming file name as file1,2,3 ...
     })
     input.append('count', String(this.filesToUpload.length));
@@ -122,24 +125,32 @@ export class ModelOverlayQuorumComponent implements OnInit {
     else {
       this.isNetworkSelected = false;
     }
-    this.networkRoleValues = this.networkRoleValues.toString();// conver arrys into comma separetd values
-    const formModel = this.prepareSave(); // call function to create form data
+    this.networkRoleValues = this.networkRoleValues.toString();
+    const formModel = this.prepareSave(); //  function call to create form data
     if (this.CompileDeployContractForm.valid) {
       this._CommonService.deployContract(formModel).subscribe(data => {
+        this.fileUploadResponse = data.json();
+        this.msgs = [];
+        this.msgs.push({ severity: 'success', summary: 'contract has been deployed Sucessfully...' });
         this.display = false;
         this.showOverlay.emit(false);
-        console.log('contract has been deployed Sucessfully...', formModel);
-        setTimeout((router: Router) => {
-          this.router.navigate(["dashboard"]);
-        }, 1500);
+        console.log('contract has been deployed Sucessfully...', this.fileUploadResponse);
+        // setTimeout((router: Router) => {
+        //   this.router.navigate(["dashboard"]);
+        // }, 1500);
       },
         error => {
           console.log('error', error);
+          this.msgs = [];
+          this.msgs.push({ severity: 'error', summary: 'error...' });
         });
     }
   }
-
+  // clearValues(){
+  //   resetFilterOnHide
+  // }
   onClose() {
+    console.log("close function called")
     this.display = false;
     this.showOverlay.emit(false);
   }
