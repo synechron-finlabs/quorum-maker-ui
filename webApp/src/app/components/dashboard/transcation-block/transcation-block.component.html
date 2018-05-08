@@ -41,6 +41,14 @@
           </tr>
           <tr>
             <td class="col-md-4">
+              <span>Nonce</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{TxNDetails?.nonce || '0'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
               <span>From</span>
             </td>
             <td class="col-md-8">
@@ -49,10 +57,35 @@
           </tr>
           <tr>
             <td class="col-md-4">
+              <span>Gas</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{TxNDetails?.gas || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
               <span>Transaction Index</span>
             </td>
             <td class="col-md-8">
               <span>{{TxNDetails?.transactionIndex || '--'}}</span>
+            </td>
+          </tr>
+          
+          <tr>
+            <td class="col-md-4">
+              <span>Value</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{TxNDetails?.value || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>R</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{TxNDetails?.r || '--'}}</span>
             </td>
           </tr>
 
@@ -127,12 +160,47 @@
               <span>{{TxNDetails?.to || '--'}}</span>
             </td>
           </tr>
+
+          <tr>
+            <td class="col-md-4">
+              <span>Gas Price</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{TxNDetails?.gasPrice || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Gas Used</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{TxNDetails?.gasUsed || '--'}}</span>
+            </td>
+          </tr>
+
+
           <tr>
             <td class="col-md-4">
               <span>Transaction Type</span>
             </td>
             <td class="col-md-8">
               <span>{{TxNDetails?.transactionType || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>V</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{TxNDetails?.v || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>S</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{TxNDetails?.s || '--'}}</span>
             </td>
           </tr>
           <tr>

@@ -21,18 +21,29 @@
           <h2>Pending Request for join Network</h2>
           <div class="dropdown-inner" [ngClass]="pendingRequest?.length >= 5 ? 'vscroll' : '' ">
             <ul>
-              <li *ngFor="let item of pendingRequest">
+              <li *ngFor="let item of pendingRequest" [popover]="myPopover" [popoverOnHover]="true">
                 <span>{{item?.nodeName}}</span>
                 <a class="reject" (click)="submitStatus(item, 'NO')">reject</a>
                 <a class="accept" (click)="submitStatus(item, 'YES')">Accept</a>
+                <popover-content #myPopover placement="left" [animation]="true" class="popover-list">
+                  <span>
+                    <strong>Message:</strong><br>{{item.message}}
+                  </span>
+                  <span>
+                    <strong>Enode : </strong><br>{{item.enode}}
+                  </span>
+                  <span>
+                    {{item.ip}}
+                  </span>
+                </popover-content>
               </li>
             </ul>
           </div>
         </div>
       </li>
       <li class="dropdown-list">
-        <a class="dropdown" dropdown >
-          <img src="/assets/images/top-bar.png" dropdown-open >
+        <a class="dropdown" dropdown>
+          <img src="/assets/images/top-bar.png" dropdown-open>
         </a>
         <ul class="dropdown-menu ">
           <li>

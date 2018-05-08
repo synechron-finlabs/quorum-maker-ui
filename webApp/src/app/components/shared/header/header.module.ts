@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { GrowlModule } from "primeng/primeng";
@@ -12,9 +12,11 @@ import { HttpModule } from '@angular/http';
 
 import { HeaderComponent } from './header.component';
 import { ModelOverlayQuorumComponent } from './model-overlay-quorum/model-overlay-quorum.component';
+import { PopoverModule } from "ngx-popover";
 
 import { MessageService } from '../../../service/message.service';
 import { UtilityService } from '../../../service/utility.service';
+
 
 @NgModule({
     imports: [CommonModule,
@@ -27,7 +29,9 @@ import { UtilityService } from '../../../service/utility.service';
         MultiSelectModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule],
+        HttpModule,
+        PopoverModule
+    ],
 
     declarations: [HeaderComponent, ModelOverlayQuorumComponent],
     exports: [HeaderComponent],

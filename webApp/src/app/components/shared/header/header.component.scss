@@ -138,6 +138,38 @@
                                             background: url(/assets/images/reject.png) no-repeat 0 0;
                                         }
                                     }
+                                    .popover-list {
+                                        margin: 0;
+                                        padding: 0;
+                                        border-radius: 4px;
+                                        span {
+                                            padding: 5px 12px;
+                                            margin: 0;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            display: block;
+                                            font-family: $Heebo-Regular;
+                                            font-size: 12px;
+                                            color: $DarkGreyColor;
+                                            display: block;
+                                            border-bottom: 1px solid #ccc;
+                                            width: 273px;
+                                            &:last-child {
+                                                border-bottom: none !important;
+                                            }
+                                        }
+                                        .popover {
+                                            .arrow {
+                                                &::after {
+                                                    width: 0;
+                                                    height: 0;
+                                                    border-top: 50px solid transparent;
+                                                    border-left: 100px solid red;
+                                                    border-bottom: 50px solid transparent;
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -146,16 +178,16 @@
             }
         }
     }
-    .dropdown-list{
+    .dropdown-list {
         position: relative;
         cursor: pointer;
         padding-bottom: 10px;
         &:hover {
-            .dropdown-menu{
-            display: block;
+            .dropdown-menu {
+                display: block;
+            }
         }
-        }
-        .dropdown-menu{
+        .dropdown-menu {
             margin: 0;
             padding: 4px 10px 5px 10px;
             width: 200px;
@@ -166,11 +198,10 @@
             top: 28px;
             left: auto;
             font-size: 13px;
-            a{
+            a {
                 text-decoration: none;
                 color: $DarkGreyColor;
             }
-
         }
     }
 }
