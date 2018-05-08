@@ -138,8 +138,8 @@ export class ModelOverlayQuorumComponent implements OnInit {
         // this.showResponse(this.fileUploadResponse);
         this.msgs = [];
         this.msgs.push({ severity: 'success', summary: 'contract has been deployed Sucessfully...' });
-        this.display = false;
-        this.showOverlay.emit(false);
+        // this.display = false;
+        // this.showOverlay.emit(false);
         console.log('contract has been deployed Sucessfully...', this.fileUploadResponse);
         // setTimeout((router: Router) => {
         //   this.router.navigate(["dashboard"]);
@@ -152,16 +152,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
         });
     }
   }
-  // showResponse(arr) {
-  //   for (let val of arr) {
-  //     console.log('error', val);
-  //     this.address = val.address;
-  //     this.interface = val.interface;
-  //     this.bytecode = val.bytecode;
 
-  //   }
-  //   // resetFilterOnHide
-  // }
   onClose() {
     console.log("close function called")
     this.filesToUpload = [];
