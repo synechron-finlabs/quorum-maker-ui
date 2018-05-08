@@ -51,12 +51,6 @@ export class ModelOverlayQuorumComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.networkRoleNodeList = [
-      { label: 'Wells fargo Node', value: 'oOp0/cdK2/YK8IyUy/74vKp2OMKzlXApXSlGrjAcxHA=' },
-      { label: 'ABC Node', value: 'XB6tdKvVBT5e5R+M62mtoIUEPVf2lrPFVgQJLIAtsTM=' },
-      { label: 'XYZ Node', value: 'LDN' },
-      { label: 'syc Node', value: 'IST' },
-    ];
     this._CommonService.getMessages().subscribe(
       res => {
         this.customMgs = res;
@@ -144,8 +138,8 @@ export class ModelOverlayQuorumComponent implements OnInit {
         // this.showResponse(this.fileUploadResponse);
         this.msgs = [];
         this.msgs.push({ severity: 'success', summary: 'contract has been deployed Sucessfully...' });
-        // this.display = false;
-        // this.showOverlay.emit(false);
+        this.display = false;
+        this.showOverlay.emit(false);
         console.log('contract has been deployed Sucessfully...', this.fileUploadResponse);
         // setTimeout((router: Router) => {
         //   this.router.navigate(["dashboard"]);
