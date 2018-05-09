@@ -1,11 +1,6 @@
 <p-growl [value]="msgs"></p-growl>
 <p-dialog header="Compile & Deploy Contracts" [(visible)]="display" modal="modal" [responsive]="true" [width]="760" [minWidth]="200"
     [minY]="70" closeOnEscape="true" dismissableMask="true" (onHide)="onClose()">
-    <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            <br>Suspendisse consequat mi a purus dignissim.</p>
-    </div>
-
     <form novalidate [formGroup]="CompileDeployContractForm">
         <div class="row">
             <div class="col-md-12 form-group">
@@ -37,7 +32,7 @@
 
         <div class="row">
             <div class="col-md-12 form-group" [ngClass]="displayFieldCssContract('networkRole')">
-                <label for="networkRole">NETWORK ROLE</label>
+                <label for="networkRole">NETWORK PARTICIPANTS</label>
                 <p-multiSelect [options]="networkRoleNodeList" formControlName="networkRole" [style]="{'width':'100%'}" placeholder="Select a Network Role"
                     optionLabel="label" displaySelectedLabel="displayValue"></p-multiSelect>
                 <span class="errorMsg">{{customMgs?.customMessageContract?.networkRole}}</span>
