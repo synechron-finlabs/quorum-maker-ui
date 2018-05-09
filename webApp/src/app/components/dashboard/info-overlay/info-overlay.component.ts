@@ -8,7 +8,9 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ViewEncapsul
 })
 export class InfoOverlayComponent implements OnInit, OnDestroy {
   @Input() display;
+  @Input() display2;
   @Input() listItem;
+  @Input() listItem2;
   @Output() showEvent = new EventEmitter();
 
   constructor() { }

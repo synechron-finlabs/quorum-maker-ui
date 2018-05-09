@@ -12,10 +12,13 @@ import 'rxjs/add/operator/takeWhile';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  getLogsList: any;
+  currentBlockNumber: any;
   display: boolean = false;
+  display2: boolean = false;
   getNodeInfoDetails: any;
-  getPeerDetails: any;
-  getNodeListData: any;
+  getPeerDetails: any = {};
+  getNodeListData: any = {};
   nodeLatency: any;
   selected: any;
   getNodeInfoList: any;
@@ -33,7 +36,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isNodeData: boolean = false;
   isSelected: any;
   //private noOfItemsToShowInitially: number = 5;
-  private itemsToLoad: number = 5;
+  //private itemsToLoad: number = 5;
   itemsToShow: any;
   referenceNo = null;
   latestBlockData: any;
@@ -42,14 +45,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   timerIncrementInterval: number;
   latestTimeElapsed;
   latestTimeElapsedToDisplay;
+  counter = 0;
 
   constructor(private _CommonService: CommonService, private messageService: MessageService, private _el: ElementRef) {
     this.alive = true;
-    this.serviceCallInterval = 600; // in seconds
+    this.serviceCallInterval = 10; // in seconds
     this.timerIncrementInterval = 1; // in seconds
   }
 
   ngOnInit() {
+    console.log(this.display, "this.display");
+    console.log(this.display2, "this.display2");
     this.getNodeLatency();
     this.getBlocklisting(null);
     this.getNodeInfo();
@@ -60,12 +66,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     this.getLatestBlock();
     this.incrementTimer();
+    this.getLogsInfo()
+
   }
 
   onScroll() {
     console.log("scrolled Down");
     //this.noOfItemsToShowInitially += this.itemsToLoad;
-    this.referenceNo = this.referenceNo - 5;
+    if (this.counter == 0) {
+      this.referenceNo = this.referenceNo - 6;
+    } else {
+      this.referenceNo = this.referenceNo - 7;
+    }
+    this.counter++;
+
     this.itemsToShow = this.getBlocklisting(this.referenceNo);
     console.log("scrolled Down");
     console.log('this.referenceNo>>>>>>>', this.referenceNo)
@@ -78,13 +92,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     } else {
       this.selectedBlock = _hash;
       let parentElement = this._el.nativeElement.querySelectorAll('.block-inner-list-wrapper')[1];
+      console.log('parentElement>>>', parentElement);
       let selectedElement: any;
       setTimeout(() => {
         selectedElement = this._el.nativeElement.querySelectorAll('.selected')[0].offsetTop - 45;
         console.log('selectedElement>......', selectedElement);
         document.getElementsByClassName('block-inner-list-wrapper')[1].scrollTo(0, selectedElement)
       }, 100);
-      console.log('parentElement>......', parentElement);
     }
   }
 
@@ -101,15 +115,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getBlocklisting(referenceNo) {
     this._CommonService.getBlockData(referenceNo).subscribe(result => {
       console.log(this.getBlockList, '==this.getBlockList==');
-      console.log(result.json(), '==data==');
       let data: any = [];
       data = result.json();
+      console.log(data, '==this.data==----');
       data.forEach(element => {
+        console.log('element.transactions.....', element.transactions)
         if (element.transactions) {
           this.getBlockList.push(element);
         }
       });
-      if (this.referenceNo == null) this.referenceNo = this.getBlockList[0].number - this._CommonService.showEl;
+      if (this.referenceNo == null) {
+        // this.referenceNo = this.getBlockList[0].number - this._CommonService.showEl;
+        this.referenceNo = this.getBlockList[0].number;
+      }
       console.log(this.getBlockList, '==this.getBlockList==');
       // below logic added to show list with blockNumber greater than 0 
       this.getBlockList = this.getBlockList.filter(
@@ -135,6 +153,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this._CommonService.getLatestBlock().subscribe(data => {
           this.latestBlockData = data.json();
+          //console.log('this.later', this.currentBlockNumber);
+          if (this.currentBlockNumber != this.latestBlockData.latestBlockNumber) {
+            this.getBlockList = [];
+            this.getBlocklisting(null);
+            this.currentBlockNumber = this.latestBlockData.latestBlockNumber;
+            console.log('this.currentBlockNumber if>>>>>>>>>', this.currentBlockNumber);
+          }
           this.latestTimeElapsed = this.latestBlockData.TimeElapsed;
           // console.log("latestTimeElapsed", this.latestBlockData);
           this.latestTimeElapsedToDisplay = this.changeTimeformat(this.latestTimeElapsed);
@@ -184,8 +209,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getNodeInfo() {
     this._CommonService.getNodeInfo().subscribe(result => {
       this.getNodeInfoList = result.json();
+      this.currentBlockNumber = this.getNodeInfoList.blockNumber;
+      console.log('this.currentBlockNumber>>>>>>>', this.currentBlockNumber)
       this.messageService.sendMessage(this.getNodeInfoList);
       console.log(' this.getNodeInfo>>>>>>', this.getNodeInfoList);
+    },
+      err => {
+        console.log("Error occured", err);
+      }
+    );
+  }
+
+
+  getLogsInfo() {
+    this._CommonService.getLogs().subscribe(result => {
+      this.getLogsList = result.json();
+      console.log('this.getLogsList >>>>>>', this.getLogsList.statusMessage);
     },
       err => {
         console.log("Error occured", err);
@@ -236,6 +275,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.isNodeData = false;
     } else {
       if (isActive == 'nodeManager') {
+
         this.isSelected = 'nodeClass';
         this.isNodeData = true;
         this.isBlocks = false;
@@ -252,8 +292,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   getNodeDetails(item) {
     //console.log('item onClick', item);
+
     if (item.isActive == true) {
       this.display = true;
+      this.display2 = false;
       this._CommonService.peerDetails().subscribe(result => {
         this.getPeerDetails = result.json();
         console.log(' this.getPeerDetails>>>>>>', this.getPeerDetails);
@@ -263,7 +305,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       );
     } else {
-      this.display = true;
+      this.display2 = true;
+      this.display = false;
       this.getNodeDetailist(item.enode);
       console.log(' item.enode>>>>>>', item.enode);
     }
@@ -271,6 +314,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   closeFlag($event) {
     this.display = $event
+    this.display2 = $event
     console.log('closeFlag >>>>>>>>>>', this.display)
   }
 

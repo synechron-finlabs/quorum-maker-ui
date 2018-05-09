@@ -15,7 +15,7 @@
       <div class="rect-block" [ngClass]="(isSelected == 'nodeClass')?'active':''" (click)="isShowCont('nodeManager')">
         <div class="rect-block-inner">
           <h5 class="active-node">Active Nodes</h5>
-          <h3 class="active-node">{{getNodeInfoList?.nodeCount}}</h3>
+          <h3 class="active-node">{{getNodeInfoList?.nodeCount}}</h3>        
           <p>
             <strong>Total Network Nodes :</strong>
             <span>{{getNodeInfoList?.nodeCount}}</span>
@@ -26,6 +26,9 @@
         <div class="inner">
           <h5>Pending Transactions</h5>
           <h3>{{getNodeInfoList?.pendingTxCount}}</h3>
+          <span>
+              <a href='//{{getLogsList?.statusMessage}}' target="_blank" title="Geth &amp; Constellation Log">Geth &amp; Constellation Log</a>
+            </span>
         </div>
       </div>
       <div class="ip-address">
@@ -124,7 +127,7 @@
                 <p-header class="block-header" *ngIf="getBlocks.transactions" (click)="ExpandTxNDetails(getBlocks?.transactions[0].hash);">
                   <h4>
                     <div class="row margin-bottom-0">
-                      <div class="hash-title col-md-2">TXNdd</div>
+                      <div class="hash-title col-md-2">TxnHash</div>
                       <div class="hash-detail col-md-10">{{getBlocks?.transactions[0]?.hash}}</div>
                     </div>
                     <div class="row txn-wrapper">
@@ -155,4 +158,5 @@
   </div>
 </div>
 
-<app-info-overlay [display]="display" [listItem]="getPeerDetails" (showEvent)="closeFlag($event)"></app-info-overlay>
+<app-info-overlay [display]="display" [display2]="display2" [listItem]="getPeerDetails" [listItem2]="getNodeInfoDetails"
+  (showEvent)="closeFlag($event)"></app-info-overlay>

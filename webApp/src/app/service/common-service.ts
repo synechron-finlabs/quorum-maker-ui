@@ -24,7 +24,7 @@ export class CommonService {
 
   //Retrive the data...
   getBlockData(referenceNo) {
-    console.log('getBlockData----', this.apiURL + 'block?' + 'number' + "=" + this.showEl + "&" + 'reference' + "=");
+    //console.log('getBlockData----', this.apiURL + 'block?' + 'number' + "=" + this.showEl + "&" + 'reference' + "=");
     var urlStr = this.apiURL + 'block?' + 'number' + "=" + this.showEl;
     if (referenceNo != null)
       urlStr = urlStr + "&" + 'reference' + "=" + referenceNo
@@ -115,6 +115,11 @@ export class CommonService {
   deployContract(params) {
     console.log('this.apiURL contract deploy >>>>', this.apiURL + 'deployContract')
     return this.http.post(this.apiURL + 'deployContract', params)
+  }
+
+  getLogs() {
+    console.log('GetLogs----', this.apiURL + 'logs');
+    return this.http.get(this.apiURL + 'logs');
   }
 
 }
