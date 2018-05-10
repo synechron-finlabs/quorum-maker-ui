@@ -4,6 +4,7 @@ import { Message } from 'primeng/api';
 import { MessageService } from '../../service/message.service';
 import { Observable } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
+import { SearchPipePipe } from '../../search-pipe.pipe'
 import 'rxjs/add/operator/takeWhile';
 
 @Component({
@@ -12,6 +13,7 @@ import 'rxjs/add/operator/takeWhile';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  getSearchedTxN: any;
   getLogsList: any;
   currentBlockNumber: any;
   display: boolean = false;
@@ -46,6 +48,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   latestTimeElapsed;
   latestTimeElapsedToDisplay;
   counter = 0;
+  refSerach: boolean = false;
 
   constructor(private _CommonService: CommonService, private messageService: MessageService, private _el: ElementRef) {
     this.alive = true;
@@ -73,14 +76,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   onScroll() {
     console.log("scrolled Down");
     //this.noOfItemsToShowInitially += this.itemsToLoad;
-    if (this.counter == 0) {
-      this.referenceNo = this.referenceNo - 6;
-    } else {
-      this.referenceNo = this.referenceNo - 7;
-    }
-    this.counter++;
+    if (this.refSerach == false) {
+      if (this.counter == 0) {
+        this.referenceNo = this.referenceNo - 6;
+      } else {
+        this.referenceNo = this.referenceNo - 7;
+      }
+      this.counter++;
 
-    this.itemsToShow = this.getBlocklisting(this.referenceNo);
+      this.itemsToShow = this.getBlocklisting(this.referenceNo);
+    }
+
     console.log("scrolled Down");
     console.log('this.referenceNo>>>>>>>', this.referenceNo)
   }
@@ -95,7 +101,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.log('parentElement>>>', parentElement);
       let selectedElement: any;
       setTimeout(() => {
-        selectedElement = this._el.nativeElement.querySelectorAll('.selected')[0].offsetTop - 45;
+        selectedElement = this._el.nativeElement.querySelectorAll('.selected')[0].offsetTop - 54;
         console.log('selectedElement>......', selectedElement);
         document.getElementsByClassName('block-inner-list-wrapper')[1].scrollTo(0, selectedElement)
       }, 100);
@@ -112,12 +118,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
     console.log('this.BlockDetails ExpandBlockDetails>>>>', _hashKey);
   }
 
+  getSearchedTxNData(_hashKey) {
+      this._CommonService.getTxNDetails(_hashKey).subscribe(result => {
+        this.getSearchedTxN = result;
+        console.log('getSearchedTxN>>>>>>', this.getSearchedTxN);
+      })
+  }
+
   getBlocklisting(referenceNo) {
     this._CommonService.getBlockData(referenceNo).subscribe(result => {
-      console.log(this.getBlockList, '==this.getBlockList==');
       let data: any = [];
       data = result.json();
-      console.log(data, '==this.data==----');
+      console.log('==this.data==----', data);
       data.forEach(element => {
         console.log('element.transactions.....', element.transactions)
         if (element.transactions) {
@@ -138,6 +150,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
         console.log("Error occured", err);
       }
     );
+  }
+
+
+  getSearchedData(_BlkNum) {
+    console.log('Block Number>>>>>>>', _BlkNum);
+    if (_BlkNum) {
+      this.refSerach = true;
+      this._CommonService.getBlockDetails(_BlkNum).subscribe(result => {
+        this.getBlockList = []
+        this.getBlockList.push(result);
+        this.counter = 0
+        this.referenceNo = null
+      })
+    } else {
+      //this.getBlockList = []
+      this.refSerach = false;
+      this.getBlockList = []
+      this.getBlocklisting(null);
+      document.getElementsByClassName('block-inner-list-wrapper')[1].scrollTo(0, 0);
+
+    }
   }
 
   getBlockDetails(_BlkNum) {

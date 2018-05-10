@@ -15,7 +15,7 @@
       <div class="rect-block" [ngClass]="(isSelected == 'nodeClass')?'active':''" (click)="isShowCont('nodeManager')">
         <div class="rect-block-inner">
           <h5 class="active-node">Active Nodes</h5>
-          <h3 class="active-node">{{getNodeInfoList?.nodeCount}}</h3>        
+          <h3 class="active-node">{{getNodeInfoList?.nodeCount}}</h3>
           <p>
             <strong>Total Network Nodes :</strong>
             <span>{{getNodeInfoList?.nodeCount}}</span>
@@ -27,8 +27,8 @@
           <h5>Pending Transactions</h5>
           <h3>{{getNodeInfoList?.pendingTxCount}}</h3>
           <span>
-              <a href='//{{getLogsList?.statusMessage}}' target="_blank" title="Geth &amp; Constellation Log">Geth &amp; Constellation Log</a>
-            </span>
+            <a href='//{{getLogsList?.statusMessage}}' target="_blank" title="Geth &amp; Constellation Log">Geth &amp; Constellation Log</a>
+          </span>
         </div>
       </div>
       <div class="ip-address">
@@ -85,11 +85,12 @@
             <img src="/assets/images/blockIcons.png" />
           </em>
           <span>Blocks</span>
+          <input (keyup)="getSearchedData(number)" class="serach" [(ngModel)]='number'>
         </h3>
         <div class="block-inner-list-wrapper" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" [scrollWindow]="false"
           (scrolled)="onScroll()">
           <div class="loader-bg" *ngIf="!getBlockList"></div>
-          <div class="block-inner-scroll-space">
+          <div class="block-inner-scroll-space equalHeight">
             <p-accordion>
               <p-accordionTab class="block-list" *ngFor="let getBlocks of getBlockList">
                 <p-header class="block-header" (click)="ExpandBlockDetails(getBlocks?.number);blockFilter(getBlocks?.hash);">
@@ -118,6 +119,7 @@
             <img src="/assets/images/transcationIcons.png" />
           </em>
           <span>Transactions</span>
+          <input (keyup.enter)="getSearchedTxNData(transactionHash)" class="serach" [(ngModel)]='transactionHash'>
         </h3>
         <div class="block-inner-list-wrapper">
           <div class="loader-bg" *ngIf="!getBlockList"></div>

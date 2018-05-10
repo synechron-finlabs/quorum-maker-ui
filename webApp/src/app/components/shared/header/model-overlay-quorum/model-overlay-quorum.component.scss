@@ -1,11 +1,12 @@
 @import '~sass/variables';
+@import '~sass/mixins';
+@import '~sass/fonts';
 label.required:after {
     color: #d00;
     content: "*";
     position: absolute;
     margin-left: 5px;
     top: 7px;
-
 }
 
 .network-container .has-error .form-control {
@@ -26,44 +27,46 @@ label.required:after {
     display: block;
 }
 
-.drop-display{
+.drop-display {
     display: block;
     width: 100%;
 }
-.button-right{
+
+.button-right {
     margin-left: 570px;
     border-radius: 2px;
     background-color: #eaedf1;
     border: solid 1px #c2c6c9;
 }
-ul.fileList{ 
+
+ul.fileList {
     list-style-type: none;
     min-width: 696px;
-	list-style: none;
-	padding-top: 20px;
-   & .listSpace{
-       display: inline;
+    list-style: none;
+    padding-top: 20px;
+    & .listSpace {
+        display: inline;
         border: 1px solid #87a4d3;
         background: #87a4d3;
         padding: 2px 10px;
         margin: 0 10px 10px 0;
         border-radius: 9px;
         font-size: 12px;
-   }
+    }
 }
-.listItem{
+
+.listItem {
     text-align: left;
     span {
-            overflow: hidden;
-    display: block;
-    white-space: normal;
-    text-overflow: ellipsis;
-        // text-align: left;
+        overflow: hidden;
+        display: block;
+        white-space: normal;
+        text-overflow: ellipsis; // text-align: left;
         // width: 380px;
         // display: inline-block;
     }
-
 }
-.cancel-icon{
-    margin-left:10px;
+
+.cancel-icon {
+    margin-left: 10px;
 }

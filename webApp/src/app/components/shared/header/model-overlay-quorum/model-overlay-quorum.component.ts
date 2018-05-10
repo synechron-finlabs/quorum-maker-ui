@@ -131,12 +131,13 @@ export class ModelOverlayQuorumComponent implements OnInit {
     if (this.CompileDeployContractForm.valid) {
       this._CommonService.deployContract(formModel).subscribe(data => {
         this.fileUploadResponse = data.json();
+        console.log('this.fileUploadResponse >>>>>>', this.fileUploadResponse);
         // this.showResponse(this.fileUploadResponse);
         this.msgs = [];
-        this.msgs.push({ severity: 'success', summary: 'contract has been deployed Sucessfully...' });
+        this.msgs.push({ severity: 'success', summary: 'Contract has been deployed sucessfully...' });
         // this.display = false;
         // this.showOverlay.emit(false);
-        console.log('contract has been deployed Sucessfully...', this.fileUploadResponse);
+        console.log('Contract has been deployed sucessfully...', this.fileUploadResponse);
         // setTimeout((router: Router) => {
         //   this.router.navigate(["dashboard"]);
         // }, 1500);

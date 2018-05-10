@@ -174,6 +174,31 @@ body {
             display: block;
             margin-top: 1px;
         }
+        .serach {
+            float: right;
+            width: 29px;
+            height: 26px;
+            box-sizing: border-box;
+            border: 1px solid #647197;
+            background-color: transparent;
+            background-image: url(/assets/images/search.png);
+            background-position: center 2px;
+            background-repeat: no-repeat;
+            padding: 5px 22px 5px 8px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            color: $WhiteColor;
+            border-radius: 4px;
+            font-size: 0;
+            cursor: pointer;
+            &:focus {
+                width: 20%;
+                background-position: 99% 2px;
+                border-radius: 0;
+                font-size: 11px;
+                cursor: text;
+            }
+        }
     }
     .block-inner-list-wrapper {
         height: 310px;
@@ -199,6 +224,13 @@ body {
         .block-inner-scroll-space {
             display: block;
             margin-right: 8px;
+            &.equalHeight {
+                .block-list {
+                    .ui-accordion-header {
+                        padding: 9px 0;
+                    }
+                }
+            }
         }
         .block-list {
             border-radius: 6px;
