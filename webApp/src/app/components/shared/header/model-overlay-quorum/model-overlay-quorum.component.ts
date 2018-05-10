@@ -42,12 +42,8 @@ export class ModelOverlayQuorumComponent implements OnInit {
       networkRole: ['', '']
     });
 
-    this.networkRoleNodeList = [
-      { label: 'Wells fargo Node', value: 'oOp0/cdK2/YK8IyUy/74vKp2OMKzlXApXSlGrjAcxHA=' },
-      { label: 'ABC Node', value: 'XB6tdKvVBT5e5R+M62mtoIUEPVf2lrPFVgQJLIAtsTM=' },
-      { label: 'XYZ Node', value: 'LDN' },
-      { label: 'syc Node', value: 'IST' },
-    ];
+    this.networkRoleNodeList = this.utilityService.networkRoleNodeList
+
   }
 
   ngOnInit() {
