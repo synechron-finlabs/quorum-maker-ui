@@ -4,7 +4,6 @@ import { Message } from 'primeng/api';
 import { MessageService } from '../../service/message.service';
 import { Observable } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
-import { SearchPipePipe } from '../../search-pipe.pipe'
 import 'rxjs/add/operator/takeWhile';
 
 @Component({
@@ -18,6 +17,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currentBlockNumber: any;
   display: boolean = false;
   display2: boolean = false;
+  display3: boolean = false;
   getNodeInfoDetails: any;
   getPeerDetails: any = {};
   getNodeListData: any = {};
@@ -119,10 +119,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getSearchedTxNData(_hashKey) {
-      this._CommonService.getTxNDetails(_hashKey).subscribe(result => {
-        this.getSearchedTxN = result;
-        console.log('getSearchedTxN>>>>>>', this.getSearchedTxN);
+    if (_hashKey) {
+      this.refSerach = true;
+      this._CommonService.getTxNblocks(_hashKey).subscribe(result => {
+        console.log('result>>>>>', result)
+        this.getBlockList = []
+        this.getBlockList.push(result);
+        this.counter = 0
+        this.referenceNo = null
+        console.log('this.getBlockList tanscation >>>>>', this.getBlockList)
       })
+    } else {
+      //this.getBlockList = []
+      this.refSerach = false;
+      this.getBlockList = []
+      this.getBlocklisting(null);
+      document.getElementsByClassName('block-inner-list-wrapper')[1].scrollTo(0, 0);
+    }
   }
 
   getBlocklisting(referenceNo) {
@@ -346,8 +359,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   closeFlag($event) {
-    this.display = $event
-    this.display2 = $event
+    this.display = $event;
+    this.display2 = $event;
+    this.display3 = $event;
     console.log('closeFlag >>>>>>>>>>', this.display)
   }
 

@@ -119,7 +119,7 @@
             <img src="/assets/images/transcationIcons.png" />
           </em>
           <span>Transactions</span>
-          <input (keyup.enter)="getSearchedTxNData(transactionHash)" class="serach" [(ngModel)]='transactionHash'>
+          <input (keyup)="getSearchedTxNData(transactionHash)" class="serach" [(ngModel)]='transactionHash'>
         </h3>
         <div class="block-inner-list-wrapper">
           <div class="loader-bg" *ngIf="!getBlockList"></div>
@@ -162,3 +162,4 @@
 
 <app-info-overlay [display]="display" [display2]="display2" [listItem]="getPeerDetails" [listItem2]="getNodeInfoDetails"
   (showEvent)="closeFlag($event)"></app-info-overlay>
+<!-- <app-transcation-overlay [display3]="display3" [listItem]="getSearchedTxN" (showEvent)="closeFlag($event)"></app-transcation-overlay> -->

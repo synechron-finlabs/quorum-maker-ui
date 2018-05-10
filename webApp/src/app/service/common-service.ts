@@ -122,6 +122,12 @@ export class CommonService {
     return this.http.get(this.apiURL + 'logs');
   }
 
+  getTxNblocks(hashKey) {
+    console.log('txnsearch---', this.apiURL + 'txnsearch/' + hashKey + '');
+    return this.http.get(this.apiURL + 'txnsearch/' + hashKey + '')
+    .map(data => data.json());
+  }
+
 }
 
 
