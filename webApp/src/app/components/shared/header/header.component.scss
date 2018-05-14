@@ -178,32 +178,19 @@
                         left: 9px;
                     }
                 }
-            }
-        }
-    }
-    .dropdown-list {
-        position: relative;
-        cursor: pointer;
-        padding-bottom: 10px;
-        &:hover {
-            .dropdown-menu {
-                display: block;
-            }
-        }
-        .dropdown-menu {
-            margin: 0;
-            padding: 4px 10px 5px 10px;
-            width: 200px;
-            background: $WhiteColor;
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 28px;
-            left: auto;
-            font-size: 13px;
-            a {
-                text-decoration: none;
-                color: $DarkGreyColor;
+                &.compile-deploy {
+                    a {
+                        padding: 5px 10px 5px 10px;
+                        width: 200px;
+                        color: #fff;
+                        font-size: 13px;
+                        background: #647197;
+                        border-radius: 4px;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
             }
         }
     }

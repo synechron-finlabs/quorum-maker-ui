@@ -10,11 +10,9 @@
   </div>
   <div class="iconeRight pull-right">
     <ul class="nav navbar-nav ">
-      <li>
-        <a href="#">
-          <img src="/assets/images/search.png">
-        </a>
-      </li>
+      <li class="compile-deploy">
+        <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
+     </li>
       <li class="dropdown" *ngIf="pendingRequest?.length > 0">
         <img src="/assets/images/crossroad.png" (click)="toggle()">
         <span class="count">{{pendingRequest?.length}}</span>
@@ -28,10 +26,12 @@
                 <a class="accept" (click)="submitStatus(item, 'YES')">Accept</a>
                 <popover-content #myPopover placement="left" [animation]="true" class="popover-list">
                   <span>
-                    <strong>Message:</strong><br>{{item.message}}
+                    <strong>Message:</strong>
+                    <br>{{item.message}}
                   </span>
                   <span>
-                    <strong>Enode : </strong><br>{{item.enode}}
+                    <strong>Enode : </strong>
+                    <br>{{item.enode}}
                   </span>
                   <span>
                     {{item.ip}}
@@ -41,16 +41,6 @@
             </ul>
           </div>
         </div>
-      </li>
-      <li class="dropdown-list">
-        <a class="dropdown" dropdown>
-          <img src="/assets/images/top-bar.png" dropdown-open>
-        </a>
-        <ul class="dropdown-menu ">
-          <li>
-            <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
-          </li>
-        </ul>
       </li>
     </ul>
   </div>

@@ -1,60 +1,83 @@
 <p-growl [value]="msgs"></p-growl>
-<p-dialog [(visible)]="display" modal="modal" [responsive]="true" [width]="760" [minWidth]="200" [minY]="70" closeOnEscape="true"
-  dismissableMask="true" (onHide)="onClose()">
-  <p-header class="header">Compile & Deploy Contracts</p-header>
-  <div class="p-dialog-inner">
-    <form novalidate [formGroup]="CompileDeployContractForm">
-      <div class="row">
-        <div class="col-md-12 form-group">
-          <label>CHOOSE CONTRACT FILE</label>
-          <input style="display: none" type="file" multiple id="chooseFile" class="form-control" (change)="onFileChange($event)" #fileInput/>
-          <div class="form-control ">
-            <button class="button-right" (click)="fileInput.click()">Choose File</button>
+<div class="p-dialog-wrapper compile-wrapper">
+  <p-dialog [(visible)]="display" modal="modal" [responsive]="true" [width]="760" [minWidth]="200" [minY]="70" closeOnEscape="true"
+    dismissableMask="true" (onHide)="onClose()">
+    <div class="p-dialog-inner">
+      <h3>Compile & Deploy Contracts</h3>
+      <p>&nbsp;</p>
+      <form novalidate [formGroup]="CompileDeployContractForm" (ngSubmit)="contractSubmit()" *ngIf="showResponse">
+        <div class="row compileDeploy">
+          <div class="col-md-12 form-group">
+            <h4>CHOOSE CONTRACT FILE</h4>
+            <div class="custom-upload">
+              <input type="file" multiple id="chooseFile" formControlName="contractfile" class="form-control" (change)="onFileChange($event)">
+              <div class="fake-file">
+                <input disabled="disabled">
+                <button>Choose File</button>
+              </div>
+              <ul class="fileList">
+                <li class="listSpace" *ngFor="let file of filesToUpload">
+                  <span>{{file.name}}</span>
+                  <a class="cancel-icon" (click)="clearFile(file.name)">x</a>
+                </li>
+              </ul>
+            </div>
+            <!-- <span class="errorMsg">{{customMgs?.customMessageContract?.chooseFile}}</span> -->
           </div>
-          <ul class="fileList">
-            <li class="listSpace" *ngFor="let file of filesToUpload">{{file.name}}
-              <span class="cancel-icon">
-                <a (click)="clearFile(file.name)">x</a>
-              </span>
-            </li>
-          </ul>
-          <span class="errorMsg">{{customMgs?.customMessageContract?.chooseFile}}</span>
+        </div>
+        <div class="row compileDeploy">
+          <!-- <div class="col-md-12 form-group" [ngClass]="displayFieldCssContract('networkRole')"> -->
+          <div class="col-md-12 form-group">
+            <h4 for="networkRole">NETWORK PARTICIPANTS</h4>
+            <p-multiSelect [options]="networkRoleNodeList" formControlName="networkRole" [style]="{'width':'100%'}" placeholder="Select a Network Role"
+              optionLabel="label" displaySelectedLabel="displayValue"></p-multiSelect>
+            <!-- <span class="errorMsg">{{customMgs?.customMessageContract?.networkRole}}</span> -->
+          </div>
+        </div>
+        <div class="row form-footer">
+          <div class="col-md-12 form-group">
+            <button type="submit" [disabled]="CompileDeployContractForm.invalid || CompileDeployContractForm.pristine || disabled " (click)="contractSubmit(CompileDeployContractForm.value)"
+              class="btn btn-green pull-right">SUBMIT</button>
+          </div>
+        </div>
+      </form>
+      <div class="row" *ngIf="!showResponse">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered" *ngFor="let responseItem of fileUploadResponse">
+              <tr>
+                <td>
+                  <em class="w100">Filename</em>
+                  <span>{{responseItem?.filename}}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <em class="w100">Address</em>
+                  <span>{{responseItem?.address}}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <em class="w100">Interface</em>
+                  <span>{{responseItem?.interface}}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <em class="w100">JSON</em>
+                  <span>{{responseItem?.json}}</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-12">
+              <div class="form-group">
+                <button type="submit" class="btn btn-green pull-right" (click)="gotResponse()">Got it !</button>
+              </div>
+            </div>
         </div>
       </div>
-
-      <div class="row">
-        <ul class="col-md-8">
-          <li class="listItem" *ngFor="let file of fileUploadResponse">
-            <strong>Filename :</strong>
-            <span>{{file.filename || '--'}}</span>
-            <strong>Address :</strong>
-            <span>{{file.address || '--'}}</span>
-            <br>
-            <strong>Bytecode :</strong>
-            <span>{{file.bytecode|| '--'}}</span>
-            <br>
-            <strong>Interface :</strong>
-            <span> {{file.interface|| '--'}}</span>
-            <br>
-            <strong>JSON :</strong>
-            <span> {{file.json|| '--'}}</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12 form-group" [ngClass]="displayFieldCssContract('networkRole')">
-          <label for="networkRole">NETWORK PARTICIPANTS</label>
-          <p-multiSelect [options]="networkRoleNodeList" formControlName="networkRole" [style]="{'width':'100%'}" placeholder="Select a Network Role"
-            optionLabel="label" displaySelectedLabel="displayValue"></p-multiSelect>
-          <span class="errorMsg">{{customMgs?.customMessageContract?.networkRole}}</span>
-        </div>
-      </div>
-      <div class="row form-footer">
-        <div class="col-md-12 form-group">
-          <button type="submit" (click)="contractSubmit(CompileDeployContractForm.value)" class="btn btn-green pull-right">SUBMIT</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</p-dialog>
+    </div>
+  </p-dialog>
+</div>

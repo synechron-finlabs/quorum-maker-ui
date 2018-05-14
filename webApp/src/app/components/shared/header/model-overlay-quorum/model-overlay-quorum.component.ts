@@ -14,6 +14,8 @@ import { Message } from 'primeng/api';
 })
 
 export class ModelOverlayQuorumComponent implements OnInit {
+  showResponse: boolean = true;;
+  disabled: boolean = true;
   CompileDeployContractForm: FormGroup;
   private formSubmitAttempt: boolean;
   customMgs: any;
@@ -37,13 +39,12 @@ export class ModelOverlayQuorumComponent implements OnInit {
 
   constructor(public fb: FormBuilder, private _CommonService: CommonService, private router: Router,
     private cd: ChangeDetectorRef, private utilityService: UtilityService) {
+
     this.CompileDeployContractForm = this.fb.group({
-      chooseFile: null,
-      networkRole: ['', '']
+      contractfile: ['', Validators.required],
+      networkRole: ['']
     });
-
     this.networkRoleNodeList = this.utilityService.networkRoleNodeList
-
   }
 
   ngOnInit() {
@@ -60,11 +61,32 @@ export class ModelOverlayQuorumComponent implements OnInit {
 
   onFileChange(event) {
     this.filesToUpload = [];
-    if (event.target.files.length > 0) {
-      this.filesToUpload = <Array<File>>event.target.files;
+    if (event.target.files && event.target.files.length > 0) {
+      this.disabled = false;
+      this.filesToUpload = event.target.files;
+      this.cd.markForCheck();
+      console.log(' this.filesToUpload >>>>>>', this.filesToUpload);
       this.filesToUpload = Object.keys(this.filesToUpload).map(i => this.filesToUpload[i]); // change file list into array of objects
       // this.CompileDeployContractForm.get('chooseFile').setValue(this.filesToUpload );
+      console.log(' this.filesToUpload 123 >>>>>>', this.filesToUpload);
     }
+
+
+    // const reader = new FileReader();
+    // this.filesToUpload = [];
+    // if (event.target.files.length > 0) {
+    //   let [contractfile] = event.target.files;
+    //   reader.readAsDataURL(contractfile);
+
+    //   reader.onload = () => {
+    //     this.CompileDeployContractForm.patchValue({
+    //       contractfile: reader.result
+    //     });
+    //     console.log('file>>>>', contractfile);
+    //     // need to run CD since file load runs outside of zone
+    //     this.cd.markForCheck();
+    //   };
+    // }
   }
 
   private prepareSave(): any {
@@ -74,6 +96,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
     this.filesToUpload.forEach((element, index) => {
       input.append("file" + (index + 1), this.filesToUpload[index]); // naming file name as file1,2,3 ...
     })
+
     input.append('count', String(this.filesToUpload.length));
     input.append('private', String(this.isNetworkSelected));
     return input;
@@ -82,7 +105,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
   isFieldValidContract(field: string) {
     return (
       (!this.CompileDeployContractForm.get(field).valid && this.CompileDeployContractForm.get(field).touched) ||
-      (this.CompileDeployContractForm.get(field).untouched && this.formSubmitAttempt)
+      (this.CompileDeployContractForm.get(field).untouched)
     );
   }
 
@@ -95,12 +118,19 @@ export class ModelOverlayQuorumComponent implements OnInit {
   clearFile(fileName) {
     // this.CompileDeployContractForm.get('chooseFile').setValue(null);
     // this.fileInput.nativeElement.files = '';
+
     this.filesToUpload.forEach((element, index) => {
       if (element.name == fileName) {
         this.filesToUpload.splice(index, 1); // change the original array of selected files
         console.log("element", element, index);
       }
+
     });
+
+    if (this.filesToUpload.length == 0) {
+        this.disabled = true;
+    }
+
     // console.log("upload end", this.filesToUpload);
     // console.log("in clear end", this.fileInput)
   }
@@ -111,7 +141,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
     this.networkRoleValues = [];
     this.formSubmitAttempt = true;
 
-    if (this.contractInfo.networkRole.length > 0) {
+    if (this.contractInfo && this.contractInfo.networkRole.length > 0) {
       this.isNetworkSelected = true;
       // when all the options selected no need to send values to backend with above key set to true
       if (this.contractInfo.networkRole.length == this.networkRoleNodeList.length) {
@@ -147,6 +177,18 @@ export class ModelOverlayQuorumComponent implements OnInit {
           this.msgs = [];
           this.msgs.push({ severity: 'error', summary: 'error...' });
         });
+    }
+
+    this.showResponse = false;
+  }
+
+  gotResponse() {
+    if (this.fileUploadResponse) {
+      this.showResponse = true;
+      console.log('gotResponse if');
+    } else {
+      this.showResponse = false;
+      console.log('gotResponse else');
     }
   }
 

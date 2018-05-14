@@ -485,3 +485,49 @@ body {
         }
     }
 }
+
+.compileDeploy {
+    .ui-multiselect {
+        border-radius: 0;
+        .ui-multiselect-label {
+            margin: 0;
+            padding: 10px;
+        }
+        &.ui-widget-content {
+            padding: 5px;
+            border-radius: 0;
+        }
+        .ui-multiselect-list {
+            padding: 5px !important;
+            border-radius: 0;
+        }
+        .ui-multiselect-panel {
+            .ui-widget-header {
+                padding: 8px;
+            }
+        }
+        .ui-multiselect-trigger {
+            width: 40px;
+            border: 0;
+            .fa {
+                margin-top: 10px;
+                margin-left: 0px;
+                &:before {
+                    font-size: 23px;
+                    color: #788995;
+                }
+            }
+        }
+    }
+    .has-error {
+        .custom-upload {
+            border-bottom-color: #d00;
+        }
+        .ui-multiselect {
+            border-bottom-color: #d00;
+        }
+        .errorMsg {
+            display: block;
+        }
+    }
+}

@@ -19,7 +19,8 @@ import { UtilityService } from '../../../service/utility.service';
 
 
 @NgModule({
-    imports: [CommonModule,
+    imports: [
+        CommonModule,
         RouterModule,
         TooltipModule,
         GrowlModule,
