@@ -10,9 +10,14 @@
   </div>
   <div class="iconeRight pull-right">
     <ul class="nav navbar-nav ">
+      <li class="logs">
+        <em>Logs:&nbsp;</em>
+        <a href='//{{getLogsList?.statusMessage}}' target="_blank" title="Geth">Geth</a> |
+        <a href='//{{getLogsList?.statusMessage}}' target="_blank" title="Consetellation">Consetellation</a>
+      </li>
       <li class="compile-deploy">
         <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
-     </li>
+      </li>
       <li class="dropdown" *ngIf="pendingRequest?.length > 0">
         <img src="/assets/images/crossroad.png" (click)="toggle()">
         <span class="count">{{pendingRequest?.length}}</span>

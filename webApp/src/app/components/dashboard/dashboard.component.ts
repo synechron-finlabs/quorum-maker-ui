@@ -13,7 +13,6 @@ import 'rxjs/add/operator/takeWhile';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   getSearchedTxN: any;
-  getLogsList: any;
   currentBlockNumber: any;
   display: boolean = false;
   display2: boolean = false;
@@ -57,8 +56,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.display, "this.display");
-    console.log(this.display2, "this.display2");
+    // console.log(this.display, "this.display");
+    // console.log(this.display2, "this.display2");
     this.getNodeLatency();
     this.getBlocklisting(null);
     this.getNodeInfo();
@@ -69,8 +68,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     this.getLatestBlock();
     this.incrementTimer();
-    this.getLogsInfo()
-
   }
 
   onScroll() {
@@ -266,17 +263,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
 
-
-  getLogsInfo() {
-    this._CommonService.getLogs().subscribe(result => {
-      this.getLogsList = result.json();
-      console.log('this.getLogsList >>>>>>', this.getLogsList.statusMessage);
-    },
-      err => {
-        console.log("Error occured", err);
-      }
-    );
-  }
 
   getNodeList() {
     this._CommonService.getNodeList().subscribe(result => {
