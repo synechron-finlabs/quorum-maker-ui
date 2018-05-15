@@ -180,13 +180,13 @@ img {
 
 .pending-transaction {
     float: left;
-    padding: 0 11px;
+    padding:0 11px 0 5px;
     .inner {
         background: url(/assets/images/active-node.png);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center 0;
-        width: 313px;
+        width: 317px;
         height: 134px;
         padding: 20px 15px;
         border-radius: 6px;
@@ -230,7 +230,7 @@ img {
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center 0;
-        width: 313px;
+        width: 317px;
         height: 134px;
         padding: 20px 15px;
         border-radius: 6px;
