@@ -1,0 +1,49 @@
+<div class="p-dialog-wrapper">
+  <p-dialog [(visible)]="display2" modal="modal" [responsive]="true" [width]="450" [height]="520" draggable="true"
+    closeOnEscape="true" dismissableMask="true" (onHide)="onClose()">
+
+    <p-header class="header">
+      <h2>Email Server Configuration</h2>
+    </p-header>
+    <div class="p-dialog-inner">
+      <form novalidate [formGroup]="emailServerConfig">
+        <div class="row">
+          <div class="col-md-12 form-group" [ngClass]="displayFieldCssCreate('smtpServerHost')">
+            <label>SMTP Server Address:</label>
+            <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.emailServerConfig?.smtpServerHost}}"></i>
+            <input type="text" class="form-control" formControlName="smtpServerHost">
+            <span class="errorMsg">{{customMgs?.emailServerConfig?.smtpServerHost}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group" [ngClass]="displayFieldCssCreate('port')">
+            <label>Port Number:</label>
+            <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.emailServerConfig?.port}}"></i>
+            <input type="text" class="form-control" formControlName="port">
+            <span class="errorMsg">{{customMgs?.emailServerConfig?.port}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group" [ngClass]="displayFieldCssCreate('username')">
+            <label>Username:</label>
+            <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.emailServerConfig?.username}}"></i>
+            <input type="text" class="form-control" formControlName="username">
+            <span class="errorMsg">{{customMgs?.emailServerConfig?.username}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group" [ngClass]="displayFieldCssCreate('password')">
+            <label>Password:</label>
+            <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.emailServerConfig?.password}}"></i>
+            <input type="password" class="form-control" formControlName="password">
+            <span class="errorMsg">{{customMgs?.emailServerConfig?.password}}</span>
+          </div>
+        </div>
+        <div class="row form-footer">
+          <div class="col-md-12 form-group">
+            <button type="submit" (click)="emailServerConfigSubmit(emailServerConfig.value)" class="btn btn-green pull-right">SUBMIT</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </p-dialog>

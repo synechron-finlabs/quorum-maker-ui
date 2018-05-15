@@ -16,6 +16,7 @@ import { PopoverModule } from "ngx-popover";
 
 import { MessageService } from '../../../service/message.service';
 import { UtilityService } from '../../../service/utility.service';
+import { EmailServerConfigurationComponent } from './email-server-configuration/email-server-configuration.component';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { UtilityService } from '../../../service/utility.service';
         PopoverModule
     ],
 
-    declarations: [HeaderComponent, ModelOverlayQuorumComponent],
+    declarations: [HeaderComponent, ModelOverlayQuorumComponent, EmailServerConfigurationComponent],
     exports: [HeaderComponent],
     providers: [MessageService, UtilityService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

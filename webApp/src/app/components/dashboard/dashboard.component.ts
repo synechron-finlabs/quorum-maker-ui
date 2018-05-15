@@ -88,6 +88,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     console.log('this.referenceNo>>>>>>>', this.referenceNo)
   }
 
+  checkType(type){
+    type = type.toLowerCase();
+    return type;
+  }
+
   blockFilter(_hash) {
     console.log('hash>>>>', _hash);
     if (_hash == this.selectedBlock) {

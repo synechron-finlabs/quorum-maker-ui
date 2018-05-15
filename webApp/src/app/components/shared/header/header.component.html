@@ -16,8 +16,11 @@
         <a href='//{{getLogsList?.statusMessage}}' target="_blank" title="Consetellation">Consetellation</a>
       </li>
       <li class="compile-deploy">
-        <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
+        <a href="javascript:void(0)" (click)="emailServerConfig()">Email Server Configuration</a>
       </li>
+      <li class="compile-deploy">
+          <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
+        </li>
       <li class="dropdown" *ngIf="pendingRequest?.length > 0">
         <img src="/assets/images/crossroad.png" (click)="toggle()">
         <span class="count">{{pendingRequest?.length}}</span>
@@ -52,3 +55,4 @@
 </div>
 
 <app-model-overlay-quorum [display]="display" (showOverlay)="closeFlag($event)"></app-model-overlay-quorum>
+<app-email-server-configuration [display2]="display2" (messageEvent)="receiveMessage($event)" (showEvent)="closeFlag($event)"></app-email-server-configuration>

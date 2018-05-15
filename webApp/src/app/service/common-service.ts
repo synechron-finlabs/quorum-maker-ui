@@ -80,9 +80,9 @@ export class CommonService {
 
   postjoinNetwork(params) {
     console.log('params', params);
-    const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    const options = new RequestOptions({ headers: headers });
-    return this.http.post(this.nodeURL + 'joinRequestResponse', params, options);
+    // const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    // const options = new RequestOptions({ headers: headers });
+    return this.http.post(this.nodeURL + 'joinRequestResponse', params);
   }
 
 
@@ -92,7 +92,7 @@ export class CommonService {
     return this.http.get(this.apiURL + 'nodeList');
   }
 
-  getNodeLatency(){
+  getNodeLatency() {
     console.log('this.apiURL + nodeList >>>>>..', this.apiURL + 'latency')
     return this.http.get(this.apiURL + 'latency');
   }
@@ -125,7 +125,15 @@ export class CommonService {
   getTxNblocks(hashKey) {
     console.log('txnsearch---', this.apiURL + 'txnsearch/' + hashKey + '');
     return this.http.get(this.apiURL + 'txnsearch/' + hashKey + '')
-    .map(data => data.json());
+      .map(data => data.json());
+  }
+
+  //Post the createNetwork data...
+  emailServerConfig(params) {
+    console.log('this.apiURL email server Config >>>>', this.apiURL + 'mailserver')
+    // const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    // const options = new RequestOptions({ headers: headers });
+    return this.http.post(this.apiURL + 'mailserver', params);
   }
 
 }

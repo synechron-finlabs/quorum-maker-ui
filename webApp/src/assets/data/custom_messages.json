@@ -33,5 +33,11 @@
   "customMessageContract": {
     "chooseFile": "Please choose contract file to upload.",
     "networkRole": "Please select network role mode."
+  },
+  "emailServerConfig": {
+    "smtpServerHost": "Please Enter valid Server Host",
+    "port": "Please Enter Valid Port",
+    "username": "Please Enter valid Username",
+    "password": "Please Enter Valid Password"
   }
 }

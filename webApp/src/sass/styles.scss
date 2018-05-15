@@ -417,10 +417,20 @@ body {
                         }
                     }
                     .public {
-                        font-size: 12px;
-                        font-family: $Heebo-Light;
-                        color: #7ed321;
-                        padding: 0 0 0 28px;
+                        span {
+                            font-size: 12px;
+                            font-family: $Heebo-Light;
+                            padding-left: 12px;
+                            &.hash {
+                                color: red;
+                            }
+                            &.private {
+                                color: #7ed321;
+                            }
+                            &.public {
+                                color: rgb(73, 121, 224);
+                            }
+                        }
                     }
                 }
                 &.ui-state-active {

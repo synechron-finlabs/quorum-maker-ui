@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   public show: boolean = false;
   msgs: Message[];
   display: boolean = false;
+  display2: boolean = false;
 
   constructor(private messageService: MessageService, private cd: ChangeDetectorRef, private _CommonService: CommonService, ) {
     this.subscription = this.messageService.getMessage().subscribe(message => {
@@ -43,10 +44,23 @@ export class HeaderComponent implements OnInit {
     console.log('open >>>>>>>>>>', this.display)
   }
 
+
+  emailServerConfig() {
+    this.display2 = true;
+    // this.cd.detectChanges(); 
+    console.log('open >>>>>>>>>>', this.display2)
+  }
+
   closeFlag($event) {
     this.display = $event
+    this.display2 = $event
     console.log('closeFlag >>>>>>>>>>', this.display)
+    console.log('closeFlag2 >>>>>>>>>>', this.display2)
     // this.cd.detectChanges();
+  }
+
+  receiveMessage($event) {
+    this.msgs = $event
   }
 
   getPendingRequest() {
