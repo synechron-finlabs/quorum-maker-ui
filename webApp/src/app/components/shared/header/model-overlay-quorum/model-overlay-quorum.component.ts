@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ElementRef, ViewChild, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { CommonService } from '../../../../service/common-service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
@@ -14,6 +14,7 @@ import { Message } from 'primeng/api';
 })
 
 export class ModelOverlayQuorumComponent implements OnInit {
+  showResponse2: boolean = false;
   showResponse: boolean = true;;
   disabled: boolean = true;
   CompileDeployContractForm: FormGroup;
@@ -128,7 +129,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
     });
 
     if (this.filesToUpload.length == 0) {
-        this.disabled = true;
+      this.disabled = true;
     }
 
     // console.log("upload end", this.filesToUpload);
@@ -180,16 +181,19 @@ export class ModelOverlayQuorumComponent implements OnInit {
     }
 
     this.showResponse = false;
+    this.showResponse2 = true;
+
   }
 
   gotResponse() {
     if (this.fileUploadResponse) {
+      this.showOverlay.emit(false);
+      this.CompileDeployContractForm.reset();
+      this.showResponse2 = false;
       this.showResponse = true;
-      console.log('gotResponse if');
-    } else {
-      this.showResponse = false;
-      console.log('gotResponse else');
+      this.disabled = true;
     }
+
   }
 
   onClose() {
@@ -200,7 +204,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
     this.display = false;
     this.showOverlay.emit(false);
   }
-
+ 
   // Work against memory leak if component is destroyed
   ngOnDestroy() {
     this.showOverlay.unsubscribe();

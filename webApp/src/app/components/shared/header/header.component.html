@@ -19,8 +19,8 @@
         <a href="javascript:void(0)" (click)="emailServerConfig()">Email Server Configuration</a>
       </li>
       <li class="compile-deploy">
-          <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
-        </li>
+        <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
+      </li>
       <li class="dropdown" *ngIf="pendingRequest?.length > 0">
         <img src="/assets/images/crossroad.png" (click)="toggle()">
         <span class="count">{{pendingRequest?.length}}</span>
@@ -42,7 +42,8 @@
                     <br>{{item.enode}}
                   </span>
                   <span>
-                    {{item.ip}}
+                    <strong>IP : </strong>
+                    <br> {{item.ip}}
                   </span>
                 </popover-content>
               </li>

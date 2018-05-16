@@ -2,15 +2,17 @@
 <div class="p-dialog-wrapper compile-wrapper">
   <p-dialog [(visible)]="display" modal="modal" [responsive]="true" [width]="760" [minWidth]="200" [minY]="70" closeOnEscape="true"
     dismissableMask="true" (onHide)="onClose()">
+    <p-header class="header">
+        <h2>Compile & Deploy Contracts</h2>
+      </p-header>
     <div class="p-dialog-inner">
-      <h3>Compile & Deploy Contracts</h3>
       <p>&nbsp;</p>
       <form novalidate [formGroup]="CompileDeployContractForm" (ngSubmit)="contractSubmit()" *ngIf="showResponse">
         <div class="row compileDeploy">
           <div class="col-md-12 form-group">
             <h4>CHOOSE CONTRACT FILE</h4>
             <div class="custom-upload">
-              <input type="file" multiple id="chooseFile" formControlName="contractfile" class="form-control" (change)="onFileChange($event)">
+              <input name="file" type="file" multiple id="chooseFile" formControlName="contractfile" class="form-control" (change)="onFileChange($event)">
               <div class="fake-file">
                 <input disabled="disabled">
                 <button>Choose File</button>
@@ -41,7 +43,7 @@
           </div>
         </div>
       </form>
-      <div class="row" *ngIf="!showResponse">
+      <div class="row" *ngIf="showResponse2">
         <div class="col-md-12">
           <div class="table-responsive">
             <table class="table table-bordered" *ngFor="let responseItem of fileUploadResponse">

@@ -74,14 +74,14 @@ export class CommonService {
 
   // Retrive the transcation Details...
   getPendingRequest() {
-    console.log('this.nodeURL >>>>>..', this.nodeURL + 'pendingJoinRequests')
-    return this.http.get(this.nodeURL + 'pendingJoinRequests');
+    console.log('this.nodeURL >>>>>..', this.apiURL + 'pendingJoinRequests')
+    return this.http.get(this.apiURL + 'pendingJoinRequests');
   }
 
   postjoinNetwork(params) {
     console.log('params', params);
-    // const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    // const options = new RequestOptions({ headers: headers });
+   // const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    //const options = new RequestOptions({ headers: headers });
     return this.http.post(this.nodeURL + 'joinRequestResponse', params);
   }
 

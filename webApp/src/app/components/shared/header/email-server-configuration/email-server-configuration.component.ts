@@ -25,7 +25,7 @@ export class EmailServerConfigurationComponent implements OnInit {
       smtpServerHost: new FormControl('', Validators.required),
       port: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
-      password: new FormControl('')
+      password: new FormControl('', Validators.required)
     });
   }
 

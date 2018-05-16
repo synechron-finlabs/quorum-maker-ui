@@ -96,13 +96,15 @@ export class HeaderComponent implements OnInit {
       this.storeData = data.json();
       console.log('this.storeData>>>>>>>>>>>>', this.storeData)
       this.msgs = [];
-      this.msgs.push({ severity: 'success', summary: this.storeData.statusMessage });
+      let msgShow = this.storeData ? this.storeData.statusMessage : 'There is an error occured';
+      this.msgs.push({ severity: 'success', summary: msgShow });
       console.log('this.submitStatus.....>', this.msgs);
       this.getPendingRequest();
     },
-      error => {
+    error => {
+        let msgShow = this.storeData ? this.storeData.statusMessage : 'There is an error occured';
         this.msgs = [];
-        this.msgs.push({ severity: 'error', summary: this.storeData.statusMessage });
+        this.msgs.push({ severity: 'error', summary: msgShow });
         console.log('error', error);
 
       }
