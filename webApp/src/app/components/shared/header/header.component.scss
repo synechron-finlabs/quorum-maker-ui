@@ -181,7 +181,6 @@
                 &.compile-deploy {
                     a {
                         padding: 5px 10px 5px 10px;
-                        width: 200px;
                         color: $WhiteColor;
                         font-size: 13px;
                         background: #647197;
@@ -193,19 +192,23 @@
                     }
                 }
                 &.logs {
-                    font-family: $Heebo-Regular;
-                    color: $WhiteColor;
-                    font-size: 13px;
-                    line-height: 28px;
-                    em {
-                        font-style: normal;
-                        font-family: $Heebo-Bold;
-                    }
-                    a {
+                    >div {
+                        padding: 5px 10px 5px 10px;
                         color: $WhiteColor;
                         font-size: 13px;
+                        background: #647197;
+                        border-radius: 4px;
                         font-family: $Heebo-Regular;
-                        display: inline-block;
+                        em {
+                            font-style: normal;
+                            font-family: $Heebo-Bold;
+                        }
+                        a {
+                            color: $WhiteColor;
+                            font-size: 13px;
+                            font-family: $Heebo-Regular;
+                            display: inline-block;
+                        }
                     }
                 }
             }

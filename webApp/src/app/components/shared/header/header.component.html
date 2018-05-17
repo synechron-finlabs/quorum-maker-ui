@@ -11,15 +11,20 @@
   <div class="iconeRight pull-right">
     <ul class="nav navbar-nav ">
       <li class="logs">
-        <em>Logs:&nbsp;</em>
-        <a href='//{{getLogsList?.statusMessage}}' target="_blank" title="Geth">Geth</a> |
-        <a href='//{{getLogsList?.statusMessage}}' target="_blank" title="Consetellation">Consetellation</a>
+        <div>
+          <em>Logs:&nbsp;</em>
+          <a href='//{{getLogsList?.statusMessage}}/logs/' target="_blank" title="Geth">Geth</a> |
+          <a href='//{{getLogsList?.statusMessage}}/logs/' target="_blank" title="Consetellation">Consetellation</a>
+        </div>
       </li>
       <li class="compile-deploy">
-        <a href="javascript:void(0)" (click)="emailServerConfig()">Email Server Configuration</a>
+        <a href="javascript:void(0)" (click)="emailServerConfig()" target="_blank">Email Server Configuration</a>
       </li>
       <li class="compile-deploy">
-        <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
+        <a href="javascript:void(0)" (click)="compileAndDeployContracts()" target="_blank">Compile & Deploy Contracts</a>
+      </li>
+      <li class="compile-deploy">
+        <a href="//{{getLogsList?.statusMessage}}/contracts/" target="_blank">Deployed Contracts</a>
       </li>
       <li class="dropdown" *ngIf="pendingRequest?.length > 0">
         <img src="/assets/images/crossroad.png" (click)="toggle()">

@@ -28,7 +28,6 @@ export class ModelOverlayQuorumComponent implements OnInit {
   filesToUpload: Array<File> = [];
   fileUploadResponse: any;
   msgs: Message[];
-  displayValue;
   address;
   interface;
   bytecode;
@@ -45,7 +44,6 @@ export class ModelOverlayQuorumComponent implements OnInit {
       contractfile: ['', Validators.required],
       networkRole: ['']
     });
-    this.networkRoleNodeList = this.utilityService.networkRoleNodeList
   }
 
   ngOnInit() {
@@ -53,13 +51,9 @@ export class ModelOverlayQuorumComponent implements OnInit {
       res => {
         this.customMgs = res;
       });
-    // this.networkRoleNodeList = this.getNetworkParticipants();
+    this.getNodeNameList();   
   }
-  // below to use when calling the dropdown values from service
-  // getNetworkParticipants() {
-  //   return this.utilityService.getNetworkRoleNodeList();
-  // }
-
+  
   onFileChange(event) {
     this.filesToUpload = [];
     if (event.target.files && event.target.files.length > 0) {
@@ -72,22 +66,6 @@ export class ModelOverlayQuorumComponent implements OnInit {
       console.log(' this.filesToUpload 123 >>>>>>', this.filesToUpload);
     }
 
-
-    // const reader = new FileReader();
-    // this.filesToUpload = [];
-    // if (event.target.files.length > 0) {
-    //   let [contractfile] = event.target.files;
-    //   reader.readAsDataURL(contractfile);
-
-    //   reader.onload = () => {
-    //     this.CompileDeployContractForm.patchValue({
-    //       contractfile: reader.result
-    //     });
-    //     console.log('file>>>>', contractfile);
-    //     // need to run CD since file load runs outside of zone
-    //     this.cd.markForCheck();
-    //   };
-    // }
   }
 
   private prepareSave(): any {
@@ -150,8 +128,10 @@ export class ModelOverlayQuorumComponent implements OnInit {
       }
       else {
         for (let obj of this.contractInfo.networkRole) {
-          this.networkRoleValues.push(obj.value)
+          console.log(obj)
+          this.networkRoleValues.push(obj.publicKey)
         }
+        console.log("this.networkRoleValues",this.networkRoleValues)
       }
     }
     else {
@@ -187,11 +167,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
 
   gotResponse() {
     if (this.fileUploadResponse) {
-      this.showOverlay.emit(false);
-      this.CompileDeployContractForm.reset();
-      this.showResponse2 = false;
-      this.showResponse = true;
-      this.disabled = true;
+      this.onClose();
     }
 
   }
@@ -200,11 +176,24 @@ export class ModelOverlayQuorumComponent implements OnInit {
     console.log("close function called")
     this.filesToUpload = [];
     this.fileUploadResponse = [];
-    this.displayValue = false
     this.display = false;
     this.showOverlay.emit(false);
+    this.showResponse2 = false;
+    this.showResponse = true;
+    this.CompileDeployContractForm.reset();
   }
- 
+
+  getNodeNameList() {
+    this._CommonService.getNodeNameList().subscribe(result => {
+      this.networkRoleNodeList = result.json();
+      console.log('this.networkRoleNodeList >>>>>>', this.networkRoleNodeList);
+    },
+      err => {
+        console.log("Error occured", err);
+      }
+    );
+  }
+
   // Work against memory leak if component is destroyed
   ngOnDestroy() {
     this.showOverlay.unsubscribe();

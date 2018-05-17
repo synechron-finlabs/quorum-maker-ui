@@ -515,6 +515,11 @@ body {
             .ui-widget-header {
                 padding: 8px;
             }
+            .ui-multiselect-item {
+                label {
+                    margin-bottom: 0;
+                }
+            }
         }
         .ui-multiselect-trigger {
             width: 40px;

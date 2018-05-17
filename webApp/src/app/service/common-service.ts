@@ -136,6 +136,11 @@ export class CommonService {
     return this.http.post(this.apiURL + 'mailserver', params);
   }
 
+  getNodeNameList() {
+    console.log('GetLogs----', this.apiURL + 'pubkeys');
+    return this.http.get(this.apiURL + 'pubkeys');
+  }
+
 }
 
 
