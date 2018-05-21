@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { CommonService } from '../../service/common-service';
+import { UtilityService } from "../../service/utility.service";
 import { Message } from 'primeng/api';
 import { MessageService } from '../../service/message.service';
 import { Observable } from "rxjs";
@@ -49,9 +50,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   counter = 0;
   refSerach: boolean = false;
 
-  constructor(private _CommonService: CommonService, private messageService: MessageService, private _el: ElementRef) {
+  constructor(private _CommonService: CommonService, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
     this.alive = true;
-    this.serviceCallInterval = 10; // in seconds
+    this.serviceCallInterval = this.utilityService.serviceCallInterval; // in seconds
     this.timerIncrementInterval = 1; // in seconds
   }
 
@@ -88,7 +89,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     console.log('this.referenceNo>>>>>>>', this.referenceNo)
   }
 
-  checkType(type){
+  checkType(type) {
     type = type.toLowerCase();
     return type;
   }

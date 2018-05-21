@@ -1,7 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonService } from '../../../service/common-service';
 import { MessageService } from '../../../service/message.service';
+import { UtilityService } from "../../../service/utility.service";
 import { Subscription } from 'rxjs/Subscription';
+import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { Message } from 'primeng/api';
 
 @Component({
@@ -21,17 +23,31 @@ export class HeaderComponent implements OnInit {
   msgs: Message[];
   display: boolean = false;
   display2: boolean = false;
+  serviceCallInterval: number;
 
-  constructor(private messageService: MessageService, private cd: ChangeDetectorRef, private _CommonService: CommonService, ) {
+  constructor(private messageService: MessageService, private cd: ChangeDetectorRef, private _CommonService: CommonService,private utilityService: UtilityService ) {
+    
+    this.serviceCallInterval = this.utilityService.serviceCallInterval;
+
     this.subscription = this.messageService.getMessage().subscribe(message => {
       this.getNodeInfoList = message;
       console.log('this.message subscribe >>>>>>>>>>>', this.message);
     });
+
+    IntervalObservable.create(10000).subscribe(response => {
+      this._CommonService.getPendingRequest().subscribe(result => {
+        this.pendingRequest = result.json();
+        console.log(' this.pendingRequest>>>>>>', this.pendingRequest);
+      }, err => {
+        console.log("Error occured", err);
+      });
+    });
+  
   }
 
   ngOnInit() {
+    this.getLogsInfo();
     this.getPendingRequest();
-    this.getLogsInfo()
   }
 
   toggle() {
@@ -100,8 +116,9 @@ export class HeaderComponent implements OnInit {
       this.msgs.push({ severity: 'success', summary: msgShow });
       console.log('this.submitStatus.....>', this.msgs);
       this.getPendingRequest();
+
     },
-    error => {
+      error => {
         let msgShow = this.storeData ? this.storeData.statusMessage : 'There is an error occured';
         this.msgs = [];
         this.msgs.push({ severity: 'error', summary: msgShow });
@@ -110,4 +127,6 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
+
+
 }
