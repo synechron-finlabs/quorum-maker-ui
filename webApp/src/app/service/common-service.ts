@@ -88,7 +88,7 @@ export class CommonService {
 
   // Retrive the transcation Details...
   getNodeList() {
-    console.log('this.apiURL + nodeList >>>>>..', this.apiURL + 'nodeList')
+    console.log('this.apiURL + nodeList >>>>>..', this.apiURL + 'getNodeList')
     return this.http.get(this.apiURL + 'nodeList');
   }
 
@@ -137,7 +137,7 @@ export class CommonService {
   }
 
   getNodeNameList() {
-    console.log('GetLogs----', this.apiURL + 'pubkeys');
+    console.log('GetLogs----', this.apiURL + 'getNodeList');
     return this.http.get(this.apiURL + 'pubkeys');
   }
 
