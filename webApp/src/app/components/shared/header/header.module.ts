@@ -19,7 +19,6 @@ import { MessageService } from '../../../service/message.service';
 import { UtilityService } from '../../../service/utility.service';
 import { EmailServerConfigurationComponent } from './email-server-configuration/email-server-configuration.component';
 
-
 @NgModule({
     imports: [
         CommonModule,

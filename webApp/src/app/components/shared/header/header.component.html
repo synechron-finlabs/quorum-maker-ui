@@ -26,10 +26,10 @@
       <li class="compile-deploy">
         <a href="//{{getLogsList?.statusMessage}}/contracts/" target="_blank">Deployed Contracts</a>
       </li>
-      <li class="dropdown" *ngIf="pendingRequest?.length > 0">
+      <li class="dropdown dropdown-click" *ngIf="pendingRequest?.length > 0">
         <img src="/assets/images/crossroad.png" (click)="toggle()">
         <span class="count">{{pendingRequest?.length}}</span>
-        <div class="dropdown-menu-list animated" *ngIf="show">
+        <div class="dropdown-menu-list animated" *ngIf="show" (window:click)="autoClose($event)">
           <h2>Pending Request for join Network</h2>
           <div class="dropdown-inner" [ngClass]="pendingRequest?.length >= 5 ? 'vscroll' : '' ">
             <ul>

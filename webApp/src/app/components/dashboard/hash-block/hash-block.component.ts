@@ -15,7 +15,9 @@ export class HashBlockComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    //console.log('BlockDetails>>>', this.BlockDetails);
+    // if (this.BlockDetails) {
+    //   console.log('this.BlockDetails.number >>>',changes.BlockDetails);
+    // }
   }
 
 }
