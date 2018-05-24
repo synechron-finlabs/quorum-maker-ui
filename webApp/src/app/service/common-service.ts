@@ -89,7 +89,7 @@ export class CommonService {
   // Retrive the transcation Details...
   getNodeList() {
     console.log('this.apiURL + nodeList >>>>>..', this.apiURL + 'getNodeList')
-    return this.http.get(this.apiURL + 'nodeList');
+    return this.http.get(this.apiURL + 'getNodeList');
   }
 
   getNodeLatency() {
@@ -138,7 +138,7 @@ export class CommonService {
 
   getNodeNameList() {
     console.log('GetLogs----', this.apiURL + 'getNodeList');
-    return this.http.get(this.apiURL + 'pubkeys');
+    return this.http.get(this.apiURL + 'getNodeList');
   }
 
 }
