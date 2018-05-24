@@ -117,24 +117,24 @@ export class HeaderComponent implements OnInit {
       "enode-id": this.nodInfo.enode,
       "status": statusMgs
     }
-    if (this.storeData != null) {
-      this._CommonService.postjoinNetwork(params).subscribe(data => {
-        this.storeData = data.json();
-        console.log('this.storeData>>>>>>>>>>>>', this.storeData)
-        // this.msgs = [];
-        // let msgShow = this.storeData ? this.storeData.statusMessage : 'There is an error occured';
-        // this.msgs.push({ severity: 'success', summary: msgShow });
-        // console.log('this.submitStatus.....>', this.msgs);
-        this.getPendingRequest();
-      },
-        error => {
-          //let msgShow = this.storeData ? this.storeData.statusMessage : 'There is an error occured';
-          this.msgs = [];
-          this.msgs.push({ severity: 'error', summary: 'There is an error occured' });
-          console.log('error', error);
+    // if (this.storeData != null) {
+    this._CommonService.postjoinNetwork(params).subscribe(data => {
+      this.storeData = data.json();
+      console.log('this.storeData>>>>>>>>>>>>', this.storeData)
+      this.msgs = [];
+      // let msgShow = this.storeData ? this.storeData.statusMessage : 'There is an error occured';
+      this.msgs.push({ severity: 'success', summary: this.storeData.statusMessage });
+      // console.log('this.submitStatus.....>', this.msgs);
+      this.getPendingRequest();
+    },
+      error => {
+        //let msgShow = this.storeData ? this.storeData.statusMessage : 'There is an error occured';
+        this.msgs = [];
+        this.msgs.push({ severity: 'error', summary: 'There is an error occured' });
+        console.log('error', error);
 
-        }
-      );
-    }
+      }
+    );
   }
 }
+// }
