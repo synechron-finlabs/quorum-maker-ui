@@ -24,6 +24,7 @@ export class EmailServerConfigurationComponent implements OnInit {
     this.emailServerConfig = this.fb.group({
       smtpServerHost: new FormControl('', Validators.required),
       port: new FormControl('', Validators.required),
+      recipientList: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
@@ -62,6 +63,7 @@ export class EmailServerConfigurationComponent implements OnInit {
       let params = {
         "smtpServerHost": this.emailServerInfo.smtpServerHost,
         "port": this.emailServerInfo.port,
+        "recipientList": this.emailServerInfo.recipientList,
         "username": this.emailServerInfo.username,
         "password": this.emailServerInfo.password
       }

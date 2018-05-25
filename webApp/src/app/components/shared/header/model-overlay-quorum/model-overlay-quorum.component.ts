@@ -22,6 +22,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
   customMgs: any;
   contractInfo: any;
   networkRoleNodeList: any;
+  networkRoleNodeListNew = [];
   selectedFileCount: number;
   networkRoleValues: any;
   isNetworkSelected: Boolean = false;
@@ -51,9 +52,9 @@ export class ModelOverlayQuorumComponent implements OnInit {
       res => {
         this.customMgs = res;
       });
-    this.getNodeNameList();   
+    this.getNodeNameList();
   }
-  
+
   onFileChange(event) {
     this.filesToUpload = [];
     if (event.target.files && event.target.files.length > 0) {
@@ -131,7 +132,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
           console.log(obj)
           this.networkRoleValues.push(obj.publicKey)
         }
-        console.log("this.networkRoleValues",this.networkRoleValues)
+        console.log("this.networkRoleValues", this.networkRoleValues)
       }
     }
     else {
@@ -187,6 +188,14 @@ export class ModelOverlayQuorumComponent implements OnInit {
     this._CommonService.getNodeNameList().subscribe(result => {
       this.networkRoleNodeList = result.json();
       console.log('this.networkRoleNodeList >>>>>>', this.networkRoleNodeList);
+      this.networkRoleNodeListNew = this.networkRoleNodeList.filter(x => x.self == 'false')
+      console.log('this.networkRoleNodeListNew >>>>>>', this.networkRoleNodeListNew);
+      // this.networkRoleNodeListNew =[];
+      // this.networkRoleNodeList.forEach(element => {       
+      //   if (element.self == 'false') {
+      //     this.networkRoleNodeListNew.push(element);
+      //   }
+      // });
     },
       err => {
         console.log("Error occured", err);

@@ -546,3 +546,11 @@ body {
         }
     }
 }
+
+.p-dialog-wrapper {
+    &.email-server-config {
+        .ui-widget-content {
+            padding: 12px 7px 12px 12px !important;
+        }
+    }
+}
