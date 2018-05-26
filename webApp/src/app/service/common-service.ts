@@ -8,7 +8,6 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class CommonService {
 
-  private apiURL = environment.apiURL;
   private nodeURL = environment.nodeURL;
   private messagesUrl = 'assets/data/custom_messages.json';
   public showEl: number = 7;
@@ -74,22 +73,22 @@ export class CommonService {
 
   // Retrive the transcation Details...
   getPendingRequest() {
-    console.log('this.nodeURL >>>>>..', this.apiURL + 'pendingJoinRequests')
-    return this.http.get(this.apiURL + 'pendingJoinRequests');
+    console.log('this.nodeURL >>>>>..', this.nodeURL + 'pendingJoinRequests')
+    return this.http.get(this.nodeURL + 'pendingJoinRequests');
   }
 
   postjoinNetwork(params) {
     console.log('params', params);
     //const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     //const options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiURL + 'joinRequestResponse', params);
+    return this.http.post(this.nodeURL + 'joinRequestResponse', params);
   }
 
 
   // Retrive the transcation Details...
   getNodeList() {
-    console.log('this.apiURL + nodeList >>>>>..', this.apiURL + 'getNodeList')
-    return this.http.get(this.apiURL + 'getNodeList');
+    console.log('this.nodeURL + nodeList >>>>>..', this.nodeURL + 'getNodeList')
+    return this.http.get(this.nodeURL + 'getNodeList');
   }
 
   getNodeLatency() {
@@ -137,8 +136,8 @@ export class CommonService {
   }
 
   getNodeNameList() {
-    console.log('GetLogs----', this.apiURL + 'getNodeList');
-    return this.http.get(this.apiURL + 'getNodeList');
+    console.log('GetLogs----', this.nodeURL + 'getNodeList');
+    return this.http.get(this.nodeURL + 'getNodeList');
   }
 
 }
