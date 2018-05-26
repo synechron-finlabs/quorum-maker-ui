@@ -201,7 +201,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getLatestBlock() {
-    TimerObservable.create(0, this.serviceCallInterval * 1000)
+    TimerObservable.create(0, this.serviceCallInterval * 60000)
       .takeWhile(() => this.alive)
       .subscribe(() => {
         this._CommonService.getLatestBlock().subscribe(data => {
