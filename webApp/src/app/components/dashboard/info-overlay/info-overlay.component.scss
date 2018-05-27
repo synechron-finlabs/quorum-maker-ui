@@ -1,0 +1,113 @@
+@import '~sass/variables';
+@import '~sass/mixins';
+@import '~sass/fonts';
+.p-dialog-wrapper {
+    .p-dialog-inner {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 475px;
+        scroll-behavior: smooth;
+        padding-right: 8px;
+        &::-webkit-scrollbar {
+            width: 4px;
+            height: 5px;
+            border-radius: 6px;
+            &-track {
+                background-color: #3f424d;
+                border-radius: 6px;
+            }
+            &-thumb {
+                background-color: #626b8f;
+                border-radius: 6px;
+            }
+            &-button {
+                display: none;
+            }
+        }
+    }
+    .peer-information {
+        .p-dialog-inner {
+            height: 321px;
+        }
+    }
+    .ui-widget-content {
+        padding: 12px !important;
+        .header {
+            padding: 0 0 5px 0;
+            display: block;
+            overflow: hidden;
+            h2 {
+                font-family: $Heebo-Medium;
+                font-size: 14px;
+                letter-spacing: 0.5px;
+                color: #30354a;
+                text-transform: uppercase;
+                padding: 17px 0 0 12px;
+            }
+        }
+        .ui-widget-header {
+            background: none;
+            padding: 0;
+            .ui-dialog-title {
+                float: left;
+                width: 85%;
+            }
+            .ui-dialog-titlebar-close {
+                float: right;
+                margin: 12px 1px 0 0;
+            }
+        }
+        h3 {
+            font-family: $Heebo-Bold;
+            font-size: 16px;
+            color: #303649;
+        }
+        table {
+            border: 1px solid #dee2e6;
+            margin-bottom: 0;
+            td {
+                border: 1px solid #dee2e6;
+                border-collapse: collapse;
+                padding: 5px 10px;
+                width: 50%;
+                strong {
+                    font-family: $Heebo-Regular;
+                    color: #303649;
+                    font-size: 14px;
+                }
+                span {
+                    font-family: $Heebo-Regular;
+                    color: #9b9b9b;
+                    font-size: 13px;
+                }
+                .col-md-6 {
+                    width: 50%;
+                }
+                h4 {
+                    font-family: $Heebo-Medium;
+                    color: #303649;
+                    font-size: 14px;
+                    padding: 10px 0 3px 0
+                }
+                .ellipsis {
+                    text-overflow: ellipsis;
+                    display: inline-block;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    &.w565 {
+                        width: 565px;
+                    }
+                    &.w260 {
+                        width: 260px;
+                    }
+                }
+                .w100per {
+                    width: 100%;
+                    font-family: $Heebo-Regular;
+                    color: #9b9b9b;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,191 @@
+<div class="p-dialog-wrapper">
+  <p-dialog [(visible)]="display" modal="modal" [responsive]="true" [width]="650" [height]="580" [minWidth]="200" draggable="true"
+    closeOnEscape="true" dismissableMask="true" (onHide)="onClose()">
+
+    <p-header class="header">
+      <h2>Connected Node Info</h2>
+    </p-header>
+    <div class="p-dialog-inner">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Search Result</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <tr>
+              <td class="col-md-6">
+                <strong>Raft Role</strong>
+                <br />
+                <span>{{listItem?.raftRole}}</span>
+              </td>
+              <td class="col-md-6">
+                <strong>Raft ID</strong>
+                <br />
+                <span>{{listItem?.raftID}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-md-6">
+                <strong>Block Number</strong>
+                <br />
+                <span>{{listItem?.blockNumber}}</span>
+              </td>
+              <td class="col-md-6">
+                <strong>Pending Transaction Count</strong>
+                <br />
+                <span>{{listItem?.pendingTxCount}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="col-md-12">
+                <strong>Genesis</strong>
+                <br>
+                <textarea row="3" class="w100per">{{listItem?.genesis}}</textarea>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="col-md-12">
+                <h4>Admin Info</h4>
+                <table class="table">
+                  <tr>
+                    <td class="col-md-6">
+                      <strong>ID</strong>
+                      <br>
+                      <span class="ellipsis w260">{{listItem?.adminInfo?.id}}</span>
+                    </td>
+                    <td class="col-md-6">
+                      <strong>Name</strong>
+                      <br>
+                      <span class="ellipsis w260">{{listItem?.adminInfo?.name}}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-6">
+                      <strong>Enode</strong>
+                      <br>
+                      <span class="ellipsis w260">{{listItem?.adminInfo?.enode}}</span>
+                    </td>
+                    <td class="col-md-6">
+                      <strong>IP</strong>
+                      <br>
+                      <span>{{listItem?.adminInfo?.ip}}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-6">
+                      <strong>Port</strong>
+                      <br>
+                      <span>Discovery: {{listItem?.adminInfo?.ports?.discovery}}</span>
+                    </td>
+                    <td class="col-md-6">
+                      <strong>&nbsp;</strong>
+                      <br>
+                      <span>Listener: {{listItem?.adminInfo?.ports?.listener}}</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2" class="col-md-12">
+                      <strong>Listen Address</strong>
+                      <br>
+                      <span>{{listItem?.adminInfo?.listenAddr}}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-6">
+                      <strong>Eth</strong>
+                      <br>
+                      <span class="ellipsis w260">Network: {{listItem?.adminInfo?.protocols?.eth?.network}}</span>
+                      <br>
+                      <span class="ellipsis w260">Genesis : {{listItem?.adminInfo?.protocols?.eth?.genesis}}</span>
+                    </td>
+                    <td class="col-md-6">
+                      <strong></strong>
+                      <br>
+                      <span>Difficulty : 262144</span>
+                      <br>
+                      <span class="ellipsis w260">Head : {{listItem?.adminInfo?.protocols?.eth?.head}}</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+
+  <p-dialog [(visible)]="display2" modal="modal" [responsive]="true" [width]="650" [height]="415" [minWidth]="200" draggable="true"
+    closeOnEscape="true" dismissableMask="true" (onHide)="onClose()" class="peer-information">
+    <p-header class="header">
+      <h2>Peer Information</h2>
+    </p-header>
+    <div class="p-dialog-inner">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Search Result</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <tr>
+              <td class="col-md-6">
+                <strong>ID</strong>
+                <br />
+                <span class="ellipsis w260">{{listItem2?.id}}</span>
+              </td>
+              <td class="col-md-6">
+                <strong>Name</strong>
+                <br />
+                <span class="ellipsis w260">{{listItem2?.name}}</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2" class="col-md-12">
+                <strong>Caps (String Array)</strong>
+                <br>
+                <span class="ellipsis w565">{{listItem2?.caps[0]}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="col-md-12">
+                <h4>Network</h4>
+                <table class="table">
+                  <tr>
+                    <td class="col-md-6">
+                      <strong>Local Address</strong>
+                      <br>
+                      <span class="ellipsis w260">{{listItem2?.network?.localAddress}}</span>
+                    </td>
+                    <td class="col-md-6">
+                      <strong>Remote Address</strong>
+                      <br>
+                      <span class="ellipsis w260">{{listItem2?.network?.remoteAddress}}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-6">
+                      <strong>Eth</strong>
+                      <br>
+                      <span class="ellipsis w260">Version: {{listItem2?.protocols?.eth?.version}}</span>
+                    </td>
+                    <td class="col-md-6">
+                      <strong>&nbsp;</strong>
+                      <br>
+                      <span class="ellipsis w260">Head: {{listItem2?.protocols?.eth?.head}}</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+</div>

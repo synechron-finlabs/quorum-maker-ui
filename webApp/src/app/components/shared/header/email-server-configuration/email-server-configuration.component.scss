@@ -1,0 +1,130 @@
+@import '~sass/variables';
+@import '~sass/mixins';
+@import '~sass/fonts';
+.p-dialog-wrapper {
+    .p-dialog-inner {
+        height: auto;
+        overflow: hidden;
+        padding: 0;
+        .v-scrollbar {
+            height: 354px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding: 0 15px 0 0;
+            scroll-behavior: smooth;
+            position: relative;
+            &::-webkit-scrollbar {
+                width: 4px;
+                height: 5px;
+                border-radius: 6px;
+                &-track {
+                    background-color: #3f424d;
+                    border-radius: 6px;
+                }
+                &-thumb {
+                    background-color: #626b8f;
+                    border-radius: 6px;
+                }
+                &-button {
+                    display: none;
+                }
+            }
+            .form-footer {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 137px;
+                >.form-group {
+                    position: fixed;
+                    max-width: 128px;
+                    bottom: 98px;
+                    padding: 0;
+                }
+            }
+        }
+        label {
+            letter-spacing: 0.5px;
+            text-align: left;
+            color: $LightGreyColor;
+            font-family: $Heebo-Bold;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        input.form-control {
+            border-radius: 3px;
+            border: solid 1px $InputBorderColor;
+            transition: none;
+            font-family: $Heebo-Light;
+            font-size: 13px;
+            color: $GreyGridColor;
+            padding: 9px 15px;
+            &:focus {
+                box-shadow: none;
+            }
+        }
+        .info_img {
+            height: 13px;
+            width: 13px;
+            opacity: 0.6;
+        }
+        .icon-background1 {
+            color: #618acd;
+        }
+        .fa-info-circle:before {
+            content: "\f05a";
+        }
+        .btn-green {
+            border-radius: 4px;
+            background-color: $GreenColorBtn;
+            font-family: $Heebo-Medium;
+            border: 0;
+            color: #fff;
+            text-transform: uppercase;
+            padding: 8px 35px;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 2px 3px 0 0;
+            display: block;
+        }
+        .ui-tooltip-text {
+            width: fit-content;
+            &.ui-shadow {
+                &.ui-corner-all {
+                    font-family: $Heebo-Regular;
+                    font-size: 12px;
+                    color: $WhiteColor;
+                    white-space: nowrap;
+                }
+            }
+        }
+        .form-group {
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .form-footer .form-group {
+            padding-bottom: 0;
+            margin-bottom: 3px;
+        }
+        .has-error {
+            .form-control {
+                border-bottom-color: #a94442;
+            }
+        }
+        .ng-invalid {
+            animation-name: fadeIn;
+        }
+        .errorMsg {
+            color: #d00;
+            font-family: $Heebo-Light;
+            font-size: 11px;
+            display: none;
+            position: absolute;
+            left: 15px;
+            bottom: -11px;
+        }
+        .has-error .errorMsg {
+            display: block;
+        }
+    }
+}

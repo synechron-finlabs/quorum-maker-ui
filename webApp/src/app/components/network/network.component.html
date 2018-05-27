@@ -1,0 +1,143 @@
+<p-growl [value]="msgs"></p-growl>
+<div class="network-container">
+  <div class="forms-header">
+    <div class="row">
+      <div class="col-md-12">
+        <p-tabView>
+          <p-tabPanel header="CREATE NETWORK">
+            <form novalidate [formGroup]="CreateNetworkForm" class="animated">
+              <div class="row">
+                <div class="col-md-12 form-group" [ngClass]="displayFieldCssCreate('nodename')">
+                  <label>Node Name:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageCreate?.nodename}}"></i>
+                  <input type="text" class="form-control" formControlName="nodename">
+                  <span class="errorMsg">{{customMgs?.customMessage?.nodename}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssCreate('currentIP')">
+                  <label>IP address:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageCreate?.currentIP}}"></i>
+                  <input type="text" class="form-control" formControlName="currentIP">
+                  <span class="errorMsg">{{customMgs?.customMessage?.currentIP}}</span>
+                </div>
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssCreate('rpcPort')">
+                  <label>RPC Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageCreate?.rpcPort}}"></i>
+                  <input type="text" class="form-control" formControlName="rpcPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.rpcPort}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssCreate('whisperPort')">
+                  <label>Network Listening Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageCreate?.whisperPort}}"></i>
+                  <input type="text" class="form-control" formControlName="whisperPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.whisperPort}}</span>
+                </div>
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssCreate('constellationPort')">
+                  <label>Constellation Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageCreate?.constellationPort}}"></i>
+                  <input type="text" class="form-control" formControlName="constellationPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.constellationPort}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssCreate('raftPort')">
+                  <label>Raft Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageCreate?.raftPort}}"></i>
+                  <input type="text" class="form-control" formControlName="raftPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.raftPort}}</span>
+                </div>
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssCreate('nodeManagerPort')">
+                  <label>Node Manager Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageCreate?.nodeManagerPort}}"></i>
+                  <input type="text" class="form-control" formControlName="nodeManagerPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.nodeManagerPort}}</span>
+                </div>
+              </div>
+              <div class="row form-footer">
+                <div class="col-md-12 form-group">
+                  <button type="submit" (click)="CreateSubmit(CreateNetworkForm.value)" class="btn btn-green pull-right">SUBMIT</button>
+                </div>
+              </div>
+            </form>
+          </p-tabPanel>
+          <p-tabPanel header="JOIN NETWORK">
+            <form novalidate [formGroup]="JoinNetworkForm" class="animated">
+              <div class="row">
+                <div class="col-md-12 form-group" [ngClass]="displayFieldCssJoin('nodename')">
+                  <label>Node Name:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageJoin?.nodename}}"></i>
+                  <input type="text" class="form-control" formControlName="nodename">
+                  <span class="errorMsg">{{customMgs?.customMessage?.nodename}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssJoin('masterIP')">
+                  <label>Main IP address:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageJoin?.masterIP}}"></i>
+                  <input type="text" class="form-control" formControlName="masterIP">
+                  <span class="errorMsg">{{customMgs?.customMessage?.masterIP}}</span>
+                </div>
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssJoin('masterNodeManagerPort')">
+                  <label>Main Node Manager Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageJoin?.masterNodeManagerPort}}"></i>
+                  <input type="text" class="form-control" formControlName="masterNodeManagerPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.masterNodeManagerPort}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssJoin('currentIP')">
+                  <label>IP Address:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageJoin?.currentIP}}"></i>
+                  <input type="text" class="form-control" formControlName="currentIP">
+                  <span class="errorMsg">{{customMgs?.customMessage?.currentIP}}</span>
+                </div>
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssJoin('rpcPort')">
+                  <label>RPC Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageJoin?.rpcPort}}"></i>
+                  <input type="text" class="form-control" formControlName="rpcPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.rpcPort}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssJoin('whisperPort')">
+                  <label>Network Listening Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageJoin?.whisperPort}}"></i>
+                  <input type="text" class="form-control" formControlName="whisperPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.whisperPort}}</span>
+                </div>
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssJoin('constellationPort')">
+                  <label>Constellation Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageJoin?.constellationPort}}"></i>
+                  <input type="email" class="form-control" formControlName="constellationPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.constellationPort}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssJoin('raftPort')">
+                  <label>Raft Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageJoin?.raftPort}}"></i>
+                  <input type="text" class="form-control" formControlName="raftPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.raftPort}}</span>
+                </div>
+                <div class="col-md-6 form-group" [ngClass]="displayFieldCssJoin('nodeManagerPort')">
+                  <label>Node Manager Port:</label>
+                  <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.customMessageJoin?.nodeManagerPort}}"></i>
+                  <input type="text" class="form-control" formControlName="nodeManagerPort">
+                  <span class="errorMsg">{{customMgs?.customMessage?.nodeManagerPort}}</span>
+                </div>
+              </div>
+              <div class="row form-footer">
+                <div class="col-md-12 form-group">
+                  <button type="submit" class="btn btn-green pull-right" (click)="JoinSubmit(JoinNetworkForm.value);">SUBMIT</button>
+                </div>
+              </div>
+            </form>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+    </div>
+  </div>
+</div>

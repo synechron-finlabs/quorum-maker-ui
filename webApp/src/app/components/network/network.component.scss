@@ -1,0 +1,33 @@
+@import '~sass/variables';
+label.required:after {
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 5px;
+    top: 7px;
+}
+
+.network-container {
+    .has-error {
+        .form-control {
+            border-bottom-color: #a94442;
+        }
+    }
+    .ng-invalid {
+        animation-name: fadeIn;
+    }
+}
+
+.errorMsg {
+    color: #d00;
+    font-family: $Heebo-Light;
+    font-size: 11px;
+    display: none;
+    position: absolute;
+    left: 15px;
+    bottom: -11px;
+}
+
+.has-error .errorMsg {
+    display: block;
+}

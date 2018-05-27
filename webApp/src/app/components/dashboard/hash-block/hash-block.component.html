@@ -1,0 +1,257 @@
+<div class="block-list-inner">
+  <div class="col-md-12">
+    <div class="row">
+      <table class="table toptable">
+        <tr>
+          <td class="parentHash">
+            <span>ParentHash</span>
+          </td>
+          <td class="parentDetail">
+            <span>{{BlockDetails?.parentHash || '--'}}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table bottable">
+          <tr>
+            <td class="col-md-4">
+              <span>Nonce</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.nonce || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Logs Bloom</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.logsBloom || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>State Root</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.stateRoot || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Difficulty</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.difficulty || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Extra Data</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.extraData || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Gas Limit</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.gasLimit || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Timestamp</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.timestamp || '--'}}</span>
+            </td>
+          </tr>
+
+          <!--tr>
+            <td colspan="2" class="transaction-title col-md-12">Transactions (Array)</td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Block Hash</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.blockHash || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>From</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.from || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Gas Price</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.gasPrice || '0'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Input</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.input || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>To</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.to || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Value</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.v || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>R</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.r || '--'}}</span>
+            </td>
+          </tr-->
+        </table>
+      </div>
+      <div class="col-md-6">
+        <table class="table">
+          <tr>
+            <td class="col-md-4">
+              <span>Sha3Uncles</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.sha3Uncles || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Transactions Root</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactionsRoot || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Miner</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.miner || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Total Difficulty</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.totalDifficulty || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Size</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.size || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Gas Used</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.gasUsed || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Uncles</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.sha3Uncles || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="col-md-12">&nbsp;</td>
+          </tr>
+          <!--tr>
+            <td class="col-md-4">
+              <span>Block Number</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.blockNumber || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Gas</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.gas || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Hash</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.hash || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Nonce</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.nonce || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>Transaction Index</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.transactionIndex || '0'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>V</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.v || '--'}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-4">
+              <span>S</span>
+            </td>
+            <td class="col-md-8">
+              <span>{{BlockDetails?.transactions[0]?.s || '--'}}</span>
+            </td>
+          </tr-->
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
