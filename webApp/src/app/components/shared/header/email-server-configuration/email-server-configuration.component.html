@@ -28,7 +28,7 @@
             <div class="col-md-12 form-group" [ngClass]="displayFieldCssCreate('recipientList')">
               <label>Recipient List:</label>
               <i class="fa fa-info-circle fa-1x icon-background1" pTooltip="{{customMgs?.emailServerConfig?.recipientList}}"></i>
-              <input type="password" class="form-control" formControlName="recipientList">
+              <input type="text" class="form-control" formControlName="recipientList">
               <span class="errorMsg">{{customMgs?.emailServerConfig?.recipientList}}</span>
             </div>
           </div>

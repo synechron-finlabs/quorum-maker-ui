@@ -201,7 +201,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getLatestBlock() {
-    TimerObservable.create(0, this.serviceCallInterval * 60000)
+    TimerObservable.create(0, this.serviceCallInterval * 9000)
       .takeWhile(() => this.alive)
       .subscribe(() => {
         this._CommonService.getLatestBlock().subscribe(data => {
@@ -212,6 +212,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.getBlocklisting(null);
             this.currentBlockNumber = this.latestBlockData.latestBlockNumber;
             console.log('this.currentBlockNumber if>>>>>>>>>', this.currentBlockNumber);
+            this.getNodeInfo();
+            this.getNodeList();
           }
           this.latestTimeElapsed = this.latestBlockData.TimeElapsed;
           // console.log("latestTimeElapsed", this.latestBlockData);
@@ -262,6 +264,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getNodeInfo() {
     this._CommonService.getNodeInfo().subscribe(result => {
       this.getNodeInfoList = result.json();
+      console.log('this.getNodeInfoList ====>>>',this.getNodeInfoList )
       this.currentBlockNumber = this.getNodeInfoList.blockNumber;
       console.log('this.currentBlockNumber>>>>>>>', this.currentBlockNumber)
       this.messageService.sendMessage(this.getNodeInfoList);
@@ -338,9 +341,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getNodeDetails(item) {
-    //console.log('item onClick', item);
-
-    if (item.isActive == true) {
+    console.log('item onClick', item);
+    if (item.self == 'true') {
       this.display = true;
       this.display2 = false;
       this._CommonService.peerDetails().subscribe(result => {
