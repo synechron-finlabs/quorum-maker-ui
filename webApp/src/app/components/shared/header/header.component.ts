@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
       console.log('this.message subscribe >>>>>>>>>>>', this.message);
     });
 
-    IntervalObservable.create(30000).subscribe(response => {
+    IntervalObservable.create(15000).subscribe(response => {
       this._CommonService.getPendingRequest().subscribe(result => {
         this.pendingRequest = result.json();
         console.log(' this.pendingRequest>>>>>>', this.pendingRequest);
