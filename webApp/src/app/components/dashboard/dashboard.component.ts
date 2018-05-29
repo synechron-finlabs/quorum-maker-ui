@@ -201,12 +201,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getLatestBlock() {
-    TimerObservable.create(0, this.serviceCallInterval * 9000)
+    TimerObservable.create(0, this.serviceCallInterval * 20000)
       .takeWhile(() => this.alive)
       .subscribe(() => {
         this._CommonService.getLatestBlock().subscribe(data => {
           this.latestBlockData = data.json();
-          //console.log('this.later', this.currentBlockNumber);
           if (this.currentBlockNumber != this.latestBlockData.latestBlockNumber) {
             this.getBlockList = [];
             this.getBlocklisting(null);
@@ -214,6 +213,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
             console.log('this.currentBlockNumber if>>>>>>>>>', this.currentBlockNumber);
             this.getNodeInfo();
             this.getNodeList();
+	    this.getNodeLatency();
+            this._CommonService.sendCall('latest block called');
           }
           this.latestTimeElapsed = this.latestBlockData.TimeElapsed;
           // console.log("latestTimeElapsed", this.latestBlockData);
