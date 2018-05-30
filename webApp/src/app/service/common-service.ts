@@ -82,6 +82,11 @@ private actionCalled = new Subject<any>();
     return this.http.get(this.nodeURL + 'peer');
   }
 
+  activeNodeInfo() {
+    console.log('this.nodeURL >>>>>..', this.nodeURL + 'activeNodes')
+    return this.http.get(this.nodeURL + 'activeNodes');
+  }
+
   // Retrive the transcation Details...
   getPendingRequest() {
     console.log('this.nodeURL >>>>>..', this.nodeURL + 'pendingJoinRequests')

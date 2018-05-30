@@ -15,10 +15,10 @@
       <div class="rect-block last" [ngClass]="(isSelected == 'nodeClass')?'active':''" (click)="isShowCont('nodeManager')">
         <div class="rect-block-inner">
           <h5 class="active-node">Active Nodes</h5>
-          <h3 class="active-node">{{getNodeInfoList?.nodeCount}}</h3>
+          <h3 class="active-node">{{getActiveNode?.nodeCount}}</h3>
           <p>
             <strong>Total Network Nodes :</strong>
-            <span>{{getNodeInfoList?.totalNodeCount}}</span>
+            <span>{{getActiveNode?.totalNodeCount}}</span>
           </p>
         </div>
       </div>
@@ -65,7 +65,7 @@
       <tbody>
         <tr *ngFor="let getNodeItem of getNodeListData3;" (click)="getNodeDetails(getNodeItem)">
           <td>
-            <span class="checkIcon" [ngClass]="(getNodeItem.self == 'true')?'checkiconCopy':'checkIcon'">&nbsp;</span>
+            <span class="checkIcon" [ngClass]="(getNodeItem.active == 'true')?'checkiconCopy':'checkIcon'">&nbsp;</span>
           </td>
           <td>{{getNodeItem?.nodeName}}</td>
           <td>{{getNodeItem?.role}}</td>

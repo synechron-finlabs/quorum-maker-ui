@@ -13,6 +13,7 @@ import 'rxjs/add/operator/takeWhile';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  getActiveNode: any;
   //getNodeListData4: any[];
   getNodeListData3: any[];
   getNodeListData2: any;
@@ -73,6 +74,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     this.getLatestBlock();
     this.incrementTimer();
+    this.getActiveNodeInfo()
   }
 
   onScroll() {
@@ -213,7 +215,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             console.log('this.currentBlockNumber if>>>>>>>>>', this.currentBlockNumber);
             this.getNodeInfo();
             this.getNodeList();
-	    this.getNodeLatency();
+            this.getNodeLatency();
             this._CommonService.sendCall('latest block called');
           }
           this.latestTimeElapsed = this.latestBlockData.TimeElapsed;
@@ -265,7 +267,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getNodeInfo() {
     this._CommonService.getNodeInfo().subscribe(result => {
       this.getNodeInfoList = result.json();
-      console.log('this.getNodeInfoList ====>>>',this.getNodeInfoList )
+      console.log('this.getNodeInfoList ====>>>', this.getNodeInfoList)
       this.currentBlockNumber = this.getNodeInfoList.blockNumber;
       console.log('this.currentBlockNumber>>>>>>>', this.currentBlockNumber)
       this.messageService.sendMessage(this.getNodeInfoList);
@@ -273,17 +275,32 @@ export class DashboardComponent implements OnInit, OnDestroy {
     },
       err => {
         console.log("Error occured", err);
-      }
-    );
+      });
   }
 
+  getActiveNodeInfo() {
+    TimerObservable.create(0, this.serviceCallInterval * 9000)
+      .takeWhile(() => this.alive)
+      .subscribe(() => {
+        this._CommonService.activeNodeInfo().subscribe(result => {
+          this.getActiveNode = result.json();
+          console.log('this.getActiveNode ====>>>', this.getActiveNode)
+          this.getNodeList();
+          this.getNodeLatency();
+          this._CommonService.sendCall('latest block called');
+        },
+          err => {
+            console.log("Error occured", err);
+          });
+      });
+  }
 
   getNodeList() {
     this._CommonService.getNodeList().subscribe(result => {
       this.getNodeListData = result.json();
       console.log(' this.getNodeListData>>>>>>', this.getNodeListData);
-      this.getNodeListData1 = this.getNodeListData.filter(x => x.self == 'true');
-      this.getNodeListData2 = this.getNodeListData.filter(x => x.self == 'false');
+      this.getNodeListData1 = this.getNodeListData.filter(x => x.active == 'true');
+      this.getNodeListData2 = this.getNodeListData.filter(x => x.active == 'false');
       // this.getNodeListData4 = [this.getNodeListData1, ...this.getNodeListData2];
       this.getNodeListData3 = this.getNodeListData1.concat(this.getNodeListData2);
       console.log('this.getNodeListData3>>>>>>', this.getNodeListData3);
