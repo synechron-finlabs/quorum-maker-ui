@@ -12,11 +12,28 @@ body {
     background-size: cover;
 }
 
-// @media (min-width: 1366px) {
-//     .container {
-//         width: 1310px;
-//     }
-// }
+@media (min-width: 1400px) {
+    .container {
+        max-width: 90%;
+    }
+    .rect-block {
+        width: 24% !important;
+        margin: 0 1% 0 0 !important;
+    }
+    .pending-transaction {
+        width: 24.5%;
+        margin: 0 1% 0 0 !important;
+        .inner {
+            width: 100% !important;
+        }
+    }
+    .ip-address {
+        width: 24.5%;        
+        .inner {
+            width: 100% !important;
+        }
+    }
+}
 
 .network-container {
     width: 714px;
@@ -338,6 +355,9 @@ body {
                                 text-overflow: ellipsis;
                                 display: inline-block;
                                 font-size: 13px;
+                                @media (min-width: 1366px) {
+                                    width: 155px;
+                                }
                                 @include mq($tabletLandscape) {
                                     width: 85px;
                                 }
@@ -354,9 +374,15 @@ body {
                                     width: 155px;
                                 }
                                 @include mq($XsmobilePortLandScape) {
+                                    width: 189px;
+                                }
+                                @include mq(414px) {
                                     width: 155px;
                                 }
                                 @include mq($XsmobilePort) {
+                                    width: 127px;
+                                }
+                                @include mq(375px) {
                                     width: 127px;
                                 }
                                 @include mq($XxsmobilePort) {
@@ -444,36 +470,9 @@ body {
                                 font-size: 12px;
                             }
                             @include mq($mobilePort) {
-                                width: 30%;
-                                font-size: 9px;
-                                margin-top: 0;
-                                &.trans {
-                                    width: 20%;
-                                    font-size: 11px;
-                                    margin-top: 0;
-                                }
-                            }
-                            @include mq($XsmobilePortLandScape) {
-                                width: 30%;
-                                font-size: 9px;
-                                margin-top: 0;
-                                &.trans {
-                                    width: 24%;
-                                    font-size: 10px;
-                                    margin-top: 0;
-                                }
-                            }
-                            @include mq($XsmobilePort) {
-                                &.trans {
-                                    width: 30%;
-                                    font-size: 9px;
-                                }
-                            }
-                            @include mq($XxsmobilePort) {
-                                &.trans {
-                                    width: 34%;
-                                    font-size: 9px;
-                                }
+                                font-size: 10px;
+                                text-align: left;
+                                padding-left: 25px; //margin-top: 0;
                             }
                         }
                         .hash-title {
