@@ -28,7 +28,7 @@ body {
         }
     }
     .ip-address {
-        width: 24.5%;        
+        width: 24.5%;
         .inner {
             width: 100% !important;
         }
@@ -296,6 +296,9 @@ body {
                             font-family: $Heebo-Light;
                             &.col-md-4 {
                                 color: #9b9b9b;
+                                @media (min-width: 1366px) {
+                                    text-align: right;
+                                }
                                 span {
                                     text-align: right;
                                 }
@@ -355,9 +358,6 @@ body {
                                 text-overflow: ellipsis;
                                 display: inline-block;
                                 font-size: 13px;
-                                @media (min-width: 1366px) {
-                                    width: 155px;
-                                }
                                 @include mq($tabletLandscape) {
                                     width: 85px;
                                 }
@@ -371,7 +371,7 @@ body {
                                     width: 98px;
                                 }
                                 @include mq($mobilePort) {
-                                    width: 155px;
+                                    width: 228px;
                                 }
                                 @include mq($XsmobilePortLandScape) {
                                     width: 189px;

@@ -78,17 +78,20 @@ img {
                 font-family: $Heebo-Light;
                 vertical-align: middle;
                 span {
+                    height: 20px;
+                    width: 20px;
+                    font-size: 0;
+                    line-height: 0;
+                    text-indent: -5000px;
+                    display: block;
                     &.checkIcon {
-                        background: url('/assets/images/check.png') no-repeat 0 0;
-                        height: 20px;
-                        width: 20px;
-                        font-size: 0;
-                        line-height: 0;
-                        text-indent: -5000px;
-                        display: block;
-                        &.checkiconCopy {
-                            background: url('/assets/images/check-copy.png') no-repeat 0 0;
-                        }
+                        background: url('/assets/images/check-white.png') no-repeat 0 0;
+                    }
+                    &.checkiconCopy {
+                        background: url('/assets/images/check-copy.png') no-repeat 0 0!important;
+                    }
+                    &.checkIcon2 {
+                        background: url('/assets/images/check-red.png') no-repeat 0 0;
                     }
                 }
                 &.node {
@@ -119,7 +122,7 @@ img {
 
 .rect-block {
     width: 230px;
-    padding:0;
+    padding: 0;
     margin: 0 10px 0 0;
     float: left;
     @include mq($mobilePort) {

@@ -299,8 +299,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this._CommonService.getNodeList().subscribe(result => {
       this.getNodeListData = result.json();
       console.log(' this.getNodeListData>>>>>>', this.getNodeListData);
-      this.getNodeListData1 = this.getNodeListData.filter(x => x.active == 'true');
-      this.getNodeListData2 = this.getNodeListData.filter(x => x.active == 'false');
+      this.getNodeListData1 = this.getNodeListData.filter(x => x.self == 'true');
+      this.getNodeListData2 = this.getNodeListData.filter(x => x.self == 'false');
       // this.getNodeListData4 = [this.getNodeListData1, ...this.getNodeListData2];
       this.getNodeListData3 = this.getNodeListData1.concat(this.getNodeListData2);
       console.log('this.getNodeListData3>>>>>>', this.getNodeListData3);

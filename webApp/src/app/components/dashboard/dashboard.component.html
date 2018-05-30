@@ -65,7 +65,7 @@
       <tbody>
         <tr *ngFor="let getNodeItem of getNodeListData3;" (click)="getNodeDetails(getNodeItem)">
           <td>
-            <span class="checkIcon" [ngClass]="(getNodeItem.active == 'true')?'checkiconCopy':'checkIcon'">&nbsp;</span>
+            <span [ngClass]="{'checkiconCopy': getNodeItem.self=='true', 'checkIcon':getNodeItem.active=='true', 'checkIcon2':getNodeItem.active=='false' }">&nbsp;</span>
           </td>
           <td>{{getNodeItem?.nodeName}}</td>
           <td>{{getNodeItem?.role}}</td>

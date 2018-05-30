@@ -29,7 +29,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
   isNetworkSelected: Boolean = false;
   filesToUpload: Array<File> = [];
   fileUploadResponse: any;
-  isResponseReceived:boolean = false;
+  isResponseReceived: boolean = false;
   msgs: Message[];
   address;
   interface;
@@ -57,10 +57,10 @@ export class ModelOverlayQuorumComponent implements OnInit {
       });
     this.getNodeNameList();
 
-	this.subscription = this._CommonService.getCall().subscribe(message => {
-//console.log('get node name list function called')
-		this.getNodeNameList();
-	})
+    this.subscription = this._CommonService.getCall().subscribe(message => {
+      //console.log('get node name list function called')
+      this.getNodeNameList();
+    })
   }
 
   onFileChange(event) {
@@ -197,7 +197,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
     this._CommonService.getNodeNameList().subscribe(result => {
       this.networkRoleNodeList = result.json();
       console.log('this.networkRoleNodeList >>>>>>', this.networkRoleNodeList);
-      this.networkRoleNodeListNew = this.networkRoleNodeList.filter(x => x.self == 'false')
+      this.networkRoleNodeListNew = this.networkRoleNodeList.filter(x => x.self == 'false' && x.active == 'true')
       console.log('this.networkRoleNodeListNew >>>>>>', this.networkRoleNodeListNew);
       // this.networkRoleNodeListNew =[];
       // this.networkRoleNodeList.forEach(element => {       
