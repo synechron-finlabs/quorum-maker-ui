@@ -1,14 +1,25 @@
 @mixin border-radius($radius) {
     -webkit-border-radius: $radius;
-       -moz-border-radius: $radius;
-        -ms-border-radius: $radius;
-            border-radius: $radius;
-  }
-  
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
 
-  @mixin transform ($translate) {
+@mixin transform ($translate) {
     -webkit-transform: translateY($translate);
-       -moz-transform: translateY($translate);
-        -ms-transform: translateY($translate);
-        transform: translateY($translate);
-  }
+    -moz-transform: translateY($translate);
+    -ms-transform: translateY($translate);
+    transform: translateY($translate);
+}
+
+/*
+$point: Breakpoint integer in px
+$constraint: Constraint for media query (min/max)
+$feature: Media feature of query (width/height)
+*/
+
+@mixin mq($point, $constraint: max, $feature: width) {
+    @media screen and (#{$constraint}-#{$feature}: $point) {
+        @content;
+    }
+}

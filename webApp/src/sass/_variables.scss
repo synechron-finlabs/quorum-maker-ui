@@ -19,4 +19,19 @@ $VioletHeadGridColor:#3977e6;
 $GreyBoderColor:#e4eaee;
 $InputBorderColor:#dde3e8;
 $GreyGridColor:#788995;
-$blockGreyColor: #2b3045
+$blockGreyColor: #2b3045;
+/*media queries*/
+
+// $tabletLandscape: 1024px;
+// $deskPort: 768px;
+// $mobileLandscape: 667px;
+// $mobilePort:375px;
+// $XsmobilePort:320px;
+$tabletLandscape:1200px;
+$extraDeskPort:992px;
+$deskPort:768px;
+$mobileLandscape: 750px;
+$mobilePort:576px;
+$XsmobilePort:400px;
+$XxsmobilePort:320px;
+$XsmobilePortLandScape:480px;

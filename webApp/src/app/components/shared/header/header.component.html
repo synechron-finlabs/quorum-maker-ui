@@ -3,7 +3,7 @@
 <div class="container-fluid header">
   <div class="navbar-header">
     <a class="navbar-brand logo">
-      <img src="/assets/images/logo.png">
+      <img src="/assets/images/quorum-maker.svg">
     </a>
     <span>{{getNodeInfoList?.nodeName}}</span>
     <em *ngIf="getNodeInfoList">{{getNodeInfoList?.active}}</em>
@@ -18,10 +18,10 @@
         </div>
       </li>
       <li class="compile-deploy">
-        <a href="javascript:void(0)" (click)="emailServerConfig()" target="_blank">Email Server Configuration</a>
+        <a href="javascript:void(0)" (click)="emailServerConfig()">Email Server Configuration</a>
       </li>
       <li class="compile-deploy">
-        <a href="javascript:void(0)" (click)="compileAndDeployContracts()" target="_blank">Compile & Deploy Contracts</a>
+        <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
       </li>
       <li class="compile-deploy">
         <a href="//{{getLogsList?.statusMessage}}/contracts/" target="_blank">Deployed Contracts</a>

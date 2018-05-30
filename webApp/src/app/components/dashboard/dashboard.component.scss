@@ -105,6 +105,12 @@ img {
                     &.enodeid {
                         color: #f5ba64;
                     }
+                    @include mq($tabletLandscape) {
+                        width: 183px;
+                    }
+                    @include mq($deskPort) {
+                        width: 183px;
+                    }
                 }
             }
         }
@@ -113,9 +119,34 @@ img {
 
 .rect-block {
     width: 230px;
-    padding: 0 6px;
-    margin: 0;
+    padding:0;
+    margin: 0 10px 0 0;
     float: left;
+    @include mq($mobilePort) {
+        width: 167px;
+        margin-bottom: 10px;
+        &.last {
+            margin-right: 0px;
+        }
+    }
+    @include mq($extraDeskPort) {
+        width: 165px;
+        padding: 0;
+        margin-right: 10px;
+    }
+    @include mq($deskPort) {
+        width: 165px;
+        padding: 0;
+        margin-right: 10px;
+    }
+    @include mq($mobileLandscape) {
+        width: 120px;
+    }
+    @include mq($mobilePort) {
+        width: 100%;
+        float: none;
+        margin: 0 0 10px 0;
+    }
     .rect-block-inner {
         height: 134px;
         border-radius: 6px;
@@ -133,6 +164,12 @@ img {
                 font-family: $Heebo-Regular;
                 color: #747fa3;
             }
+            @include mq($deskPort) {
+                font-size: 11px;
+            }
+            @include mq($mobilePort) {
+                font-size: 13px;
+            }
         }
         h3 {
             color: #00ffc8;
@@ -143,6 +180,12 @@ img {
             padding: 0 0 8px 0;
             &.active-node {
                 color: $WhiteColor;
+            }
+            @include mq($mobileLandscape) {
+                font-size: 27px;
+            }
+            @include mq($mobilePort) {
+                font-size: 42px;
             }
         }
         &:hover,
@@ -159,6 +202,14 @@ img {
                 font-family: $Heebo-Light;
                 color: #647197;
                 font-size: 13px;
+                @include mq($deskPort) {
+                    margin-right: 6px;
+                    font-size: 12px;
+                }
+                @include mq($mobilePort) {
+                    margin-right: 10px;
+                    font-size: 13px;
+                }
             }
             span {
                 float: left;
@@ -180,17 +231,50 @@ img {
 
 .pending-transaction {
     float: left;
-    padding:0 11px 0 5px;
+    padding: 0;
+    margin-right: 10px;
+    @include mq($extraDeskPort) {
+        padding: 0;
+        margin-right: 10px;
+    }
+    @include mq($deskPort) {
+        padding: 0;
+        margin-right: 10px;
+    }
+    @include mq($mobilePort) {
+        padding: 0;
+        margin-right: 0;
+        float: none;
+        margin-bottom: 10px;
+    }
     .inner {
         background: url(/assets/images/active-node.png);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center 0;
-        width: 317px;
+        width: 310px;
         height: 134px;
         padding: 20px 15px;
         border-radius: 6px;
         position: relative;
+        @include mq($tabletLandscape) {
+            width: 220px;
+        }
+        @include mq($mobilePort) {
+            width: 167px;
+        }
+        @include mq($extraDeskPort) {
+            width: 165px;
+        }
+        @include mq($deskPort) {
+            width: 165px;
+        }
+        @include mq($mobileLandscape) {
+            width: 120px;
+        }
+        @include mq($mobilePort) {
+            width: 100%;
+        }
         h5 {
             color: $WhiteColor;
             font-size: 14px;
@@ -199,6 +283,12 @@ img {
             margin: 0;
             padding: 0 0 8px 0;
             text-transform: uppercase;
+            @include mq($deskPort) {
+                font-size: 11px;
+            }
+            @include mq($mobilePort) {
+                font-size: 14px;
+            }
         }
         h3 {
             color: $WhiteColor;
@@ -208,6 +298,12 @@ img {
             line-height: 75px;
             margin: 0;
             padding: 0;
+            @include mq($deskPort) {
+                font-size: 65px;
+            }
+            @include mq($mobilePort) {
+                font-size: 75px;
+            }
         }
     }
     span {
@@ -225,15 +321,37 @@ img {
 .ip-address {
     float: left;
     padding: 0;
+    @include mq($mobilePort) {
+        float: none;
+        padding: 0;
+    }
     .inner {
         background-image: url(/assets/images/ipbackground.png);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center 0;
-        width: 317px;
+        width: 310px;
         height: 134px;
         padding: 20px 15px;
         border-radius: 6px;
+        @include mq($tabletLandscape) {
+            width: 220px;
+        }
+        @include mq($mobilePort) {
+            width: 167px;
+        }
+        @include mq($extraDeskPort) {
+            width: 165px;
+        }
+        @include mq($deskPort) {
+            width: 165px;
+        }
+        @include mq($mobileLandscape) {
+            width: 120px;
+        }
+        @include mq($mobilePort) {
+            width: 100%;
+        }
         h5 {
             color: $WhiteColor;
             font-size: 14px;
@@ -242,6 +360,12 @@ img {
             margin: 0;
             padding: 0 0 8px 0;
             text-transform: uppercase;
+            @include mq($deskPort) {
+                font-size: 11px;
+            }
+            @include mq($mobilePort) {
+                font-size: 14px;
+            }
         }
         h3 {
             color: $WhiteColor;
@@ -250,6 +374,21 @@ img {
             font-family: $Heebo-Light;
             margin: 0;
             padding: 0 0 8px 0;
+            @include mq($tabletLandscape) {
+                font-size: 35px;
+            }
+            @include mq($extraDeskPort) {
+                font-size: 25px;
+            }
+            @include mq($deskPort) {
+                font-size: 25px;
+            }
+            @include mq($mobileLandscape) {
+                font-size: 16px;
+            }
+            @include mq($mobilePort) {
+                font-size: 42px;
+            }
         }
         p {
             display: block;

@@ -5,6 +5,15 @@
     display: block;
     padding: 15px 0;
     height: 70px;
+    @include mq($deskPort) {
+        height: auto;
+    }
+    @include mq($mobilePort) {
+        height: auto;
+    }
+    @include mq($extraDeskPort) {
+        height: auto;
+    }
     .navbar-header {
         float: left;
         a {
@@ -13,6 +22,14 @@
                 outline: none;
                 font-size: 0;
                 float: left;
+                &.logo {
+                    width: 162px;
+                    background-color: #6675a8;
+                    display: block;
+                    text-align: center;
+                    padding: 8px 0 10px 0;
+                    margin-top: 5px;
+                }
             }
         }
         span {
@@ -43,11 +60,33 @@
     .iconeRight {
         position: relative;
         padding-top: 7px;
+        @include mq($deskPort) {
+            &.pull-right {
+                float: none;
+                display: inline-block;
+            }
+        }
+        @include mq($extraDeskPort) {
+            &.pull-right {
+                float: none;
+                display: inline-block;
+            }
+        }
         ul {
             flex-direction: inherit;
             li {
                 float: left;
                 padding-right: 20px;
+                @include mq($tabletLandscape) {
+                    padding-right: 5px;
+                }
+                @include mq($mobilePort) {
+                    float: none;
+                    padding-right: 0;
+                    display: block;
+                    width: 100%;
+                    margin-bottom: 5px;
+                }
                 &:last-child {
                     padding-right: 0;
                 }
@@ -189,9 +228,25 @@
                         &:hover {
                             text-decoration: none;
                         }
+                        @include mq($tabletLandscape) {
+                            font-size: 12px;
+                        }
+                        @include mq($mobileLandscape) {
+                            font-size: 9px;
+                        }
+                        @include mq($mobilePort) {
+                            font-size: 13px;
+                            display: block;
+                        }
                     }
                 }
                 &.logs {
+                    @include mq($mobileLandscape) {
+                        margin-top: 4px;
+                    }
+                    @include mq($mobilePort) {
+                        margin-top: 0;
+                    }
                     >div {
                         padding: 5px 10px 5px 10px;
                         color: $WhiteColor;
@@ -199,15 +254,33 @@
                         background: #647197;
                         border-radius: 4px;
                         font-family: $Heebo-Regular;
+                        @include mq($mobileLandscape) {
+                            padding: 0px 10px 4px 10px;
+                        }
+                        @include mq($mobilePort) {
+                            padding: 5px 10px 5px 10px;
+                        }
                         em {
                             font-style: normal;
                             font-family: $Heebo-Bold;
+                            @include mq($mobileLandscape) {
+                                font-size: 10px;
+                            }
+                            @include mq($mobilePort) {
+                                font-size: 13px;
+                            }
                         }
                         a {
                             color: $WhiteColor;
                             font-size: 13px;
                             font-family: $Heebo-Regular;
                             display: inline-block;
+                            @include mq($mobileLandscape) {
+                                font-size: 9px;
+                            }
+                            @include mq($mobilePort) {
+                                font-size: 13px;
+                            }
                         }
                     }
                 }

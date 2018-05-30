@@ -12,11 +12,11 @@ body {
     background-size: cover;
 }
 
-@media (min-width: 1366px) {
-    .container {
-        width: 1310px;
-    }
-}
+// @media (min-width: 1366px) {
+//     .container {
+//         width: 1310px;
+//     }
+// }
 
 .network-container {
     width: 714px;
@@ -148,6 +148,16 @@ body {
 .form-footer .form-group {
     padding-bottom: 0;
     margin-bottom: 3px;
+}
+
+@include mq($mobileLandscape) {
+    .block-wrapper {
+        >.row {
+            >.col-md-6 {
+                margin-bottom: 20px;
+            }
+        }
+    }
 }
 
 .block-inner {
@@ -295,6 +305,27 @@ body {
                                     text-align: left;
                                     width: 380px;
                                     display: inline-block;
+                                    @include mq($tabletLandscape) {
+                                        width: 315px;
+                                    }
+                                    @include mq($deskPort) {
+                                        width: 190px;
+                                    }
+                                    @include mq($extraDeskPort) {
+                                        width: 190px;
+                                    }
+                                    @include mq($mobileLandscape) {
+                                        width: 348px;
+                                    }
+                                    @include mq($mobilePort) {
+                                        width: 200px;
+                                    }
+                                    @include mq($XsmobilePortLandScape) {
+                                        width: 235px;
+                                    }
+                                    @include mq($XsmobilePort) {
+                                        width: 158px;
+                                    }
                                 }
                             }
                             &.transaction-title {
@@ -307,6 +338,30 @@ body {
                                 text-overflow: ellipsis;
                                 display: inline-block;
                                 font-size: 13px;
+                                @include mq($tabletLandscape) {
+                                    width: 85px;
+                                }
+                                @include mq($deskPort) {
+                                    width: 56px;
+                                }
+                                @include mq($extraDeskPort) {
+                                    width: 56px;
+                                }
+                                @include mq($mobileLandscape) {
+                                    width: 98px;
+                                }
+                                @include mq($mobilePort) {
+                                    width: 155px;
+                                }
+                                @include mq($XsmobilePortLandScape) {
+                                    width: 155px;
+                                }
+                                @include mq($XsmobilePort) {
+                                    width: 127px;
+                                }
+                                @include mq($XxsmobilePort) {
+                                    width: 106px;
+                                }
                             }
                         }
                     }
@@ -349,6 +404,12 @@ body {
                 .block-header {
                     float: left;
                     width: 94%;
+                    @include mq($tabletLandscape) {
+                        width: 90%;
+                    }
+                    @include mq($mobilePort) {
+                        width: 86%;
+                    }
                     h4 {
                         margin: 0;
                         padding: 0;
@@ -360,12 +421,60 @@ body {
                             font-size: 13px;
                             font-family: $Heebo-Light;
                             padding: 6px 0 0 25px;
+                            @include mq($mobilePort) {
+                                width: 68%;
+                            }
                         }
                         .block-time {
                             text-align: right;
                             color: #f5ba64;
                             font-size: 12px;
                             font-family: $Heebo-Light;
+                            @include mq($tabletLandscape) {
+                                font-size: 11px;
+                            }
+                            @include mq($deskPort) {
+                                font-size: 9px;
+                            }
+                            @include mq($extraDeskPort) {
+                                font-size: 9px;
+                                padding-top: 11px;
+                            }
+                            @include mq($mobileLandscape) {
+                                font-size: 12px;
+                            }
+                            @include mq($mobilePort) {
+                                width: 30%;
+                                font-size: 9px;
+                                margin-top: 0;
+                                &.trans {
+                                    width: 20%;
+                                    font-size: 11px;
+                                    margin-top: 0;
+                                }
+                            }
+                            @include mq($XsmobilePortLandScape) {
+                                width: 30%;
+                                font-size: 9px;
+                                margin-top: 0;
+                                &.trans {
+                                    width: 24%;
+                                    font-size: 10px;
+                                    margin-top: 0;
+                                }
+                            }
+                            @include mq($XsmobilePort) {
+                                &.trans {
+                                    width: 30%;
+                                    font-size: 9px;
+                                }
+                            }
+                            @include mq($XxsmobilePort) {
+                                &.trans {
+                                    width: 34%;
+                                    font-size: 9px;
+                                }
+                            }
                         }
                         .hash-title {
                             text-align: left;
@@ -373,6 +482,10 @@ body {
                             font-size: 13px;
                             font-family: $Heebo-Light;
                             padding: 0 0 0 25px;
+                            @include mq($mobilePort) {
+                                width: 23%;
+                                font-size: 11px;
+                            }
                         }
                         .hash-detail {
                             text-align: left;
@@ -383,6 +496,10 @@ body {
                             overflow: hidden;
                             text-overflow: ellipsis;
                             display: inline-block;
+                            @include mq($mobilePort) {
+                                width: 74%;
+                                font-size: 11px;
+                            }
                         }
                         .txn-wrapper {
                             margin-bottom: 3px;
@@ -396,6 +513,9 @@ body {
                                 margin: 0;
                                 padding: 0 0 0 12px;
                                 width: 50px;
+                                @include mq($mobilePort) {
+                                    width: 22%;
+                                }
                             }
                             .col-md-4 {
                                 font-size: 12px;
@@ -407,9 +527,30 @@ body {
                                 margin: 0;
                                 padding: 0;
                                 width: 100px;
+                                @include mq($tabletLandscape) {
+                                    width: 77px;
+                                }
+                                @include mq($deskPort) {
+                                    width: 50px;
+                                }
+                                @include mq($extraDeskPort) {
+                                    width: 50px;
+                                }
+                                @include mq($mobileLandscape) {
+                                    width: 78px;
+                                }
+                                @include mq($mobilePort) {
+                                    width: 70px;
+                                }
+                                @include mq($XsmobilePort) {
+                                    width: 48px;
+                                }
                             }
                             .block-time {
                                 padding-top: 8px;
+                                @include mq($extraDeskPort) {
+                                    padding-top: 11px;
+                                }
                             }
                         }
                         .margin-bottom-0 {

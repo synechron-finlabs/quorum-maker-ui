@@ -22,7 +22,7 @@
       "../node_modules/font-awesome/css/font-awesome.min.css",
       "../node_modules/primeng/resources/themes/omega/theme.css",
       "../node_modules/primeng/resources/primeng.min.css",
-      "sass/styles.scss"
+      "sass/styles.scss"      
     ],
 
     "stylePreprocessorOptions": {
