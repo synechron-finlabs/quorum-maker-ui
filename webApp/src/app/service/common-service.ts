@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
+import { Subject} from 'rxjs/Subject';
 import { environment } from "../../environments/environment";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -14,6 +15,16 @@ export class CommonService {
 
 
   constructor(private http: Http) { }
+
+private actionCalled = new Subject<any>();
+
+	sendCall(message:string){
+		return this.actionCalled.next({ text:message });
+	}
+
+        getCall(): Observable<any> {
+		return this.actionCalled.asObservable();
+	}
 
   getMessages() {
     console.log('this.messagesUrl >>>>', this.messagesUrl);
@@ -141,5 +152,4 @@ export class CommonService {
   }
 
 }
-
 

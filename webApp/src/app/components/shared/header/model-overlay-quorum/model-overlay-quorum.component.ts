@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { count } from 'rxjs/operator/count';
 import { UtilityService } from '../../../../service/utility.service';
 import { Message } from 'primeng/api';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-model-overlay-quorum',
@@ -28,10 +29,12 @@ export class ModelOverlayQuorumComponent implements OnInit {
   isNetworkSelected: Boolean = false;
   filesToUpload: Array<File> = [];
   fileUploadResponse: any;
+  isResponseReceived:boolean = false;
   msgs: Message[];
   address;
   interface;
   bytecode;
+  subscription: Subscription;
 
   @Input() display: boolean;
   @Output() showOverlay = new EventEmitter();
@@ -53,6 +56,11 @@ export class ModelOverlayQuorumComponent implements OnInit {
         this.customMgs = res;
       });
     this.getNodeNameList();
+
+	this.subscription = this._CommonService.getCall().subscribe(message => {
+//console.log('get node name list function called')
+		this.getNodeNameList();
+	})
   }
 
   onFileChange(event) {
@@ -143,6 +151,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
     if (this.CompileDeployContractForm.valid) {
       this._CommonService.deployContract(formModel).subscribe(data => {
         this.fileUploadResponse = data.json();
+        this.isResponseReceived = true;
         console.log('this.fileUploadResponse >>>>>>', this.fileUploadResponse);
         // this.showResponse(this.fileUploadResponse);
         this.msgs = [];
@@ -209,4 +218,3 @@ export class ModelOverlayQuorumComponent implements OnInit {
   }
 
 }
-
