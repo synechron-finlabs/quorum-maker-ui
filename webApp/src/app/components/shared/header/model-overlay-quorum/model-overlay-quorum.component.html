@@ -1,6 +1,6 @@
 <p-growl [value]="msgs"></p-growl>
 <div class="p-dialog-wrapper compile-wrapper">
-  <p-dialog [(visible)]="display" modal="modal" [responsive]="true" [width]="760" [minWidth]="200" [minY]="70" closeOnEscape="true"
+  <p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [width]="760" [minWidth]="200" [minY]="70" closeOnEscape="true"
     dismissableMask="true" (onHide)="onClose()">
     <p-header class="header">
         <h2>Compile & Deploy Contracts</h2>

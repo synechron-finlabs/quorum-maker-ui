@@ -47,34 +47,36 @@
 
 <div class="grid-container animated " *ngIf="isNodeData" [ngClass]="(isSelected == 'nodeClass')?'fadeIn':''">
   <h2>Node Table</h2>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>
-          &nbsp;
-        </th>
-        <th>Node Name</th>
-        <th>Role</th>
-        <th>Public Key</th>
-        <th>IP Address</th>
-        <th>Node Latency</th>
-        <th>Enode ID</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let getNodeItem of getNodeListData3;" (click)="getNodeDetails(getNodeItem)">
-        <td>
-          <span class="checkIcon" [ngClass]="(getNodeItem.self == 'true')?'checkiconCopy':'checkIcon'">&nbsp;</span>
-        </td>
-        <td>{{getNodeItem?.nodeName}}</td>
-        <td>{{getNodeItem?.role}}</td>
-        <td class="node pubkey" title="{{getNodeItem?.publicKey}}">{{getNodeItem?.publicKey}}</td>
-        <td>{{getNodeItem?.ip}}</td>
-        <td>{{getNodeItem?.time}}</td>
-        <td class="node enodeid" title="{{getNodeItem?.enode}}">{{getNodeItem?.enode}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>
+            &nbsp;
+          </th>
+          <th>Node Name</th>
+          <th>Role</th>
+          <th>Public Key</th>
+          <th>IP Address</th>
+          <th>Node Latency</th>
+          <th>Enode ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let getNodeItem of getNodeListData3;" (click)="getNodeDetails(getNodeItem)">
+          <td>
+            <span class="checkIcon" [ngClass]="(getNodeItem.self == 'true')?'checkiconCopy':'checkIcon'">&nbsp;</span>
+          </td>
+          <td>{{getNodeItem?.nodeName}}</td>
+          <td>{{getNodeItem?.role}}</td>
+          <td class="node pubkey" title="{{getNodeItem?.publicKey}}">{{getNodeItem?.publicKey}}</td>
+          <td>{{getNodeItem?.ip}}</td>
+          <td>{{getNodeItem?.time}}</td>
+          <td class="node enodeid" title="{{getNodeItem?.enode}}">{{getNodeItem?.enode}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 <div class="block-wrapper animated " *ngIf="isBlocks" [ngClass]="(isSelected == 'blockClass')?'fadeIn':''">
   <div class="row">
