@@ -37,7 +37,7 @@
   "emailServerConfig": {
     "smtpServerHost": "Please Enter valid Server Host",
     "port": "Please Enter Valid Port",
-    "recipientList": "Please Enter Recipient List",
+    "recipientList": "Please Enter Comma Seperated List of Recipients",
     "username": "Please Enter valid Username",
     "password": "Please Enter Valid Password"
   }
