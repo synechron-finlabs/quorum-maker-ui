@@ -4,10 +4,14 @@
       <table class="table toptable">
         <tr>
           <td class="parentHash">
-            <span>ParentHash</span>
+            <div class="item">
+              <span>ParentHash</span>
+            </div>
           </td>
           <td class="parentDetail">
-            <span>{{BlockDetails?.parentHash || '--'}}</span>
+            <div class="item">
+              <span>{{BlockDetails?.parentHash || '--'}}</span>
+            </div>
           </td>
         </tr>
       </table>
@@ -17,58 +21,86 @@
         <table class="table bottable">
           <tr>
             <td class="col-md-4">
-              <span>Nonce</span>
+              <div class="item">
+                <span>Nonce</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.nonce || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.nonce || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Logs Bloom</span>
+              <div class="item">
+                <span>Logs Bloom</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.logsBloom || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.logsBloom || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>State Root</span>
+              <div class="item">
+                <span>State Root</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.stateRoot || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.stateRoot || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Difficulty</span>
+              <div class="item">
+                <span>Difficulty</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.difficulty || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.difficulty || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Extra Data</span>
+              <div class="item">
+                <span>Extra Data</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.extraData || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.extraData || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Gas Limit</span>
+              <div class="item">
+                <span>Gas Limit</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.gasLimit || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.gasLimit || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Timestamp</span>
+              <div class="item">
+                <span>Timestamp</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.timestamp || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.timestamp || '--'}}</span>
+              </div>
             </td>
           </tr>
 
@@ -137,58 +169,86 @@
         <table class="table">
           <tr>
             <td class="col-md-4">
-              <span>Sha3Uncles</span>
+              <div class="item">
+                <span>Sha3Uncles</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.sha3Uncles || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.sha3Uncles || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Transactions Root</span>
+              <div class="item">
+                <span>Transactions Root</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.transactionsRoot || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.transactionsRoot || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Miner</span>
+              <div class="item">
+                <span>Miner</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.miner || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.miner || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Total Difficulty</span>
+              <div class="item">
+                <span>Total Difficulty</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.totalDifficulty || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.totalDifficulty || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Size</span>
+              <div class="item">
+                <span>Size</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.size || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.size || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Gas Used</span>
+              <div class="item">
+                <span>Gas Used</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.gasUsed || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.gasUsed || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Uncles</span>
+              <div class="item">
+                <span>Uncles</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{BlockDetails?.sha3Uncles || '--'}}</span>
+              <div class="item">
+                <span>{{BlockDetails?.sha3Uncles || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>

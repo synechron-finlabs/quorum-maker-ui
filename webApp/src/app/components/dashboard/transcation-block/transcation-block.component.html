@@ -4,10 +4,14 @@
       <table class="table toptable">
         <tr>
           <td class="parentHash">
-            <span>BlockHash</span>
+            <div class="item">
+              <span>BlockHash</span>
+            </div>
           </td>
           <td class="parentDetail">
-            <span>{{TxNDetails?.blockHash || '--'}}</span>
+            <div class="item">
+              <span>{{TxNDetails?.blockHash || '--'}}</span>
+            </div>
           </td>
         </tr>
       </table>
@@ -17,75 +21,111 @@
         <table class="table bottable">
           <tr>
             <td class="col-md-4">
-              <span>Block Number</span>
+              <div class="item">
+                <span>Block Number</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.blockNumber || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.blockNumber || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Contract Address</span>
+              <div class="item">
+                <span>Contract Address</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.contractAddress || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.contractAddress || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Cumulative Gas Used</span>
+              <div class="item">
+                <span>Cumulative Gas Used</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.cumulativeGasUsed || '0'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.cumulativeGasUsed || '0'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Nonce</span>
+              <div class="item">
+                <span>Nonce</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.nonce || '0'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.nonce || '0'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>From</span>
+              <div class="item">
+                <span>From</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.from || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.from || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Gas</span>
+              <div class="item">
+                <span>Gas</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.gas || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.gas || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Transaction Index</span>
+              <div class="item">
+                <span>Transaction Index</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.transactionIndex || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.transactionIndex || '--'}}</span>
+              </div>
             </td>
           </tr>
-          
+
           <tr>
             <td class="col-md-4">
-              <span>Value</span>
+              <div class="item">
+                <span>Value</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.value || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.value || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>R</span>
+              <div class="item">
+                <span>R</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.r || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.r || '--'}}</span>
+              </div>
             </td>
           </tr>
 
@@ -94,34 +134,50 @@
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Address</span>
+              <div class="item">
+                <span>Address</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.logs[0]?.address || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.logs[0]?.address || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>BlockHash</span>
+              <div class="item">
+                <span>BlockHash</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.logs[0]?.blockHash || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.logs[0]?.blockHash || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Block Number</span>
+              <div class="item">
+                <span>Block Number</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.logs[0]?.blockNumber || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.logs[0]?.blockNumber || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Data</span>
+              <div class="item">
+                <span>Data</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.logs[0]?.data || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.logs[0]?.data || '--'}}</span>
+              </div>
             </td>
           </tr>
         </table>
@@ -130,77 +186,113 @@
         <table class="table">
           <tr>
             <td class="col-md-4">
-              <span>Transaction Hash</span>
+              <div class="item">
+                <span>Transaction Hash</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.transactionHash || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.transactionHash || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Logsbloom</span>
+              <div class="item">
+                <span>Logsbloom</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.logsBloom || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.logsBloom || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Root</span>
+              <div class="item">
+                <span>Root</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.root || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.root || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>to</span>
+              <div class="item">
+                <span>to</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.to || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.to || '--'}}</span>
+              </div>
             </td>
           </tr>
 
           <tr>
             <td class="col-md-4">
-              <span>Gas Price</span>
+              <div class="item">
+                <span>Gas Price</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.gasPrice || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.gasPrice || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Gas Used</span>
+              <div class="item">
+                <span>Gas Used</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.gasUsed || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.gasUsed || '--'}}</span>
+              </div>
             </td>
           </tr>
 
 
           <tr>
             <td class="col-md-4">
-              <span>Transaction Type</span>
+              <div class="item">
+                <span>Transaction Type</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.transactionType || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.transactionType || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>V</span>
+              <div class="item">
+                <span>V</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.v || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.v || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>S</span>
+              <div class="item">
+                <span>S</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.s || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.s || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
@@ -208,37 +300,52 @@
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Log Index</span>
+              <div class="item">
+                <span>Log Index</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.logs[0]?.logIndex || '0'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.logs[0]?.logIndex || '0'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>Topics</span>
+              <div class="item">
+                <span>Topics</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.logs[0]?.topics[0] || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.logs[0]?.topics[0] || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>TransactionHash</span>
+              <div class="item">
+                <span>TransactionHash</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.logs[0]?.transactionHash || '--'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.logs[0]?.transactionHash || '--'}}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td class="col-md-4">
-              <span>transactionIndex</span>
+              <div class="item">
+                <span>transactionIndex</span>
+              </div>
             </td>
             <td class="col-md-8">
-              <span>{{TxNDetails?.logs[0]?.transactionIndex || '0'}}</span>
+              <div class="item">
+                <span>{{TxNDetails?.logs[0]?.transactionIndex || '0'}}</span>
+              </div>
             </td>
           </tr>
-
         </table>
       </div>
     </div>
