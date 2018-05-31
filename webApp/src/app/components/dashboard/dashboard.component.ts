@@ -279,7 +279,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getActiveNodeInfo() {
-    TimerObservable.create(0, this.serviceCallInterval * 9000)
+    TimerObservable.create(0, this.serviceCallInterval * 3000)
       .takeWhile(() => this.alive)
       .subscribe(() => {
         this._CommonService.activeNodeInfo().subscribe(result => {
