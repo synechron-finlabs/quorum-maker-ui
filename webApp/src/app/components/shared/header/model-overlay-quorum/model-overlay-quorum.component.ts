@@ -155,7 +155,11 @@ export class ModelOverlayQuorumComponent implements OnInit {
         console.log('this.fileUploadResponse >>>>>>', this.fileUploadResponse);
         // this.showResponse(this.fileUploadResponse);
         this.msgs = [];
-        this.msgs.push({ severity: 'success', summary: 'Contract has been deployed sucessfully...' });
+        if (this.fileUploadResponse[0].address == "0x") {
+          this.msgs.push({ severity: 'error', summary: 'The contract could not be deployed successfully...' });
+        } else {
+          this.msgs.push({ severity: 'success', summary: 'Contract has been deployed sucessfully...' });
+        }
         // this.display = false;
         // this.showOverlay.emit(false);
         console.log('Contract has been deployed sucessfully...', this.fileUploadResponse);
