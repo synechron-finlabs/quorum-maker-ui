@@ -2,415 +2,431 @@
 @import '~sass/mixins';
 @import '~sass/fonts';
 .dashboard {
-    position: relative;
-    margin-top: 15px;
-    margin-bottom: 35px;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 35px;
 }
 
 img {
-    vertical-align: 0 !important;
+  vertical-align: 0 !important;
 }
 
 .nodeTable {
-    height: 184px;
-    border-radius: 6px;
-    display: block;
-    text-align: center;
-    background-image: url('/assets/images/active-node1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0 0;
-    .activeNode {
-        position: absolute;
-        bottom: 30px;
-        left: 20px;
-        h3 {
-            font-size: 28px;
-            color: $WhiteColor;
-            margin: 0;
-            padding: 0;
-            font-family: $Heebo-Regular;
-        }
-        p {
-            font-size: 14px;
-            color: $WhiteColor;
-            font-family: $Heebo-Light;
-            margin: 0;
-            padding: 0;
-        }
+  height: 184px;
+  border-radius: 6px;
+  display: block;
+  text-align: center;
+  background-image: url('/assets/images/active-node1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  .activeNode {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    h3 {
+      font-size: 28px;
+      color: $WhiteColor;
+      margin: 0;
+      padding: 0;
+      font-family: $Heebo-Regular;
     }
+    p {
+      font-size: 14px;
+      color: $WhiteColor;
+      font-family: $Heebo-Light;
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
 
 .grid-container {
-    h2 {
-        font-family: $Heebo-Regular;
+  h2 {
+    font-family: $Heebo-Regular;
+    color: $WhiteColor;
+    font-size: 16px;
+    padding: 10px 0 12px 0;
+  }
+  .table {
+    &.table-hover {
+      tr {
+        &:hover {
+          background-color: #303549;
+        }
+      }
+    }
+    thead {
+      th {
+        background-color: #222941;
+        font-size: 13px;
         color: $WhiteColor;
-        font-size: 16px;
-        padding: 10px 0 12px 0;
+        font-family: $Heebo-Light;
+        border-bottom: 1px solid #222941;
+        border-top: 1px solid #2b3045;
+        padding: 8px 10px 13px 10px;
+        letter-spacing: 0.3px;
+      }
     }
-    .table {
-        &.table-hover {
-            tr {
-                &:hover {
-                    background-color: #303549;
-                }
-            }
+    tr {
+      background-color: #2b3045;
+      td {
+        border-top: 1px solid #222941;
+        padding: 8px 10px 8px 10px;
+        font-size: 12px;
+        color: #676b7a;
+        font-family: $Heebo-Light;
+        vertical-align: middle;
+        position: relative;
+        &.time {
+          text-align: center;
         }
-        thead {
-            th {
-                background-color: #222941;
-                font-size: 13px;
-                color: $WhiteColor;
-                font-family: $Heebo-Light;
-                border-bottom: 1px solid #222941;
-                border-top: 1px solid #2b3045;
-                padding: 8px 10px 13px 10px;
-                letter-spacing: 0.3px;
-            }
+        span {
+          height: 20px;
+          width: 20px;
+          font-size: 0;
+          line-height: 0;
+          text-indent: -5000px;
+          display: block;
+          &.checkIcon {
+            background: url('/assets/images/check-white.png') no-repeat 0 0;
+          }
+          &.checkiconCopy {
+            background: url('/assets/images/check-copy.png') no-repeat 0 0 !important;
+          }
+          &.checkIcon2 {
+            background: url('/assets/images/check-red.png') no-repeat 0 0;
+          }
+          &.spinner-bg {
+            background: url(/assets/images/spinner.gif) 0 0 no-repeat;
+            height: 40px;
+            width: 40px;
+            display: block;
+            text-indent: -5000px;
+            font-size: 0;
+            line-height: 0;
+            position: absolute;
+            left: 27px;
+            top: 0;
+          }
         }
-        tr {
-            background-color: #2b3045;
-            td {
-                border-top: 1px solid #222941;
-                padding: 8px 10px 8px 10px;
-                font-size: 12px;
-                color: #676b7a;
-                font-family: $Heebo-Light;
-                vertical-align: middle;
-                span {
-                    height: 20px;
-                    width: 20px;
-                    font-size: 0;
-                    line-height: 0;
-                    text-indent: -5000px;
-                    display: block;
-                    &.checkIcon {
-                        background: url('/assets/images/check-white.png') no-repeat 0 0;
-                    }
-                    &.checkiconCopy {
-                        background: url('/assets/images/check-copy.png') no-repeat 0 0!important;
-                    }
-                    &.checkIcon2 {
-                        background: url('/assets/images/check-red.png') no-repeat 0 0;
-                    }
-                }
-                &.node {
-                    white-space: nowrap;
-                    width: 355px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: inline-block;
-                    padding: 11px 10px 11px 10px;
-                    border-top: 0;
-                    &.pubkey {
-                        color: #20dcca;
-                    }
-                    &.enodeid {
-                        color: #f5ba64;
-                    }
-                    @include mq($tabletLandscape) {
-                        width: 183px;
-                    }
-                    @include mq($deskPort) {
-                        width: 183px;
-                    }
-                }
-            }
+        &.node {
+          white-space: nowrap;
+          width: 355px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: inline-block;
+          padding: 11px 10px 11px 10px;
+          border-top: 0;
+          &.pubkey {
+            color: #20dcca;
+          }
+          &.enodeid {
+            color: #f5ba64;
+          }
+          @include mq($tabletLandscape) {
+            width: 183px;
+          }
+          @include mq($deskPort) {
+            width: 183px;
+          }
         }
+      }
     }
+  }
 }
 
 .rect-block {
-    width: 230px;
+  width: 230px;
+  padding: 0;
+  margin: 0 10px 0 0;
+  float: left;
+  @include mq($mobilePort) {
+    width: 167px;
+    margin-bottom: 10px;
+    &.last {
+      margin-right: 0px;
+    }
+  }
+  @include mq($extraDeskPort) {
+    width: 165px;
     padding: 0;
-    margin: 0 10px 0 0;
-    float: left;
-    @include mq($mobilePort) {
-        width: 167px;
-        margin-bottom: 10px;
-        &.last {
-            margin-right: 0px;
+    margin-right: 10px;
+  }
+  @include mq($deskPort) {
+    width: 165px;
+    padding: 0;
+    margin-right: 10px;
+  }
+  @include mq($mobileLandscape) {
+    width: 120px;
+  }
+  @include mq($mobilePort) {
+    width: 100%;
+    float: none;
+    margin: 0 0 10px 0;
+  }
+  .rect-block-inner {
+    height: 134px;
+    border-radius: 6px;
+    background-color: #222941;
+    padding: 15px 12px;
+    h5 {
+      color: $WhiteColor;
+      letter-spacing: 0.3px;
+      font-size: 13px;
+      font-family: $Heebo-Bold;
+      text-transform: uppercase;
+      margin: 0;
+      padding: 0 0 8px 0;
+      &.active-node {
+        font-family: $Heebo-Regular;
+        color: #747fa3;
+      }
+      @include mq($deskPort) {
+        font-size: 11px;
+      }
+      @include mq($mobilePort) {
+        font-size: 13px;
+      }
+    }
+    h3 {
+      color: #00ffc8;
+      letter-spacing: 1px;
+      font-size: 42px;
+      font-family: $Heebo-Light;
+      margin: 0;
+      padding: 0 0 8px 0;
+      &.active-node {
+        color: $WhiteColor;
+      }
+      @include mq($mobileLandscape) {
+        font-size: 27px;
+      }
+      @include mq($mobilePort) {
+        font-size: 42px;
+      }
+    }
+    &:hover,
+    &:active {
+      box-shadow: 0 0 5px 0 #20dcca;
+      cursor: pointer;
+    }
+    p {
+      display: block;
+      overflow: hidden;
+      strong {
+        float: left;
+        margin-right: 10px;
+        font-family: $Heebo-Light;
+        color: #647197;
+        font-size: 13px;
+        @include mq($deskPort) {
+          margin-right: 6px;
+          font-size: 12px;
         }
+        @include mq($mobilePort) {
+          margin-right: 10px;
+          font-size: 13px;
+        }
+      }
+      span {
+        float: left;
+        font-family: $Heebo-Light;
+        font-size: 13px;
+        color: #628fed;
+        strong {
+          font-family: $Heebo-Bold;
+        }
+      }
     }
-    @include mq($extraDeskPort) {
-        width: 165px;
-        padding: 0;
-        margin-right: 10px;
-    }
-    @include mq($deskPort) {
-        width: 165px;
-        padding: 0;
-        margin-right: 10px;
-    }
-    @include mq($mobileLandscape) {
-        width: 120px;
-    }
-    @include mq($mobilePort) {
-        width: 100%;
-        float: none;
-        margin: 0 0 10px 0;
-    }
+  }
+  &.active {
     .rect-block-inner {
-        height: 134px;
-        border-radius: 6px;
-        background-color: #222941;
-        padding: 15px 12px;
-        h5 {
-            color: $WhiteColor;
-            letter-spacing: 0.3px;
-            font-size: 13px;
-            font-family: $Heebo-Bold;
-            text-transform: uppercase;
-            margin: 0;
-            padding: 0 0 8px 0;
-            &.active-node {
-                font-family: $Heebo-Regular;
-                color: #747fa3;
-            }
-            @include mq($deskPort) {
-                font-size: 11px;
-            }
-            @include mq($mobilePort) {
-                font-size: 13px;
-            }
-        }
-        h3 {
-            color: #00ffc8;
-            letter-spacing: 1px;
-            font-size: 42px;
-            font-family: $Heebo-Light;
-            margin: 0;
-            padding: 0 0 8px 0;
-            &.active-node {
-                color: $WhiteColor;
-            }
-            @include mq($mobileLandscape) {
-                font-size: 27px;
-            }
-            @include mq($mobilePort) {
-                font-size: 42px;
-            }
-        }
-        &:hover,
-        &:active {
-            box-shadow: 0 0 5px 0 #20dcca;
-            cursor: pointer;
-        }
-        p {
-            display: block;
-            overflow: hidden;
-            strong {
-                float: left;
-                margin-right: 10px;
-                font-family: $Heebo-Light;
-                color: #647197;
-                font-size: 13px;
-                @include mq($deskPort) {
-                    margin-right: 6px;
-                    font-size: 12px;
-                }
-                @include mq($mobilePort) {
-                    margin-right: 10px;
-                    font-size: 13px;
-                }
-            }
-            span {
-                float: left;
-                font-family: $Heebo-Light;
-                font-size: 13px;
-                color: #628fed;
-                strong {
-                    font-family: $Heebo-Bold;
-                }
-            }
-        }
+      box-shadow: 0 0 5px 0 #20dcca;
     }
-    &.active {
-        .rect-block-inner {
-            box-shadow: 0 0 5px 0 #20dcca;
-        }
-    }
+  }
 }
 
 .pending-transaction {
-    float: left;
+  float: left;
+  padding: 0;
+  margin-right: 10px;
+  @include mq($extraDeskPort) {
     padding: 0;
     margin-right: 10px;
-    @include mq($extraDeskPort) {
-        padding: 0;
-        margin-right: 10px;
-    }
-    @include mq($deskPort) {
-        padding: 0;
-        margin-right: 10px;
+  }
+  @include mq($deskPort) {
+    padding: 0;
+    margin-right: 10px;
+  }
+  @include mq($mobilePort) {
+    padding: 0;
+    margin-right: 0;
+    float: none;
+    margin-bottom: 10px;
+  }
+  .inner {
+    background: url(/assets/images/active-node.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 0;
+    width: 310px;
+    height: 134px;
+    padding: 20px 15px;
+    border-radius: 6px;
+    position: relative;
+    @include mq($tabletLandscape) {
+      width: 220px;
     }
     @include mq($mobilePort) {
-        padding: 0;
-        margin-right: 0;
-        float: none;
-        margin-bottom: 10px;
+      width: 167px;
     }
-    .inner {
-        background: url(/assets/images/active-node.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center 0;
-        width: 310px;
-        height: 134px;
-        padding: 20px 15px;
-        border-radius: 6px;
-        position: relative;
-        @include mq($tabletLandscape) {
-            width: 220px;
-        }
-        @include mq($mobilePort) {
-            width: 167px;
-        }
-        @include mq($extraDeskPort) {
-            width: 165px;
-        }
-        @include mq($deskPort) {
-            width: 165px;
-        }
-        @include mq($mobileLandscape) {
-            width: 120px;
-        }
-        @include mq($mobilePort) {
-            width: 100%;
-        }
-        h5 {
-            color: $WhiteColor;
-            font-size: 14px;
-            font-family: $Heebo-Bold;
-            letter-spacing: 0.3px;
-            margin: 0;
-            padding: 0 0 8px 0;
-            text-transform: uppercase;
-            @include mq($deskPort) {
-                font-size: 11px;
-            }
-            @include mq($mobilePort) {
-                font-size: 14px;
-            }
-        }
-        h3 {
-            color: $WhiteColor;
-            letter-spacing: 0.7px;
-            font-size: 75px;
-            font-family: $Heebo-Light;
-            line-height: 75px;
-            margin: 0;
-            padding: 0;
-            @include mq($deskPort) {
-                font-size: 65px;
-            }
-            @include mq($mobilePort) {
-                font-size: 75px;
-            }
-        }
+    @include mq($extraDeskPort) {
+      width: 165px;
     }
-    span {
-        position: absolute;
-        right: 16px;
-        bottom: 13px;
-        a {
-            font-family: $Heebo-Light;
-            color: $WhiteColor;
-            font-size: 13px;
-        }
+    @include mq($deskPort) {
+      width: 165px;
     }
+    @include mq($mobileLandscape) {
+      width: 120px;
+    }
+    @include mq($mobilePort) {
+      width: 100%;
+    }
+    h5 {
+      color: $WhiteColor;
+      font-size: 14px;
+      font-family: $Heebo-Bold;
+      letter-spacing: 0.3px;
+      margin: 0;
+      padding: 0 0 8px 0;
+      text-transform: uppercase;
+      @include mq($deskPort) {
+        font-size: 11px;
+      }
+      @include mq($mobilePort) {
+        font-size: 14px;
+      }
+    }
+    h3 {
+      color: $WhiteColor;
+      letter-spacing: 0.7px;
+      font-size: 75px;
+      font-family: $Heebo-Light;
+      line-height: 75px;
+      margin: 0;
+      padding: 0;
+      @include mq($deskPort) {
+        font-size: 65px;
+      }
+      @include mq($mobilePort) {
+        font-size: 75px;
+      }
+    }
+  }
+  span {
+    position: absolute;
+    right: 16px;
+    bottom: 13px;
+    a {
+      font-family: $Heebo-Light;
+      color: $WhiteColor;
+      font-size: 13px;
+    }
+  }
 }
 
 .ip-address {
-    float: left;
+  float: left;
+  padding: 0;
+  @include mq($mobilePort) {
+    float: none;
     padding: 0;
+  }
+  .inner {
+    background-image: url(/assets/images/ipbackground.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 0;
+    width: 310px;
+    height: 134px;
+    padding: 20px 15px;
+    border-radius: 6px;
+    @include mq($tabletLandscape) {
+      width: 220px;
+    }
     @include mq($mobilePort) {
-        float: none;
-        padding: 0;
+      width: 167px;
     }
-    .inner {
-        background-image: url(/assets/images/ipbackground.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center 0;
-        width: 310px;
-        height: 134px;
-        padding: 20px 15px;
-        border-radius: 6px;
-        @include mq($tabletLandscape) {
-            width: 220px;
-        }
-        @include mq($mobilePort) {
-            width: 167px;
-        }
-        @include mq($extraDeskPort) {
-            width: 165px;
-        }
-        @include mq($deskPort) {
-            width: 165px;
-        }
-        @include mq($mobileLandscape) {
-            width: 120px;
-        }
-        @include mq($mobilePort) {
-            width: 100%;
-        }
-        h5 {
-            color: $WhiteColor;
-            font-size: 14px;
-            font-family: $Heebo-Bold;
-            letter-spacing: 0.3px;
-            margin: 0;
-            padding: 0 0 8px 0;
-            text-transform: uppercase;
-            @include mq($deskPort) {
-                font-size: 11px;
-            }
-            @include mq($mobilePort) {
-                font-size: 14px;
-            }
-        }
-        h3 {
-            color: $WhiteColor;
-            letter-spacing: 0.7px;
-            font-size: 42px;
-            font-family: $Heebo-Light;
-            margin: 0;
-            padding: 0 0 8px 0;
-            @include mq($tabletLandscape) {
-                font-size: 35px;
-            }
-            @include mq($extraDeskPort) {
-                font-size: 25px;
-            }
-            @include mq($deskPort) {
-                font-size: 25px;
-            }
-            @include mq($mobileLandscape) {
-                font-size: 16px;
-            }
-            @include mq($mobilePort) {
-                font-size: 42px;
-            }
-        }
-        p {
-            display: block;
-            overflow: hidden;
-            color: $WhiteColor;
-            strong {
-                float: left;
-                margin-right: 10px;
-                font-family: $Heebo-Light;
-                font-size: 13px;
-            }
-            span {
-                float: left;
-                font-family: $Heebo-Light;
-                font-size: 13px;
-                strong {
-                    font-family: $Heebo-Bold;
-                }
-            }
-        }
+    @include mq($extraDeskPort) {
+      width: 165px;
     }
+    @include mq($deskPort) {
+      width: 165px;
+    }
+    @include mq($mobileLandscape) {
+      width: 120px;
+    }
+    @include mq($mobilePort) {
+      width: 100%;
+    }
+    h5 {
+      color: $WhiteColor;
+      font-size: 14px;
+      font-family: $Heebo-Bold;
+      letter-spacing: 0.3px;
+      margin: 0;
+      padding: 0 0 8px 0;
+      text-transform: uppercase;
+      @include mq($deskPort) {
+        font-size: 11px;
+      }
+      @include mq($mobilePort) {
+        font-size: 14px;
+      }
+    }
+    h3 {
+      color: $WhiteColor;
+      letter-spacing: 0.7px;
+      font-size: 42px;
+      font-family: $Heebo-Light;
+      margin: 0;
+      padding: 0 0 8px 0;
+      @include mq($tabletLandscape) {
+        font-size: 35px;
+      }
+      @include mq($extraDeskPort) {
+        font-size: 25px;
+      }
+      @include mq($deskPort) {
+        font-size: 25px;
+      }
+      @include mq($mobileLandscape) {
+        font-size: 16px;
+      }
+      @include mq($mobilePort) {
+        font-size: 42px;
+      }
+    }
+    p {
+      display: block;
+      overflow: hidden;
+      color: $WhiteColor;
+      strong {
+        float: left;
+        margin-right: 10px;
+        font-family: $Heebo-Light;
+        font-size: 13px;
+      }
+      span {
+        float: left;
+        font-family: $Heebo-Light;
+        font-size: 13px;
+        strong {
+          font-family: $Heebo-Bold;
+        }
+      }
+    }
+  }
 }

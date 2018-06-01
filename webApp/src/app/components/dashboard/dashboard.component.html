@@ -71,7 +71,7 @@
           <td>{{getNodeItem?.role}}</td>
           <td class="node pubkey" title="{{getNodeItem?.publicKey}}">{{getNodeItem?.publicKey}}</td>
           <td>{{getNodeItem?.ip}}</td>
-          <td>{{getNodeItem?.time}}</td>
+          <td class="time"><span class="spinner-bg" *ngIf="!getNodeItem?.time"></span> {{getNodeItem?.time}}</td>
           <td class="node enodeid" title="{{getNodeItem?.enode}}">{{getNodeItem?.enode}}</td>
         </tr>
       </tbody>
