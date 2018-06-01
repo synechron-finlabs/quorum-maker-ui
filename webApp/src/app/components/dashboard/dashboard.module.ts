@@ -20,7 +20,7 @@ import { InfoOverlayComponent } from './info-overlay/info-overlay.component';
 
 
 @NgModule({
-  imports: [BrowserAnimationsModule, HttpModule, CommonModule, FormsModule, RouterModule, ReactiveFormsModule, AccordionModule, InfiniteScrollModule, DialogModule],
+  imports: [BrowserAnimationsModule, HttpModule, CommonModule, FormsModule, RouterModule, ReactiveFormsModule, AccordionModule, InfiniteScrollModule, DialogModule, GrowlModule],
   declarations: [DashboardComponent, HashBlockComponent, TranscationBlockComponent, InfoOverlayComponent],
   exports: [DashboardComponent],
   //providers: [CommonServiceService, MessageService],
