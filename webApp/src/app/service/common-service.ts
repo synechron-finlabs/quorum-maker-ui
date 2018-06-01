@@ -10,7 +10,6 @@ import 'rxjs/add/operator/catch';
 export class CommonService {
 
   private nodeURL = environment.nodeURL;
-  private apiURL = environment.apiURL;
   private messagesUrl = 'assets/data/custom_messages.json';
   public showEl: number = 7;
 
@@ -134,8 +133,8 @@ export class CommonService {
 
   updateNode(params) {
     console.log('updateNode>>>>', params);
-    console.log('this.nodeURL updateNode >>>>', this.apiURL + 'updateNode')
-    return this.http.post(this.apiURL + 'updateNode', params)
+    console.log('this.nodeURL updateNode >>>>', this.nodeURL + 'updateNode')
+    return this.http.post(this.nodeURL + 'updateNode', params)
   }
 
   getLogs() {
