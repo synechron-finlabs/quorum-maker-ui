@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
-import { Subject} from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 import { environment } from "../../environments/environment";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,21 +10,22 @@ import 'rxjs/add/operator/catch';
 export class CommonService {
 
   private nodeURL = environment.nodeURL;
+  private apiURL = environment.apiURL;
   private messagesUrl = 'assets/data/custom_messages.json';
   public showEl: number = 7;
 
 
   constructor(private http: Http) { }
 
-private actionCalled = new Subject<any>();
+  private actionCalled = new Subject<any>();
 
-	sendCall(message:string){
-		return this.actionCalled.next({ text:message });
-	}
+  sendCall(message: string) {
+    return this.actionCalled.next({ text: message });
+  }
 
-        getCall(): Observable<any> {
-		return this.actionCalled.asObservable();
-	}
+  getCall(): Observable<any> {
+    return this.actionCalled.asObservable();
+  }
 
   getMessages() {
     console.log('this.messagesUrl >>>>', this.messagesUrl);
@@ -100,7 +101,6 @@ private actionCalled = new Subject<any>();
     return this.http.post(this.nodeURL + 'joinRequestResponse', params);
   }
 
-
   // Retrive the transcation Details...
   getNodeList() {
     console.log('this.nodeURL + nodeList >>>>>..', this.nodeURL + 'getNodeList')
@@ -130,6 +130,12 @@ private actionCalled = new Subject<any>();
   deployContract(params) {
     console.log('this.nodeURL contract deploy >>>>', this.nodeURL + 'deployContract')
     return this.http.post(this.nodeURL + 'deployContract', params)
+  }
+
+  updateNode(params) {
+    console.log('updateNode>>>>', params);
+    console.log('this.nodeURL updateNode >>>>', this.apiURL + 'updateNode')
+    return this.http.post(this.apiURL + 'updateNode', params)
   }
 
   getLogs() {

@@ -1,3 +1,4 @@
+<p-growl [value]="msgs"></p-growl>
 <div class="p-dialog-wrapper">
   <p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [width]="650" [height]="580" [minWidth]="200" draggable="true"
     closeOnEscape="true" dismissableMask="true" (onHide)="onClose()">
@@ -6,7 +7,7 @@
       <h2>Connected Node Info</h2>
     </p-header>
     <div class="p-dialog-inner">
-      <div class="row">
+      <div class="row mar">
         <div class="col-md-12">
           <h3>Search Result</h3>
         </div>
@@ -14,6 +15,27 @@
       <div class="row">
         <div class="col-md-12">
           <table class="table">
+            <tr>
+              <td colspan="2" class="col-md-12 formRow">
+                <form #f="ngForm" novalidate (ngSubmit)="updateNodeSubmitData(f.value)">
+                  <button type="submit" class="btn btn-green">Submit</button>
+                  <table class="table">
+                    <tr>
+                      <td class="col-md-6 bdrR">
+                        <strong>Name</strong>
+                        <br />
+                        <input type="text" name="name" [(ngModel)]="user.nodeName" #name="ngModel">
+                      </td>
+                      <td class="col-md-6">
+                        <strong>Role</strong>
+                        <br />
+                        <input type="text" name="role" [(ngModel)]="user.role" #role="ngModel">
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </td>
+            </tr>
             <tr>
               <td class="col-md-6">
                 <strong>Raft Role</strong>
