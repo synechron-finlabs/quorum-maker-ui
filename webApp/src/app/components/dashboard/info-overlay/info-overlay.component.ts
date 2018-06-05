@@ -23,15 +23,10 @@ export class InfoOverlayComponent implements OnInit, OnDestroy {
     this.showEvent.emit(false);
   }
 
-  ngOnInit() {
-    this.user = {
-      nodeName: '',
-      role: ''
-    }
-  }
+  ngOnInit() { }
 
   updateNodeSubmitData(data) {
-    console.log('data>>>>',data);
+    console.log('data>>>>', data);
     let params = {
       nodeName: data.name,
       role: data.role

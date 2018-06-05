@@ -365,6 +365,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.display2 = false;
       this._CommonService.peerDetails().subscribe(result => {
         this.getPeerDetails = result.json();
+        this.getPeerDetails['role'] = item.role;
         console.log(' this.getPeerDetails>>>>>>', this.getPeerDetails);
       },
         err => {
