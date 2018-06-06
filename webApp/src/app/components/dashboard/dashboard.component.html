@@ -24,12 +24,15 @@
       </div>
       <div class="pending-transaction">
         <div class="inner">
+          <p-chart type="bar" [data]="data" width="378px" height="auto" [responsive]="true" [options]="options" [reverse]="true"></p-chart>
+        </div>
+        <!-- <div class="inner">
           <h5>Pending Transactions</h5>
           <h3>{{getNodeInfoList?.pendingTxCount}}</h3>
-          <!-- <span>
+          <! <span>
             <a href='//{{getLogsList?.statusMessage}}' target="_blank" title="Geth &amp; Constellation Log">Geth &amp; Constellation Log</a>
-          </span> -->
-        </div>
+          </span>
+        </div> -->
       </div>
       <div class="ip-address">
         <div class="inner">
@@ -71,7 +74,8 @@
           <td>{{getNodeItem?.role}}</td>
           <td class="node pubkey" title="{{getNodeItem?.publicKey}}">{{getNodeItem?.publicKey}}</td>
           <td>{{getNodeItem?.ip}}</td>
-          <td class="time"><span class="spinner-bg" *ngIf="!getNodeItem?.time"></span> {{getNodeItem?.time}}</td>
+          <td class="time">
+            <span class="spinner-bg" *ngIf="!getNodeItem?.time"></span> {{getNodeItem?.time}}</td>
           <td class="node enodeid" title="{{getNodeItem?.enode}}">{{getNodeItem?.enode}}</td>
         </tr>
       </tbody>

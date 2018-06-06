@@ -1,11 +1,13 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { CommonService } from '../../service/common-service';
 import { UtilityService } from "../../service/utility.service";
 import { Message } from 'primeng/api';
 import { MessageService } from '../../service/message.service';
 import { Observable } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
+import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import 'rxjs/add/operator/takeWhile';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +15,13 @@ import 'rxjs/add/operator/takeWhile';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  getLatestChartData: any;
+  timeArr: any = [];
+  finalTime: any = [];
+  transactionCount: any = [];
+  timeStamp: any = [];
+  blockCount: any = [];
+  ChartData: any;
   getActiveNode: any;
   //getNodeListData4: any[];
   getNodeListData3: any[];
@@ -54,11 +63,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
   latestTimeElapsedToDisplay;
   counter = 0;
   refSerach: boolean = false;
+  data: any;
+  options: any;
 
-  constructor(private _CommonService: CommonService, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
+  constructor(private _CommonService: CommonService, private cd: ChangeDetectorRef, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
     this.alive = true;
     this.serviceCallInterval = this.utilityService.serviceCallInterval; // in seconds
     this.timerIncrementInterval = 1; // in seconds
+
+    IntervalObservable.create(1000 * 60).subscribe(response => {
+      this._CommonService.getLatestChartData().subscribe(result => {
+        this.getLatestChartData = result.json();
+        //this.timeStamp.push(this.changeTimeformat(this.getLatestChartData.timeStamp));
+        this.transactionCount.push(this.getLatestChartData.transactionCount);
+        this.blockCount.push(this.getLatestChartData.blockCount);
+        this.timeArr.push(this.showTime(this.getLatestChartData.timeStamp));
+        this.cd.detectChanges();
+        this.cd.markForCheck();
+        console.log(' this.getLatestChartData.timeStamp>>>>', this.getLatestChartData.timeStamp);
+        console.log(' this.getLatestChartData>>>>>>this.timeStamp>>>>', this.getLatestChartData, this.timeStamp);
+        this.chartMapData();
+      }, err => {
+        console.log("Error occured", err);
+      });
+    });
   }
 
   ngOnInit() {
@@ -74,7 +102,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     this.getLatestBlock();
     this.incrementTimer();
-    this.getActiveNodeInfo()
+    this.getActiveNodeInfo();
+    this.getChartDataList();
   }
 
   onScroll() {
@@ -385,6 +414,110 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.display2 = $event;
     this.display3 = $event;
     console.log('closeFlag >>>>>>>>>>', this.display)
+  }
+
+  getChartDataList() {
+    this._CommonService.getChartData().subscribe(result => {
+      this.ChartData = result.json();
+      for (const key of this.ChartData) {
+        //this.timeStamp.push(this.changeTimeformat(key.timeStamp));
+        this.transactionCount.push(key.transactionCount);
+        this.blockCount.push(key.blockCount);
+        this.timeArr.push(this.showTime(key.timeStamp));
+        console.log('this.timeStamp>>>>>>>', key.timeStamp);
+        console.log('this.timeArr>>>', this.timeArr);
+      }
+      this.chartMapData();
+      this.cd.detectChanges();
+      this.cd.markForCheck()
+      console.log('this.timeStamp>>>>>>>', this.timeStamp)
+      console.log('this.ChartData>>>>>>>', this.ChartData)
+    },
+      err => {
+        console.log("Error occured", err);
+      }
+    );
+  }
+
+  showTime(timeStamp) {
+    timeStamp = new Date(timeStamp);
+    var hours = timeStamp.getHours() % 12 || 12;
+    var minutes = timeStamp.getMinutes();
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+    var finalTime = hours + ':' + minutes;
+    return finalTime;
+  }
+
+
+  chartMapData() {
+    this.data = {
+      labels: this.timeArr.slice(-10),
+
+      datasets: [
+        {
+          label: 'Blocks',
+          backgroundColor: '#f8e71c',
+          //borderColor: '#1E88E5',
+          data: this.blockCount.slice(-10)
+
+        },
+
+        {
+          label: 'Transactions',
+          backgroundColor: '#f6434e',
+          //borderColor: '#7CB342',
+          data: this.transactionCount.slice(-10)
+        }
+      ],
+
+    }
+    console.log('this.blockCount,  this.timeArr==============', this.blockCount, this.timeArr);
+    this.options = {
+      maintainAspectRatio: false,
+      scaleShowLabels: false,
+      legend: {
+        display: true,
+        //position: 'left',
+        fullWidth: true,
+        labels: {
+          fontColor: '#fff',
+          boxWidth: 15
+        }
+
+      },
+      layout: {
+        padding: {
+          left: 10,
+          right: 10,
+          top: 10,
+          bottom: 25
+        }
+      },
+      scales: {
+        xAxes: [{
+          barPercentage: 0.6,
+          borderColor: 'none',
+          ticks: {
+            autoSkip: false,
+            beginAtZero: true,
+            maxRotation: 0,
+            minRotation: 0,
+            fontColor: '#fff',
+            fontSize: 9
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            fontColor: '#fff',
+            fontSize: 9
+          }
+          // display: false
+        }]
+      }
+    }
   }
 
   ngOnDestroy() {

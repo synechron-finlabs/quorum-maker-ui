@@ -137,7 +137,7 @@ img {
 }
 
 .rect-block {
-  width: 230px;
+  width: 195px;
   padding: 0;
   margin: 0 10px 0 0;
   float: left;
@@ -181,7 +181,7 @@ img {
       padding: 0 0 8px 0;
       &.active-node {
         font-family: $Heebo-Regular;
-        color: #747fa3;
+        color: $WhiteColor;
       }
       @include mq($deskPort) {
         font-size: 11px;
@@ -219,7 +219,7 @@ img {
         float: left;
         margin-right: 10px;
         font-family: $Heebo-Light;
-        color: #647197;
+        color: $WhiteColor;
         font-size: 13px;
         @include mq($deskPort) {
           margin-right: 6px;
@@ -271,9 +271,9 @@ img {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center 0;
-    width: 310px;
+    width: 378px;
     height: 134px;
-    padding: 20px 15px;
+    padding:0;
     border-radius: 6px;
     position: relative;
     @include mq($tabletLandscape) {

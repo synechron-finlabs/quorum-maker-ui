@@ -161,5 +161,15 @@ export class CommonService {
     return this.http.get(this.nodeURL + 'getNodeList');
   }
 
+  getChartData() {
+    console.log('chartData----', this.nodeURL + 'chartData');
+    return this.http.get(this.nodeURL + 'chartData');
+  }
+
+  getLatestChartData() {
+    console.log('latestChartData----', this.nodeURL + 'latestChartData');
+    return this.http.get(this.nodeURL + 'latestChartData');
+  }
+
 }
 
