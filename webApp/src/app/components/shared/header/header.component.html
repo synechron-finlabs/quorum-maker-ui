@@ -13,8 +13,8 @@
       <li class="logs">
         <div>
           <em>Logs:&nbsp;</em>
-          <a href='//{{getLogsList?.statusMessage}}/geth/' target="_blank" title="Geth">Geth</a> |
-          <a href='//{{getLogsList?.statusMessage}}/constellation/' target="_blank" title="Consetellation">Constellation</a>
+          <a href='/geth/' target="_blank" title="Geth">Geth</a> |
+          <a href='/constellation/' target="_blank" title="Consetellation">Constellation</a>
         </div>
       </li>
       <li class="compile-deploy">
@@ -24,7 +24,7 @@
         <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
       </li>
       <li class="compile-deploy">
-        <a href="//{{getLogsList?.statusMessage}}/contracts/" target="_blank">Deployed Contracts</a>
+        <a href="/contracts/" target="_blank">Deployed Contracts</a>
       </li>
       <li class="dropdown dropdown-click" *ngIf="pendingRequest?.length > 0">
         <img src="/assets/images/crossroad.png" (click)="toggle()">
