@@ -15,7 +15,7 @@ import 'rxjs/add/operator/takeWhile';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  getLatestChartData: any;
+  //getLatestChartData: any;
   timeArr: any = [];
   finalTime: any = [];
   transactionCount: any = [];
@@ -72,20 +72,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.timerIncrementInterval = 1; // in seconds
 
     IntervalObservable.create(1000 * 60).subscribe(response => {
-      this._CommonService.getLatestChartData().subscribe(result => {
-        this.getLatestChartData = result.json();
-        //this.timeStamp.push(this.changeTimeformat(this.getLatestChartData.timeStamp));
-        this.transactionCount.push(this.getLatestChartData.transactionCount);
-        this.blockCount.push(this.getLatestChartData.blockCount);
-        this.timeArr.push(this.showTime(this.getLatestChartData.timeStamp));
-        this.cd.detectChanges();
-        this.cd.markForCheck();
-        console.log(' this.getLatestChartData.timeStamp>>>>', this.getLatestChartData.timeStamp);
-        console.log(' this.getLatestChartData>>>>>>this.timeStamp>>>>', this.getLatestChartData, this.timeStamp);
-        this.chartMapData();
-      }, err => {
-        console.log("Error occured", err);
-      });
+      this.getChartDataList();
+      //this._CommonService.getLatestChartData().subscribe(result => {
+        //this.getLatestChartData = result.json();
+        ////this.timeStamp.push(this.changeTimeformat(this.getLatestChartData.timeStamp));
+       // this.transactionCount.push(this.getLatestChartData.transactionCount);
+       // this.blockCount.push(this.getLatestChartData.blockCount);
+       // this.timeArr.push(this.showTime(this.getLatestChartData.timeStamp));
+       // this.cd.detectChanges();
+       // this.cd.markForCheck();
+       // console.log(' this.getLatestChartData.timeStamp>>>>', this.getLatestChartData.timeStamp);
+       // console.log(' this.getLatestChartData>>>>>>this.timeStamp>>>>', this.getLatestChartData, this.timeStamp);
+        //this.chartMapData();
+      //}, err => {
+       // console.log("Error occured", err);
+     // });
     });
   }
 
@@ -95,7 +96,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getNodeLatency();
     this.getBlocklisting(null);
     this.getNodeInfo();
-    this.getNodeList()
+    this.getNodeList();
     this.isBlocks = true; // on page load block and transaction would show by default on dashboard
     if ('nodeManager') {
       this.isSelected = 'nodeManager';
@@ -512,7 +513,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
           ticks: {
             beginAtZero: true,
             fontColor: '#fff',
-            fontSize: 9
+            fontSize: 9,
+            stepSize : 1
           }
           // display: false
         }]
