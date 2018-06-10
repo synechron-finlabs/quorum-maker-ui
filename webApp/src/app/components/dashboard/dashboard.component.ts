@@ -65,29 +65,34 @@ export class DashboardComponent implements OnInit, OnDestroy {
   refSerach: boolean = false;
   data: any;
   options: any;
+  getLatestTime: any;
+  chartCron: any;
+  today: any;
+  currentSecond: any;
+
 
   constructor(private _CommonService: CommonService, private cd: ChangeDetectorRef, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
     this.alive = true;
     this.serviceCallInterval = this.utilityService.serviceCallInterval; // in seconds
     this.timerIncrementInterval = 1; // in seconds
 
-    IntervalObservable.create(1000 * 60).subscribe(response => {
-      this.getChartDataList();
-      //this._CommonService.getLatestChartData().subscribe(result => {
-        //this.getLatestChartData = result.json();
-        ////this.timeStamp.push(this.changeTimeformat(this.getLatestChartData.timeStamp));
-       // this.transactionCount.push(this.getLatestChartData.transactionCount);
-       // this.blockCount.push(this.getLatestChartData.blockCount);
-       // this.timeArr.push(this.showTime(this.getLatestChartData.timeStamp));
-       // this.cd.detectChanges();
-       // this.cd.markForCheck();
-       // console.log(' this.getLatestChartData.timeStamp>>>>', this.getLatestChartData.timeStamp);
-       // console.log(' this.getLatestChartData>>>>>>this.timeStamp>>>>', this.getLatestChartData, this.timeStamp);
-        //this.chartMapData();
-      //}, err => {
-       // console.log("Error occured", err);
-     // });
-    });
+    // IntervalObservable.create(1000 * 60).subscribe(response => {
+    //   this.getChartDataList();
+    //   //this._CommonService.getLatestChartData().subscribe(result => {
+    //     //this.getLatestChartData = result.json();
+    //     ////this.timeStamp.push(this.changeTimeformat(this.getLatestChartData.timeStamp));
+    //    // this.transactionCount.push(this.getLatestChartData.transactionCount);
+    //    // this.blockCount.push(this.getLatestChartData.blockCount);
+    //    // this.timeArr.push(this.showTime(this.getLatestChartData.timeStamp));
+    //    // this.cd.detectChanges();
+    //    // this.cd.markForCheck();
+    //    // console.log(' this.getLatestChartData.timeStamp>>>>', this.getLatestChartData.timeStamp);
+    //    // console.log(' this.getLatestChartData>>>>>>this.timeStamp>>>>', this.getLatestChartData, this.timeStamp);
+    //     //this.chartMapData();
+    //   //}, err => {
+    //    // console.log("Error occured", err);
+    //  // });
+    // });
   }
 
   ngOnInit() {
@@ -105,7 +110,38 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.incrementTimer();
     this.getActiveNodeInfo();
     this.getChartDataList();
+
+    this.getLatestTime = setInterval(() => this.currentTime(), 1000);
   }
+
+
+  currentTime() {
+    this.today = new Date();
+    this.currentSecond = this.today.getSeconds();
+    console.log("Current Second is : ", this.currentSecond);
+    if (this.currentSecond == 1) {
+      this.startChartCron();
+      this.stopGetLatestTimeFunction();
+      this.executeAtStartOfMinute();
+    }
+  }
+
+  executeAtStartOfMinute() {
+    this.chartCron = setInterval(() => this.startChartCron(), 60 * 1000);
+    console.log("Found the Minute Mark");
+  };
+
+  startChartCron(){
+    this.getChartDataList();
+    // console.log("Cron is executed at :", new Date().getSeconds() , " Seconds");
+  }
+
+  stopGetLatestTimeFunction() {
+    console.log("Stopped initial cron")
+    clearInterval(this.getLatestTime);
+  }
+
+
 
   onScroll() {
     console.log("scrolled Down");

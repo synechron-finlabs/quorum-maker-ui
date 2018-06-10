@@ -219,7 +219,7 @@ img {
         float: left;
         margin-right: 10px;
         font-family: $Heebo-Light;
-        color: $WhiteColor;
+        color: #628fed;
         font-size: 13px;
         @include mq($deskPort) {
           margin-right: 6px;
@@ -234,7 +234,7 @@ img {
         float: left;
         font-family: $Heebo-Light;
         font-size: 13px;
-        color: #628fed;
+        color: #fff;
         strong {
           font-family: $Heebo-Bold;
         }
