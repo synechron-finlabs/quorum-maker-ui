@@ -282,6 +282,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.getNodeInfo();
             this.getNodeList();
             this.getNodeLatency();
+            this.getChartDataList();
             this._CommonService.sendCall('latest block called');
           }
           this.latestTimeElapsed = this.latestBlockData.TimeElapsed;
