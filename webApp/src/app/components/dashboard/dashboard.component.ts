@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   chartCron: any;
   today: any;
   currentSecond: any;
-
+  latestBlockTimer: any;
 
   constructor(private _CommonService: CommonService, private cd: ChangeDetectorRef, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
     this.alive = true;
@@ -269,7 +269,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getLatestBlock() {
-    TimerObservable.create(0, this.serviceCallInterval * 1000)
+    this.latestBlockTimer = TimerObservable.create(0, this.serviceCallInterval * 1000)
       .takeWhile(() => this.alive)
       .subscribe(() => {
         this._CommonService.getLatestBlock().subscribe(data => {
@@ -293,6 +293,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
             console.log("Error occured", err);
           });
       });
+  }
+  
+  LoopTimerStart(){
+    this.latestBlockTimer.unsubscribe();
+  }
+ 
+  LoopTimerStop(){
+    this.getLatestBlock();
   }
 
   incrementTimer() {
