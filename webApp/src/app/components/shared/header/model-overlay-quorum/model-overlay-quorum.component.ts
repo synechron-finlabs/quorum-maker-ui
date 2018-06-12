@@ -128,7 +128,8 @@ export class ModelOverlayQuorumComponent implements OnInit {
     this.contractInfo = data;
     this.networkRoleValues = [];
     this.formSubmitAttempt = true;
-
+    this.isResponseReceived = true;
+    
     if (this.contractInfo && this.contractInfo.networkRole.length > 0) {
       this.isNetworkSelected = true;
       // when all the options selected no need to send values to backend with above key set to true
