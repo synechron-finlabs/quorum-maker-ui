@@ -85,7 +85,7 @@
 <div class="block-wrapper animated " *ngIf="isBlocks" [ngClass]="(isSelected == 'blockClass')?'fadeIn':''">
   <div class="row">
     <div class="col-md-6">
-      <div class="block-inner">
+      <div class="block-inner" (mouseenter)="LoopTimerStart()" (mouseleave)="LoopTimerStop()">
         <h3>
           <em>
             <img src="/assets/images/blockIcons.png" />
@@ -119,7 +119,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="block-inner">
+      <div class="block-inner" (mouseenter)="LoopTimerStart()" (mouseleave)="LoopTimerStop()">
         <h3>
           <em>
             <img src="/assets/images/transcationIcons.png" />

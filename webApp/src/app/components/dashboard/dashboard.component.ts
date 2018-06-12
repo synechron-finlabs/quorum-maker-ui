@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   chartCron: any;
   today: any;
   currentSecond: any;
-
+  latestBlockTimer: any;
 
   constructor(private _CommonService: CommonService, private cd: ChangeDetectorRef, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
     this.alive = true;
@@ -269,7 +269,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getLatestBlock() {
-    TimerObservable.create(0, this.serviceCallInterval * 1000)
+    this.latestBlockTimer = TimerObservable.create(0, this.serviceCallInterval * 1000)
       .takeWhile(() => this.alive)
       .subscribe(() => {
         this._CommonService.getLatestBlock().subscribe(data => {
@@ -293,6 +293,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
             console.log("Error occured", err);
           });
       });
+  }
+  
+  LoopTimerStart(){
+    this.latestBlockTimer.unsubscribe();
+  }
+ 
+  LoopTimerStop(){
+    this.getLatestBlock();
   }
 
   incrementTimer() {
@@ -425,25 +433,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  getNodeDetails(item) {
+    getNodeDetails(item) {
     console.log('item onClick', item);
-    if (item.self == 'true') {
+    if (item.self == 'true' && item.active == 'true') {
       this.display = true;
       this.display2 = false;
       this._CommonService.peerDetails().subscribe(result => {
         this.getPeerDetails = result.json();
         this.getPeerDetails['role'] = item.role;
-        console.log(' this.getPeerDetails>>>>>>', this.getPeerDetails);
+        //console.log(' this.getPeerDetails>>>>>>', this.getPeerDetails);
       },
         err => {
           console.log("Error occured", err);
         }
       );
     } else {
-      this.display2 = true;
-      this.display = false;
-      this.getNodeDetailist(item.enode);
-      console.log(' item.enode>>>>>>', item.enode);
+      if (item.active == 'true') {
+        this.display2 = true;
+        this.display = false;
+        this.getNodeDetailist(item.enode);
+        //console.log(' item.enode>>>>>>', item.enode);
+      }
     }
   }
 
@@ -551,7 +561,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
             beginAtZero: true,
             fontColor: '#fff',
             fontSize: 9,
-            stepSize : 1
+            callback: (value, index, values) => {
+                if (Math.floor(value) === value) {
+                    return value;
+                }
+            }
           }
           // display: false
         }]
