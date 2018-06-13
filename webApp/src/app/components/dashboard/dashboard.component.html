@@ -131,35 +131,37 @@
           <div class="loader-bg" *ngIf="!getBlockList"></div>
           <div class="block-inner-scroll-space">
             <p-accordion>
-              <p-accordionTab class="block-list" *ngFor="let getBlocks of getBlockList" [ngClass]="{'selected': getBlocks?.hash == selectedBlock}">
-                <p-header class="block-header" *ngIf="getBlocks.transactions" (click)="ExpandTxNDetails(getBlocks?.transactions[0].hash);">
-                  <h4>
-                    <div class="row margin-bottom-0">
-                      <div class="hash-title col-md-2 col-sm-3">TxnHash</div>
-                      <div class="hash-detail col-md-10 col-sm-9">{{getBlocks?.transactions[0]?.hash}}</div>
-                    </div>
-                    <div class="row txn-wrapper">
-                      <div class="col-md-9 col-sm-9">
-                        <div class="col-md-2">From</div>
-                        <div class="col-md-4">{{getBlocks?.transactions[0]?.from}}</div>
-                        <div class="col-md-2">To</div>
-                        <div class="col-md-4">{{getBlocks?.transactions[0]?.to}}</div>
-                      </div>
-                      <div class="col-md-3 col-sm-3 block-time trans">
-                        {{changeTimeformat(getBlocks?.TimeElapsed)}} ago
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 public">
-                        <span [ngClass]="checkType(getBlocks?.transactions[0]?.transactionType)">
-                          {{getBlocks?.transactions[0]?.transactionType}}
+              <div *ngFor="let getBlocks of getBlockList">
+                                <p-accordionTab class="block-list" *ngFor="let getTBlocks of getBlocks.transactions" [ngClass]="{'selected': getBlocks?.hash == selectedBlock}">
+                                    <p-header class="block-header" *ngIf="getBlocks.transactions" (click)="ExpandTxNDetails(getTBlocks.hash);">
+                                        <h4>
+                                            <div class="row margin-bottom-0">
+                                                <div class="hash-title col-md-2 col-sm-3">TxnHash</div>
+                                                <div class="hash-detail col-md-10 col-sm-9">{{getTBlocks.hash}}</div>
+                                            </div>
+                                            <div class="row txn-wrapper">
+                                                <div class="col-md-9 col-sm-9">
+                                                    <div class="col-md-2">From</div>
+                                                    <div class="col-md-4">{{getTBlocks.from}}</div>
+                                                    <div class="col-md-2">To</div>
+                                                    <div class="col-md-4">{{getTBlocks.to}}</div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-3 block-time trans">
+                                                    {{changeTimeformat(getBlocks?.TimeElapsed)}} ago
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 public">
+                                                    <span [ngClass]="checkType(getTBlocks.transactionType)">
+                          {{getTBlocks.transactionType}}
                         </span>
-                      </div>
-                    </div>
-                  </h4>
-                </p-header>
-                <app-transcation-block [TxNDetails]="TxNDetails" [getBlocks]="getBlocks"></app-transcation-block>
-              </p-accordionTab>
+                                                </div>
+                                            </div>
+                                        </h4>
+                                    </p-header>
+                                    <app-transcation-block [TxNDetails]="TxNDetails" [getBlocks]="getBlocks"></app-transcation-block>
+                                </p-accordionTab>
+                            </div>
             </p-accordion>
           </div>
         </div>
