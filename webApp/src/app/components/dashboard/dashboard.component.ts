@@ -70,7 +70,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   today: any;
   currentSecond: any;
   latestBlockTimer: any;
-
+  blockUpdated:boolean = false;
+  
   constructor(private _CommonService: CommonService, private cd: ChangeDetectorRef, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
     this.alive = true;
     this.serviceCallInterval = this.utilityService.serviceCallInterval; // in seconds
@@ -156,9 +157,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       this.itemsToShow = this.getBlocklisting(this.referenceNo);
     }
-
-    console.log("scrolled Down");
-    console.log('this.referenceNo>>>>>>>', this.referenceNo)
   }
 
   checkType(type) {
@@ -274,11 +272,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this._CommonService.getLatestBlock().subscribe(data => {
           this.latestBlockData = data.json();
-          if (this.currentBlockNumber != this.latestBlockData.latestBlockNumber) {
-            this.getBlockList = [];
-            this.getBlocklisting(null);
+          if (this.currentBlockNumber != this.latestBlockData.latestBlockNumber) {            
+            if(!this.blockUpdated){
+              this.getBlockList = [];
+              this.counter = 0
+              this.referenceNo = null
+              this.getBlocklisting(this.referenceNo);
+            }            
             this.currentBlockNumber = this.latestBlockData.latestBlockNumber;
-            console.log('this.currentBlockNumber if>>>>>>>>>', this.currentBlockNumber);
             this.getNodeInfo();
             this.getNodeList();
             this.getNodeLatency();
@@ -295,12 +296,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
   
-  LoopTimerStart(){
-    this.latestBlockTimer.unsubscribe();
+  getUpdateBlockMouseOut(){
+    if (this.currentBlockNumber != this.getBlockList[0].number) {
+      this._CommonService.getLatestBlock().subscribe(data => {
+        this.latestBlockData = data.json();
+          this.getBlockList = [];
+          // if(this.referenceNo){
+          this.counter = 0
+          this.referenceNo = null
+          this.getBlocklisting(this.referenceNo);
+      });
+    }
   }
- 
+  
+  LoopTimerStart(){
+    //this.myTimer.unsubscribe();
+    console.log("start");
+    this.blockUpdated = false;
+    this.getUpdateBlockMouseOut();
+  }
+  
   LoopTimerStop(){
-    this.getLatestBlock();
+    console.log("stop");
+    //this.getLatestBlock();
+    this.blockUpdated = true;
   }
 
   incrementTimer() {
