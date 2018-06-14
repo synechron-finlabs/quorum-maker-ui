@@ -82,10 +82,10 @@
     </table>
   </div>
 </div>
-<div class="block-wrapper animated " *ngIf="isBlocks" [ngClass]="(isSelected == 'blockClass')?'fadeIn':''">
-  <div class="row">
+<div class="block-wrapper animated" *ngIf="isBlocks" [ngClass]="(isSelected == 'blockClass')?'fadeIn':''">
+  <div class="row" (mouseenter)="LoopTimerStop()" (mouseleave)="LoopTimerStart()">
     <div class="col-md-6">
-      <div class="block-inner" (mouseenter)="LoopTimerStop()" (mouseleave)="LoopTimerStart()">
+      <div class="block-inner">
         <h3>
           <em>
             <img src="/assets/images/blockIcons.png" />
