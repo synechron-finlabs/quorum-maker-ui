@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard.component';
 import { HashBlockComponent } from './hash-block/hash-block.component';
 import { TranscationBlockComponent } from './transcation-block/transcation-block.component';
 import { InfoOverlayComponent } from './info-overlay/info-overlay.component';
+import { ContractAbiDeploymentComponent } from './contract-abi-deployment/contract-abi-deployment.component';
 
 // import { CommonServiceService } from "../../service/common-service.service";
 // import { MessageService } from '../../service/message.service';
@@ -21,7 +22,7 @@ import { InfoOverlayComponent } from './info-overlay/info-overlay.component';
 
 @NgModule({
   imports: [BrowserAnimationsModule, HttpModule, CommonModule, FormsModule, RouterModule, ReactiveFormsModule, AccordionModule, InfiniteScrollModule, DialogModule, GrowlModule, ChartModule],
-  declarations: [DashboardComponent, HashBlockComponent, TranscationBlockComponent, InfoOverlayComponent],
+  declarations: [DashboardComponent, HashBlockComponent, TranscationBlockComponent, InfoOverlayComponent, ContractAbiDeploymentComponent],
   exports: [DashboardComponent],
   //providers: [CommonServiceService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

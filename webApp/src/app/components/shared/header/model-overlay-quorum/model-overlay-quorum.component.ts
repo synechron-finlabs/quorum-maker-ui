@@ -58,7 +58,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
     this.getNodeNameList();
 
     this.subscription = this._CommonService.getCall().subscribe(message => {
-      //console.log('get node name list function called')
+      ////console.log('get node name list function called')
       this.getNodeNameList();
     })
   }
@@ -69,10 +69,10 @@ export class ModelOverlayQuorumComponent implements OnInit {
       this.disabled = false;
       this.filesToUpload = event.target.files;
       this.cd.markForCheck();
-      console.log(' this.filesToUpload >>>>>>', this.filesToUpload);
+      //console.log(' this.filesToUpload >>>>>>', this.filesToUpload);
       this.filesToUpload = Object.keys(this.filesToUpload).map(i => this.filesToUpload[i]); // change file list into array of objects
       // this.CompileDeployContractForm.get('chooseFile').setValue(this.filesToUpload );
-      console.log(' this.filesToUpload 123 >>>>>>', this.filesToUpload);
+      //console.log(' this.filesToUpload 123 >>>>>>', this.filesToUpload);
     }
 
   }
@@ -110,7 +110,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
     this.filesToUpload.forEach((element, index) => {
       if (element.name == fileName) {
         this.filesToUpload.splice(index, 1); // change the original array of selected files
-        console.log("element", element, index);
+        //console.log("element", element, index);
       }
 
     });
@@ -119,12 +119,12 @@ export class ModelOverlayQuorumComponent implements OnInit {
       this.disabled = true;
     }
 
-    // console.log("upload end", this.filesToUpload);
-    // console.log("in clear end", this.fileInput)
+    // //console.log("upload end", this.filesToUpload);
+    // //console.log("in clear end", this.fileInput)
   }
 
   contractSubmit(data) {
-    console.log('submit form data >> ', data)
+    //console.log('submit form data >> ', data)
     this.contractInfo = data;
     this.networkRoleValues = [];
     this.formSubmitAttempt = true;
@@ -138,22 +138,24 @@ export class ModelOverlayQuorumComponent implements OnInit {
       }
       else {
         for (let obj of this.contractInfo.networkRole) {
-          console.log(obj)
+          //console.log(obj)
           this.networkRoleValues.push(obj.publicKey)
         }
-        console.log("this.networkRoleValues", this.networkRoleValues)
+        //console.log("this.networkRoleValues", this.networkRoleValues)
       }
     }
     else {
       this.isNetworkSelected = false;
     }
+
     this.networkRoleValues = this.networkRoleValues.toString();
     const formModel = this.prepareSave(); //  function call to create form data
+    console.log(formModel);
     if (this.CompileDeployContractForm.valid) {
       this._CommonService.deployContract(formModel).subscribe(data => {
         this.fileUploadResponse = data.json();
         this.isResponseReceived = true;
-        console.log('this.fileUploadResponse >>>>>>', this.fileUploadResponse);
+        //console.log('this.fileUploadResponse >>>>>>', this.fileUploadResponse);
         // this.showResponse(this.fileUploadResponse);
         this.msgs = [];
         if (this.fileUploadResponse[0].address == "0x") {
@@ -163,13 +165,13 @@ export class ModelOverlayQuorumComponent implements OnInit {
         }
         // this.display = false;
         // this.showOverlay.emit(false);
-        console.log('Contract has been deployed sucessfully...', this.fileUploadResponse);
+        //console.log('Contract has been deployed sucessfully...', this.fileUploadResponse);
         // setTimeout((router: Router) => {
         //   this.router.navigate(["dashboard"]);
         // }, 1500);
       },
         error => {
-          console.log('error', error);
+          //console.log('error', error);
           this.msgs = [];
           this.msgs.push({ severity: 'error', summary: 'error...' });
         });
@@ -188,7 +190,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
   }
 
   onClose() {
-    console.log("close function called")
+    //console.log("close function called")
     this.filesToUpload = [];
     this.fileUploadResponse = [];
     this.display = false;
@@ -201,9 +203,9 @@ export class ModelOverlayQuorumComponent implements OnInit {
   getNodeNameList() {
     this._CommonService.getNodeNameList().subscribe(result => {
       this.networkRoleNodeList = result.json();
-      console.log('this.networkRoleNodeList >>>>>>', this.networkRoleNodeList);
+      //console.log('this.networkRoleNodeList >>>>>>', this.networkRoleNodeList);
       this.networkRoleNodeListNew = this.networkRoleNodeList.filter(x => x.self == 'false' && x.active == 'true')
-      console.log('this.networkRoleNodeListNew >>>>>>', this.networkRoleNodeListNew);
+      //console.log('this.networkRoleNodeListNew >>>>>>', this.networkRoleNodeListNew);
       // this.networkRoleNodeListNew =[];
       // this.networkRoleNodeList.forEach(element => {       
       //   if (element.self == 'false') {
@@ -212,7 +214,7 @@ export class ModelOverlayQuorumComponent implements OnInit {
       // });
     },
       err => {
-        console.log("Error occured", err);
+        //console.log("Error occured", err);
       }
     );
   }

@@ -27,14 +27,14 @@ export class CommonService {
   }
 
   getMessages() {
-    console.log('this.messagesUrl >>>>', this.messagesUrl);
+    //console.log('this.messagesUrl >>>>', this.messagesUrl);
     return this.http.get(this.messagesUrl)
       .map(data => data.json());
   }
 
   //Retrive the data...
   getBlockData(referenceNo) {
-    console.log('getBlockData----', this.nodeURL + 'block?' + 'number' + "=" + this.showEl + "&" + 'reference' + "=");
+    //console.log('getBlockData----', this.nodeURL + 'block?' + 'number' + "=" + this.showEl + "&" + 'reference' + "=");
     var urlStr = this.nodeURL + 'block?' + 'number' + "=" + this.showEl;
     if (referenceNo != null)
       urlStr = urlStr + "&" + 'reference' + "=" + referenceNo
@@ -45,9 +45,9 @@ export class CommonService {
   //Post the createNetwork data...
   createNetwork(params) {
     //  return this.http.post(this.nodeURL + 'broker/trade', params);
-    //console.log('this.nodeURL createNetwork >>>>', this.nodeURL + 'createNetwork')
-    //console.log('params>>>>---', params);
-    //console.log('typeofparams>>>>---', typeof (params));
+    ////console.log('this.nodeURL createNetwork >>>>', this.nodeURL + 'createNetwork')
+    ////console.log('params>>>>---', params);
+    ////console.log('typeofparams>>>>---', typeof (params));
     return this.http.post(this.nodeURL + 'createNetwork', params);
   }
 
@@ -64,37 +64,37 @@ export class CommonService {
 
   // Retrive the Block Details...
   getBlockDetails(BlkNum) {
-    console.log('this.nodeURL >>>>>..', this.nodeURL + 'block/' + BlkNum + '')
+    //console.log('this.nodeURL >>>>>..', this.nodeURL + 'block/' + BlkNum + '')
     return this.http.get(this.nodeURL + 'block/' + BlkNum + '')
       .map(data => data.json());
   }
 
   // Retrive the transcation Details...
   getTxNDetails(hashKey) {
-    console.log('this.nodeURL >>>>>..', this.nodeURL + 'txnrcpt/' + hashKey + '')
+    //console.log('this.nodeURL >>>>>..', this.nodeURL + 'txnrcpt/' + hashKey + '')
     return this.http.get(this.nodeURL + 'txnrcpt/' + hashKey + '')
       .map(data => data.json());
   }
 
   // Retrive the transcation Details...
   getNodeInfo() {
-    console.log('this.nodeURL >>>>>..', this.nodeURL + 'peer')
+    //console.log('this.nodeURL >>>>>..', this.nodeURL + 'peer')
     return this.http.get(this.nodeURL + 'peer');
   }
 
   activeNodeInfo() {
-    console.log('this.nodeURL >>>>>..', this.nodeURL + 'activeNodes')
+    //console.log('this.nodeURL >>>>>..', this.nodeURL + 'activeNodes')
     return this.http.get(this.nodeURL + 'activeNodes');
   }
 
   // Retrive the transcation Details...
   getPendingRequest() {
-    console.log('this.nodeURL >>>>>..', this.nodeURL + 'pendingJoinRequests')
+    //console.log('this.nodeURL >>>>>..', this.nodeURL + 'pendingJoinRequests')
     return this.http.get(this.nodeURL + 'pendingJoinRequests');
   }
 
   postjoinNetwork(params) {
-    console.log('params', params);
+    //console.log('params', params);
     //const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     //const options = new RequestOptions({ headers: headers });
     return this.http.post(this.nodeURL + 'joinRequestResponse', params);
@@ -102,73 +102,88 @@ export class CommonService {
 
   // Retrive the transcation Details...
   getNodeList() {
-    console.log('this.nodeURL + nodeList >>>>>..', this.nodeURL + 'getNodeList')
+    //console.log('this.nodeURL + nodeList >>>>>..', this.nodeURL + 'getNodeList')
     return this.http.get(this.nodeURL + 'getNodeList');
   }
 
   getNodeLatency() {
-    console.log('this.nodeURL + nodeList >>>>>..', this.nodeURL + 'latency')
+    //console.log('this.nodeURL + nodeList >>>>>..', this.nodeURL + 'latency')
     return this.http.get(this.nodeURL + 'latency');
   }
 
   peerDetails() {
-    console.log('peerDetails----', this.nodeURL + 'peer');
+    //console.log('peerDetails----', this.nodeURL + 'peer');
     return this.http.get(this.nodeURL + 'peer');
   }
 
   nodeDetail(NodeKey) {
-    console.log('NodeDetails----', this.nodeURL + 'peer/' + NodeKey + '');
+    //console.log('NodeDetails----', this.nodeURL + 'peer/' + NodeKey + '');
     return this.http.get(this.nodeURL + 'peer/' + NodeKey + '');
   }
 
   getLatestBlock() {
-    console.log('NodeDetails----', this.nodeURL + 'latestBlock');
+    //console.log('NodeDetails----', this.nodeURL + 'latestBlock');
     return this.http.get(this.nodeURL + 'latestBlock');
   }
 
   deployContract(params) {
-    console.log('this.nodeURL contract deploy >>>>', this.nodeURL + 'deployContract')
+    //console.log('this.nodeURL contract deploy >>>>', this.nodeURL + 'deployContract')
     return this.http.post(this.nodeURL + 'deployContract', params)
   }
 
   updateNode(params) {
-    console.log('updateNode>>>>', params);
-    console.log('this.nodeURL updateNode >>>>', this.nodeURL + 'updateNode')
+    //console.log('updateNode>>>>', params);
+    //console.log('this.nodeURL updateNode >>>>', this.nodeURL + 'updateNode')
     return this.http.post(this.nodeURL + 'updateNode', params)
   }
 
   getLogs() {
-    console.log('GetLogs----', this.nodeURL + 'logs');
+    //console.log('GetLogs----', this.nodeURL + 'logs');
     return this.http.get(this.nodeURL + 'logs');
   }
 
   getTxNblocks(hashKey) {
-    console.log('txnsearch---', this.nodeURL + 'txnsearch/' + hashKey + '');
+    //console.log('txnsearch---', this.nodeURL + 'txnsearch/' + hashKey + '');
     return this.http.get(this.nodeURL + 'txnsearch/' + hashKey + '')
       .map(data => data.json());
   }
 
   //Post the createNetwork data...
   emailServerConfig(params) {
-    console.log('this.nodeURL email server Config >>>>', this.nodeURL + 'mailserver')
+    //console.log('this.nodeURL email server Config >>>>', this.nodeURL + 'mailserver')
     // const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     // const options = new RequestOptions({ headers: headers });
     return this.http.post(this.nodeURL + 'mailserver', params);
   }
 
   getNodeNameList() {
-    console.log('GetLogs----', this.nodeURL + 'getNodeList');
+    //console.log('GetLogs----', this.nodeURL + 'getNodeList');
     return this.http.get(this.nodeURL + 'getNodeList');
   }
 
   getChartData() {
-    console.log('chartData----', this.nodeURL + 'chartData');
+    //console.log('chartData----', this.nodeURL + 'chartData');
     return this.http.get(this.nodeURL + 'chartData');
   }
 
   getLatestChartData() {
-    console.log('latestChartData----', this.nodeURL + 'latestChartData');
+    //console.log('latestChartData----', this.nodeURL + 'latestChartData');
     return this.http.get(this.nodeURL + 'latestChartData');
+  }
+
+  getContractList() {
+    console.log('getContractList----');
+    return this.http.get(this.nodeURL + 'contractList');
+  }
+
+  getContractCount() {
+    console.log('getContractCount----');
+    return this.http.get(this.nodeURL + 'contractCount');
+  }
+
+  updateContractDetails(params) {
+    console.log('params >>>>', params)
+    return this.http.post(this.nodeURL + 'updateContractDetails', params)
   }
 
 }

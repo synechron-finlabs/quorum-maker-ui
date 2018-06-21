@@ -21,8 +21,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   transactionCount: any = [];
   timeStamp: any = [];
   blockCount: any = [];
+  contractListData: any = [];
   ChartData: any;
+  contractCount: any;
   getActiveNode: any;
+  totalContracts:any;
   //getNodeListData4: any[];
   getNodeListData3: any[];
   getNodeListData2: any;
@@ -43,13 +46,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
   TxNDetails: any;
   BlockDetails: any;
   getBlockList: any = [];
-  msgs: Message[];
+  msgs: Message[] = [];
   index: number;
   isExpanded: boolean = false;
   _BlkNum: number;
   selectedBlock: any;
   isBlocks: boolean = false;
   isNodeData: boolean = false;
+  isIpBlock: boolean = false;
   isSelected: any;
   //private noOfItemsToShowInitially: number = 5;
   //private itemsToLoad: number = 5;
@@ -64,13 +68,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
   counter = 0;
   refSerach: boolean = false;
   data: any;
-  options: any;
-  getLatestTime: any;
+  options: any;getLatestTime: any;
   chartCron: any;
   today: any;
   currentSecond: any;
   latestBlockTimer: any;
   blockUpdated:boolean = false;
+  contractAbiDisplay:boolean = false;
+  contractAbi:any;
   
   constructor(private _CommonService: CommonService, private cd: ChangeDetectorRef, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
     this.alive = true;
@@ -87,22 +92,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //    // this.timeArr.push(this.showTime(this.getLatestChartData.timeStamp));
     //    // this.cd.detectChanges();
     //    // this.cd.markForCheck();
-    //    // console.log(' this.getLatestChartData.timeStamp>>>>', this.getLatestChartData.timeStamp);
-    //    // console.log(' this.getLatestChartData>>>>>>this.timeStamp>>>>', this.getLatestChartData, this.timeStamp);
+    //    // //console.log(' this.getLatestChartData.timeStamp>>>>', this.getLatestChartData.timeStamp);
+    //    // //console.log(' this.getLatestChartData>>>>>>this.timeStamp>>>>', this.getLatestChartData, this.timeStamp);
     //     //this.chartMapData();
     //   //}, err => {
-    //    // console.log("Error occured", err);
+    //    // //console.log("Error occured", err);
     //  // });
     // });
   }
 
   ngOnInit() {
-    // console.log(this.display, "this.display");
-    // console.log(this.display2, "this.display2");
+    // //console.log(this.display, "this.display");
+    // //console.log(this.display2, "this.display2");
     this.getNodeLatency();
     this.getBlocklisting(null);
     this.getNodeInfo();
     this.getNodeList();
+    this.getContractCount();
     this.isBlocks = true; // on page load block and transaction would show by default on dashboard
     if ('nodeManager') {
       this.isSelected = 'nodeManager';
@@ -119,7 +125,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currentTime() {
     this.today = new Date();
     this.currentSecond = this.today.getSeconds();
-    console.log("Current Second is : ", this.currentSecond);
+    //console.log("Current Second is : ", this.currentSecond);
     if (this.currentSecond == 1) {
       this.startChartCron();
       this.stopGetLatestTimeFunction();
@@ -129,23 +135,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   executeAtStartOfMinute() {
     this.chartCron = setInterval(() => this.startChartCron(), 60 * 1000);
-    console.log("Found the Minute Mark");
+    //console.log("Found the Minute Mark");
   };
 
   startChartCron(){
     this.getChartDataList();
-    // console.log("Cron is executed at :", new Date().getSeconds() , " Seconds");
+    // //console.log("Cron is executed at :", new Date().getSeconds() , " Seconds");
   }
 
   stopGetLatestTimeFunction() {
-    console.log("Stopped initial cron")
+    //console.log("Stopped initial cron")
     clearInterval(this.getLatestTime);
   }
 
 
 
   onScroll() {
-    console.log("scrolled Down");
+    //console.log("scrolled Down");
     //this.noOfItemsToShowInitially += this.itemsToLoad;
     if (this.refSerach == false) {
       if (this.counter == 0) {
@@ -165,17 +171,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   blockFilter(_hash) {
-    console.log('hash>>>>', _hash);
+    //console.log('hash>>>>', _hash);
     if (_hash == this.selectedBlock) {
       this.selectedBlock = '';
     } else {
       this.selectedBlock = _hash;
       let parentElement = this._el.nativeElement.querySelectorAll('.block-inner-list-wrapper')[1];
-      console.log('parentElement>>>', parentElement);
+      //console.log('parentElement>>>', parentElement);
       let selectedElement: any;
       setTimeout(() => {
         selectedElement = this._el.nativeElement.querySelectorAll('.selected')[0].offsetTop - 54;
-        console.log('selectedElement>......', selectedElement);
+        //console.log('selectedElement>......', selectedElement);
         document.getElementsByClassName('block-inner-list-wrapper')[1].scrollTo(0, selectedElement)
       }, 100);
     }
@@ -183,24 +189,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ExpandBlockDetails(_BlkNum) {
     this.getBlockDetails(_BlkNum);
-    console.log('this.BlockDetails ExpandBlockDetails>>>>', _BlkNum);
+    //console.log('this.BlockDetails ExpandBlockDetails>>>>', _BlkNum);
   }
 
   ExpandTxNDetails(_hashKey) {
     this.getTxNDetails(_hashKey);
-    console.log('this.BlockDetails ExpandBlockDetails>>>>', _hashKey);
+    //console.log('this.BlockDetails ExpandBlockDetails>>>>', _hashKey);
   }
 
   getSearchedTxNData(_hashKey) {
     if (_hashKey) {
       this.refSerach = true;
       this._CommonService.getTxNblocks(_hashKey).subscribe(result => {
-        console.log('result>>>>>', result)
+        //console.log('result>>>>>', result)
         this.getBlockList = []
         this.getBlockList.push(result);
         this.counter = 0
         this.referenceNo = null
-        console.log('this.getBlockList tanscation >>>>>', this.getBlockList)
+        //console.log('this.getBlockList tanscation >>>>>', this.getBlockList)
       })
     } else {
       //this.getBlockList = []
@@ -215,9 +221,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this._CommonService.getBlockData(referenceNo).subscribe(result => {
       let data: any = [];
       data = result.json();
-      console.log('==this.data==----', data);
+      //console.log('==this.data==----', data);
       data.forEach(element => {
-        console.log('element.transactions.....', element.transactions)
+        //console.log('element.transactions.....', element.transactions)
         if (element.transactions) {
           this.getBlockList.push(element);
         }
@@ -226,21 +232,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
         // this.referenceNo = this.getBlockList[0].number - this._CommonService.showEl;
         this.referenceNo = this.getBlockList[0].number;
       }
-      console.log(this.getBlockList, '==this.getBlockList==');
+      //console.log(this.getBlockList, '==this.getBlockList==');
       // below logic added to show list with blockNumber greater than 0 
       this.getBlockList = this.getBlockList.filter(
         block => block.number > 0
       );
     },
       err => {
-        console.log("Error occured", err);
+        //console.log("Error occured", err);
       }
     );
   }
 
 
   getSearchedData(_BlkNum) {
-    console.log('Block Number>>>>>>>', _BlkNum);
+    //console.log('Block Number>>>>>>>', _BlkNum);
     if (_BlkNum) {
       this.refSerach = true;
       this._CommonService.getBlockDetails(_BlkNum).subscribe(result => {
@@ -262,7 +268,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getBlockDetails(_BlkNum) {
     this._CommonService.getBlockDetails(_BlkNum).subscribe(data => {
       this.BlockDetails = data;
-      console.log('---Block Details ---', this.BlockDetails);
+      //console.log('---Block Details ---', this.BlockDetails);
     });
   }
 
@@ -287,11 +293,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this._CommonService.sendCall('latest block called');
           }
           this.latestTimeElapsed = this.latestBlockData.TimeElapsed;
-          // console.log("latestTimeElapsed", this.latestBlockData);
+          // //console.log("latestTimeElapsed", this.latestBlockData);
           this.latestTimeElapsedToDisplay = this.changeTimeformat(this.latestTimeElapsed);
         },
           err => {
-            console.log("Error occured", err);
+            //console.log("Error occured", err);
           });
       });
   }
@@ -311,13 +317,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   
   LoopTimerStart(){
     //this.myTimer.unsubscribe();
-    console.log("start");
+    //console.log("start");
     this.blockUpdated = false;
     this.getUpdateBlockMouseOut();
   }
   
   LoopTimerStop(){
-    console.log("stop");
+    //console.log("stop");
     //this.getLatestBlock();
     this.blockUpdated = true;
   }
@@ -354,21 +360,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getTxNDetails(_hashKey) {
     this._CommonService.getTxNDetails(_hashKey).subscribe(data => {
       this.TxNDetails = data;
-      console.log('---TxNDetails Details ---', this.TxNDetails);
+      //console.log('---TxNDetails Details ---', this.TxNDetails);
     });
   }
 
   getNodeInfo() {
     this._CommonService.getNodeInfo().subscribe(result => {
       this.getNodeInfoList = result.json();
-      console.log('this.getNodeInfoList ====>>>', this.getNodeInfoList)
+      //console.log('this.getNodeInfoList ====>>>', this.getNodeInfoList)
       this.currentBlockNumber = this.getNodeInfoList.blockNumber;
-      console.log('this.currentBlockNumber>>>>>>>', this.currentBlockNumber)
+      //console.log('this.currentBlockNumber>>>>>>>', this.currentBlockNumber)
       this.messageService.sendMessage(this.getNodeInfoList);
-      console.log(' this.getNodeInfo>>>>>>', this.getNodeInfoList);
+      //console.log(' this.getNodeInfo>>>>>>', this.getNodeInfoList);
     },
       err => {
-        console.log("Error occured", err);
+        //console.log("Error occured", err);
       });
   }
 
@@ -378,13 +384,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this._CommonService.activeNodeInfo().subscribe(result => {
           this.getActiveNode = result.json();
-          console.log('this.getActiveNode ====>>>', this.getActiveNode)
+          //console.log('this.getActiveNode ====>>>', this.getActiveNode)
           this.getNodeList();
           this.getNodeLatency();
           this._CommonService.sendCall('latest block called');
         },
           err => {
-            console.log("Error occured", err);
+            //console.log("Error occured", err);
           });
       });
   }
@@ -392,12 +398,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getNodeList() {
     this._CommonService.getNodeList().subscribe(result => {
       this.getNodeListData = result.json();
-      console.log(' this.getNodeListData>>>>>>', this.getNodeListData);
+      //console.log(' this.getNodeListData>>>>>>', this.getNodeListData);
       this.getNodeListData1 = this.getNodeListData.filter(x => x.self == 'true');
       this.getNodeListData2 = this.getNodeListData.filter(x => x.self == 'false');
       // this.getNodeListData4 = [this.getNodeListData1, ...this.getNodeListData2];
       this.getNodeListData3 = this.getNodeListData1.concat(this.getNodeListData2);
-      console.log('this.getNodeListData3>>>>>>', this.getNodeListData3);
+      //console.log('this.getNodeListData3>>>>>>', this.getNodeListData3);
       // this.getNodeListData.forEach((element, index) => {
       //   if (index == 0) {
       //     element['isActive'] = true;
@@ -406,7 +412,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       // });
     },
       err => {
-        console.log("Error occured", err);
+        //console.log("Error occured", err);
       }
     );
   }
@@ -414,7 +420,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getNodeLatency() {
     this._CommonService.getNodeLatency().subscribe(result => {
       this.nodeLatency = result.json();
-      console.log(' this.nodeLatency>>>>>>', this.nodeLatency);
+      //console.log(' this.nodeLatency>>>>>>', this.nodeLatency);
       // below logic to set time in getNodeListData array to show latency in template
       for (let element of this.nodeLatency) {
         for (let obj of this.getNodeListData) {
@@ -425,45 +431,76 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     },
       err => {
-        console.log("Error occured", err);
+        //console.log("Error occured", err);
       }
     );
   }
 
   isShowCont(isActive) {
-    if (isActive == 'getBlocks') {
-      this.isSelected = 'blockClass';
-      this.isBlocks = true;
-      this.isNodeData = false;
-    } else {
-      if (isActive == 'nodeManager') {
+    // if (isActive == 'getBlocks') {
+    //   this.isSelected = 'blockClass';
+    //   this.isBlocks = true;
+    //   this.isNodeData = false;
+    // } else {
+    //   if (isActive == 'nodeManager') {
 
+    //     this.isSelected = 'nodeClass';
+    //     this.isNodeData = true;
+    //     this.isBlocks = false;
+    //   }
+    // }
+
+    switch (isActive) {
+      case 'getBlocks':
+        this.isSelected = 'blockClass';
+        this.isBlocks = true;
+        this.isNodeData = false;
+        this.isIpBlock = false;
+        break;
+      case 'nodeManager':
         this.isSelected = 'nodeClass';
         this.isNodeData = true;
         this.isBlocks = false;
-      }
-    }
+        this.isIpBlock = false;
+        break;
+      case 'ipBlocks':
+        this.isSelected = 'ipClass';
+        this.isNodeData = false;
+        this.isBlocks = false;
+        this.isIpBlock = true;
+        this.getContractList();
+        break;
+  }
+  
+    
+  }
+
+  getContractList(){
+    this._CommonService.getContractList().subscribe(data => {
+      this.contractListData = data.json();
+      console.log('---contractListData ---', this.contractListData);
+    });
   }
 
   getNodeDetailist(_NodeKey) {
     this._CommonService.nodeDetail(_NodeKey).subscribe(data => {
       this.getNodeInfoDetails = data.json();
-      console.log('---getNodeInfoDetails ---', this.getNodeInfoDetails);
+      //console.log('---getNodeInfoDetails ---', this.getNodeInfoDetails);
     });
   }
 
     getNodeDetails(item) {
-    console.log('item onClick', item);
+    //console.log('item onClick', item);
     if (item.self == 'true' && item.active == 'true') {
       this.display = true;
       this.display2 = false;
       this._CommonService.peerDetails().subscribe(result => {
         this.getPeerDetails = result.json();
         this.getPeerDetails['role'] = item.role;
-        //console.log(' this.getPeerDetails>>>>>>', this.getPeerDetails);
+        ////console.log(' this.getPeerDetails>>>>>>', this.getPeerDetails);
       },
         err => {
-          console.log("Error occured", err);
+          //console.log("Error occured", err);
         }
       );
     } else {
@@ -471,7 +508,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.display2 = true;
         this.display = false;
         this.getNodeDetailist(item.enode);
-        //console.log(' item.enode>>>>>>', item.enode);
+        ////console.log(' item.enode>>>>>>', item.enode);
       }
     }
   }
@@ -480,7 +517,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.display = $event;
     this.display2 = $event;
     this.display3 = $event;
-    console.log('closeFlag >>>>>>>>>>', this.display)
+    //console.log('closeFlag >>>>>>>>>>', this.display)
   }
 
   getChartDataList() {
@@ -491,17 +528,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.transactionCount.push(key.transactionCount);
         this.blockCount.push(key.blockCount);
         this.timeArr.push(this.showTime(key.timeStamp));
-        console.log('this.timeStamp>>>>>>>', key.timeStamp);
-        console.log('this.timeArr>>>', this.timeArr);
+        //console.log('this.timeStamp>>>>>>>', key.timeStamp);
+        //console.log('this.timeArr>>>', this.timeArr);
       }
       this.chartMapData();
       this.cd.detectChanges();
       this.cd.markForCheck()
-      console.log('this.timeStamp>>>>>>>', this.timeStamp)
-      console.log('this.ChartData>>>>>>>', this.ChartData)
+      //console.log('this.timeStamp>>>>>>>', this.timeStamp)
+      //console.log('this.ChartData>>>>>>>', this.ChartData)
     },
       err => {
-        console.log("Error occured", err);
+        //console.log("Error occured", err);
       }
     );
   }
@@ -540,7 +577,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ],
 
     }
-    console.log('this.blockCount,  this.timeArr==============', this.blockCount, this.timeArr);
+    //console.log('this.blockCount,  this.timeArr==============', this.blockCount, this.timeArr);
     this.options = {
       maintainAspectRatio: false,
       scaleShowLabels: false,
@@ -592,8 +629,40 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  uploadABIModal(data){
+    this.contractAbi = data;
+    this.contractAbiDisplay = true;
+  }
+  
+  closeEventABI(event){
+    console.log(event);
+    this.contractAbiDisplay = false;
+    if(event.msg){
+      this.msgs.push({ severity: 'success', summary: event.msg });
+      setTimeout (()=>{
+        this.msgs = [];
+      },3000);
+    }
+  }
+
+  getContractCount(){
+    TimerObservable.create(0, this.serviceCallInterval * 1000)
+      .takeWhile(() => this.alive)
+      .subscribe(() => {
+      this._CommonService.getContractCount().subscribe(data => {
+        console.log(data.json());
+        this.contractCount = data.json();
+        if(this.totalContracts != this.contractCount.totalContracts && this.isIpBlock) { 
+          this.getContractList();
+        }            
+          this.totalContracts = this.contractCount.totalContracts;
+
+      });
+    });
+  }
+
   ngOnDestroy() {
     this.messageService.clearMessage();
-    console.log('Destroy in dashboard')
+    //console.log('Destroy in dashboard')
   }
 }

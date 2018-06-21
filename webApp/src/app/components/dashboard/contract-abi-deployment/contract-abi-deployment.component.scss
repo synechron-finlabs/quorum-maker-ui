@@ -1,0 +1,13 @@
+.custom-upload {
+    position: relative;
+    // >input {
+    //     position: absolute;
+    //     opacity: 0;
+    // }
+    .fake-file {
+        width: 100%;
+        input {
+            width: calc(100% - 105px);
+        }
+    }
+}

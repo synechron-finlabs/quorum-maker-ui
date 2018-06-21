@@ -14,4 +14,13 @@ export class TranscationBlockComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkType(value){
+    var result = (typeof value === 'object');  
+    if(result){
+      return JSON.stringify(value);
+    } else{
+      return value;
+    }
+  }
+
 }

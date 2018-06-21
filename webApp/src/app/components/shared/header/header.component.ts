@@ -31,15 +31,15 @@ export class HeaderComponent implements OnInit {
 
     this.subscription = this.messageService.getMessage().subscribe(message => {
       this.getNodeInfoList = message;
-      console.log('this.message subscribe >>>>>>>>>>>', this.message);
+      //console.log('this.message subscribe >>>>>>>>>>>', this.message);
     });
 
     IntervalObservable.create(15000).subscribe(response => {
       this._CommonService.getPendingRequest().subscribe(result => {
         this.pendingRequest = result.json();
-        console.log(' this.pendingRequest>>>>>>', this.pendingRequest);
+        //console.log(' this.pendingRequest>>>>>>', this.pendingRequest);
       }, err => {
-        console.log("Error occured", err);
+        //console.log("Error occured", err);
       });
     });
 
@@ -55,9 +55,9 @@ export class HeaderComponent implements OnInit {
   }
 
   autoClose(event) {
-    console.log('autoClose Event fired');
+    //console.log('autoClose Event fired');
     var target = event.target;
-    console.log('autoClose target>>>', target);
+    //console.log('autoClose target>>>', target);
     if (!target.closest(".dropdown-click")) {
       this.show = false;
     }
@@ -66,21 +66,21 @@ export class HeaderComponent implements OnInit {
   compileAndDeployContracts() {
     this.display = true;
     // this.cd.detectChanges(); 
-    console.log('open >>>>>>>>>>', this.display)
+    //console.log('open >>>>>>>>>>', this.display)
   }
 
 
   emailServerConfig() {
     this.display2 = true;
     // this.cd.detectChanges(); 
-    console.log('open >>>>>>>>>>', this.display2)
+    //console.log('open >>>>>>>>>>', this.display2)
   }
 
   closeFlag($event) {
     this.display = $event
     this.display2 = $event
-    console.log('closeFlag >>>>>>>>>>', this.display)
-    console.log('closeFlag2 >>>>>>>>>>', this.display2)
+    //console.log('closeFlag >>>>>>>>>>', this.display)
+    //console.log('closeFlag2 >>>>>>>>>>', this.display2)
     // this.cd.detectChanges();
   }
 
@@ -91,28 +91,28 @@ export class HeaderComponent implements OnInit {
   getPendingRequest() {
     this._CommonService.getPendingRequest().subscribe(result => {
       this.pendingRequest = result.json();
-      console.log(' this.pendingRequest>>>>>>', this.pendingRequest);
+      //console.log(' this.pendingRequest>>>>>>', this.pendingRequest);
     },
       err => {
-        console.log("Error occured", err);
+        //console.log("Error occured", err);
       }
     );
   }
 
   getLogsInfo() {
     this._CommonService.getLogs().subscribe(result => {
-      this.getLogsList = result.json();
-      console.log('this.getLogsList >>>>>>', this.getLogsList.statusMessage);
+      this.getLogsList = result;
+      //console.log('this.getLogsList >>>>>>', this.getLogsList.statusMessage);
     },
       err => {
-        console.log("Error occured", err);
+        //console.log("Error occured", err);
       }
     );
   }
 
   submitStatus(item, statusMgs) {
     this.nodInfo = item;
-    console.log('this.nodInfo-------', this.nodInfo);
+    //console.log('this.nodInfo-------', this.nodInfo);
     let params = {
       "enode-id": this.nodInfo.enode,
       "status": statusMgs
@@ -120,18 +120,18 @@ export class HeaderComponent implements OnInit {
     // if (this.storeData != null) {
     this._CommonService.postjoinNetwork(params).subscribe(data => {
       this.storeData = data.json();
-      console.log('this.storeData>>>>>>>>>>>>', this.storeData)
+      //console.log('this.storeData>>>>>>>>>>>>', this.storeData)
       this.msgs = [];
       // let msgShow = this.storeData ? this.storeData.statusMessage : 'There is an error occured';
       this.msgs.push({ severity: 'success', summary: this.storeData.statusMessage });
-      // console.log('this.submitStatus.....>', this.msgs);
+      // //console.log('this.submitStatus.....>', this.msgs);
       this.getPendingRequest();
     },
       error => {
         //let msgShow = this.storeData ? this.storeData.statusMessage : 'There is an error occured';
         this.msgs = [];
         this.msgs.push({ severity: 'error', summary: 'There is an error occured' });
-        console.log('error', error);
+        //console.log('error', error);
 
       }
     );
