@@ -638,6 +638,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     console.log(event);
     this.contractAbiDisplay = false;
     if(event.msg){
+      this.getContractList();
       this.msgs.push({ severity: 'success', summary: event.msg });
       setTimeout (()=>{
         this.msgs = [];
