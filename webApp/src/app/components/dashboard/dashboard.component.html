@@ -196,7 +196,7 @@
                         <div class="eclipse-text">{{item?.sender || '--'}}</div>
                     </td>
                     <td [ngClass]="checkType(item.contractType)">{{item?.contractType || '--'}}</td>
-                    <td title="{{item?.description}}">{{item?.enode || '--'}}</td>
+                    <td title="{{item?.description}}">{{item?.description || '--'}}</td>
                     <td title="{{item?.abi}}">
                         <code *ngIf="item?.abi != ''" class="eclipse-text">{{item?.abi || '--'}}</code>
                         <a *ngIf="item?.abi == ''" href="javascript:void(0)" (click)="uploadABIModal(item)" class="btn btn-success">Upload ABI</a>
