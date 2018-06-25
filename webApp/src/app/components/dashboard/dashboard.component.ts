@@ -646,6 +646,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  
   getContractCount(){
     TimerObservable.create(0, this.serviceCallInterval * 1000)
       .takeWhile(() => this.alive)

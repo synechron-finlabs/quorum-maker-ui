@@ -42,6 +42,29 @@ img {
 }
 
 .grid-container {
+    .ip-contract-list{
+        max-height: 50vh;
+        overflow-y: auto;
+        .table{
+            margin-bottom: 0;
+        }
+        &::-webkit-scrollbar {
+            width: 4px;
+            height: 5px;
+            border-radius: 6px;
+            &-track {
+              background-color: #3f424d;
+              border-radius: 6px;
+            }
+            &-thumb {
+              background-color: #626b8f;
+              border-radius: 6px;
+            }
+            &-button {
+              display: none;
+            }
+          }
+    }
     h2 {
         font-family: $Heebo-Regular;
         color: $WhiteColor;
@@ -471,8 +494,17 @@ img {
             border-color: #37477e;
         }
     }
-    td {
-        color: #dadada !important
+    .table tr td {
+        color: #dadada;
+        &.hash {
+            color: red;
+        }
+        &.private {
+            color: #7ed321;
+        }
+        &.public {
+            color: rgb(73, 121, 224);
+        }
     }
     code {
         color: #f5ba64

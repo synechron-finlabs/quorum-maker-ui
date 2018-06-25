@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 
 export class ModelOverlayQuorumComponent implements OnInit {
+  ShowLoader: any;
   showResponse2: boolean = false;
   showResponse: boolean = true;;
   disabled: boolean = true;
@@ -125,11 +126,12 @@ export class ModelOverlayQuorumComponent implements OnInit {
 
   contractSubmit(data) {
     //console.log('submit form data >> ', data)
+    this.ShowLoader = true;
     this.contractInfo = data;
     this.networkRoleValues = [];
     this.formSubmitAttempt = true;
     this.isResponseReceived = false;
-    
+
     if (this.contractInfo && this.contractInfo.networkRole.length > 0) {
       this.isNetworkSelected = true;
       // when all the options selected no need to send values to backend with above key set to true
@@ -155,6 +157,8 @@ export class ModelOverlayQuorumComponent implements OnInit {
       this._CommonService.deployContract(formModel).subscribe(data => {
         this.fileUploadResponse = data.json();
         this.isResponseReceived = true;
+        this.ShowLoader = false;
+
         //console.log('this.fileUploadResponse >>>>>>', this.fileUploadResponse);
         // this.showResponse(this.fileUploadResponse);
         this.msgs = [];

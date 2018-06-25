@@ -40,6 +40,7 @@
                 </div>
             </form>
             <div class="row" *ngIf="showResponse2">
+                <div class="loader-bg" *ngIf="ShowLoader"></div>
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-bordered" *ngFor="let responseItem of fileUploadResponse">
@@ -75,7 +76,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12" *ngIf="!ShowLoader">
                         <div class="form-group">
                             <button type="submit" class="btn btn-green pull-right" (click)="gotResponse()" [disabled]="!isResponseReceived">Close</button>
                         </div>

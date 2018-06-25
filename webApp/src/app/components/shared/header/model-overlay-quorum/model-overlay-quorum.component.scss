@@ -2,174 +2,180 @@
 @import '~sass/mixins';
 @import '~sass/fonts';
 .p-dialog-wrapper {
-    &.compile-wrapper {
-        .p-dialog-inner {
-            overflow-y: scroll;
-            overflow-x: hidden;
-            height: 317px;
-            scroll-behavior: smooth;
-            padding-right: 8px;
-            &::-webkit-scrollbar {
-                width: 4px;
-                height: 5px;
-                border-radius: 6px;
-                &-track {
-                    background-color: #3f424d;
-                    border-radius: 6px;
-                }
-                &-thumb {
-                    background-color: #626b8f;
-                    border-radius: 6px;
-                }
-                &-button {
-                    display: none;
-                }
-            }
-            h3 {
-                font-family: $Heebo-Medium;
-                font-size: 16px;
-                color: #1b2125;
-                padding: 0;
-            }
-            p {
-                font-family: $Heebo-Light;
-                font-size: 16px;
-                color: #788995;
-                padding: 0;
-            }
+  &.compile-wrapper {
+    .p-dialog-inner {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      height: 376px;
+      scroll-behavior: smooth;
+      padding-right: 8px;
+      &::-webkit-scrollbar {
+        width: 4px;
+        height: 5px;
+        border-radius: 6px;
+        &-track {
+          background-color: #3f424d;
+          border-radius: 6px;
         }
+        &-thumb {
+          background-color: #626b8f;
+          border-radius: 6px;
+        }
+        &-button {
+          display: none;
+        }
+      }
+      h3 {
+        font-family: $Heebo-Medium;
+        font-size: 16px;
+        color: #1b2125;
+        padding: 0;
+      }
+      p {
+        font-family: $Heebo-Light;
+        font-size: 16px;
+        color: #788995;
+        padding: 0;
+      }
+      .loader-bg {
+        background: url(/assets/images/loader-white.gif) no-repeat center center;
+        width: 100%;
+        min-height: 320px;
+        background-size: 60px 60px;
+      }
     }
-    .ui-widget-content {
-        padding: 12px !important;
-        .ui-dialog-titlebar-close {
+  }
+  .ui-widget-content {
+    padding: 12px !important;
+    .ui-dialog-titlebar-close {
+      float: right;
+      margin: 12px 1px 0 0;
+    }
+  }
+  .compileDeploy {
+    h4 {
+      font-family: $Heebo-Bold;
+      font-size: 12px;
+      color: #d4d9dd;
+      letter-spacing: 0.5px;
+      margin-top: 15px;
+    }
+    .custom-upload {
+      position: relative;
+      input[type=file] {
+        outline: none;
+        position: relative;
+        text-align: right;
+        opacity: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+      }
+      .fake-file {
+        background: #fff;
+        height: 25px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        z-index: 1;
+        line-height: 100%;
+        display: block;
+      }
+      .fake-file {
+        input {
+          font-size: 16px;
+          height: 45px;
+          width: 100%;
+          background: #fff;
+          border: 1px solid #ccc;
+        }
+        button {
+          position: absolute;
+          right: 7px;
+          top: 7px;
+          display: block;
+          width: 113px;
+          height: 31px;
+          border-radius: 2px;
+          background-color: #eaedf1;
+          border: solid 1px #c2c6c9;
+          text-align: center;
+          font-family: $Heebo-Regular;
+          font-size: 14px;
+          color: #788995;
+          outline: none;
+        }
+      }
+      .fileList {
+        margin: 10px 0 0 0;
+        padding: 0;
+        li {
+          float: left;
+          padding: 2px 10px;
+          border-radius: 15px;
+          border: solid 1px #87a4d3;
+          background-color: #aac0e4;
+          list-style: none;
+          margin-right: 7px;
+          span {
+            font-size: 14px;
+            color: $WhiteColor;
+            float: left;
+          }
+          .cancel-icon {
             float: right;
-            margin: 12px 1px 0 0;
+            margin-left: 10px;
+            display: block;
+            font-size: 14px;
+            cursor: pointer;
+            overflow: hidden;
+            color: $WhiteColor;
+          }
         }
+      }
     }
-    .compileDeploy {
-        h4 {
-            font-family: $Heebo-Bold;
-            font-size: 12px;
-            color: #d4d9dd;
-            letter-spacing: 0.5px;
-            margin-top: 15px;
-        }
-        .custom-upload {
-            position: relative;
-            input[type=file] {
-                outline: none;
-                position: relative;
-                text-align: right;
-                opacity: 0;
-                z-index: 2;
-                width: 100%;
-                height: 100%;
-            }
-            .fake-file {
-                background: #fff;
-                height: 25px;
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 100%;
-                padding: 0;
-                margin: 0;
-                z-index: 1;
-                line-height: 100%;
-                display: block;
-            }
-            .fake-file {
-                input {
-                    font-size: 16px;
-                    height: 45px;
-                    width: 100%;
-                    background: #fff;
-                    border: 1px solid #ccc;
-                }
-                button {
-                    position: absolute;
-                    right: 7px;
-                    top: 7px;
-                    display: block;
-                    width: 113px;
-                    height: 31px;
-                    border-radius: 2px;
-                    background-color: #eaedf1;
-                    border: solid 1px #c2c6c9;
-                    text-align: center;
-                    font-family: $Heebo-Regular;
-                    font-size: 14px;
-                    color: #788995;
-                    outline: none;
-                }
-            }
-            .fileList {
-                margin: 10px 0 0 0;
-                padding: 0;
-                li {
-                    float: left;
-                    padding: 2px 10px;
-                    border-radius: 15px;
-                    border: solid 1px #87a4d3;
-                    background-color: #aac0e4;
-                    list-style: none;
-                    margin-right: 7px;
-                    span {
-                        font-size: 14px;
-                        color: $WhiteColor;
-                        float: left;
-                    }
-                    .cancel-icon {
-                        float: right;
-                        margin-left: 10px;
-                        display: block;
-                        font-size: 14px;
-                        cursor: pointer;
-                        overflow: hidden;
-                        color: $WhiteColor;
-                    }
-                }
-            }
-        }
-    }
+  }
 }
 
 .errorMsg {
-    color: #d00;
-    font-family: $Heebo-Light;
-    font-size: 11px;
-    display: none;
-    position: absolute;
-    left: 15px;
-    bottom: -11px;
+  color: #d00;
+  font-family: $Heebo-Light;
+  font-size: 11px;
+  display: none;
+  position: absolute;
+  left: 15px;
+  bottom: -11px;
 }
 
 .table {
-    &.table-bordered {
-        margin-bottom: 20px;
-        background-color: #eaedf1;
-        tr {
-            td {
-                font-size: 12px;
-                padding: 5px !important;
-                width: auto;
-                .w100 {
-                    width: 77px;
-                    font-family: $Heebo-Bold;
-                    color: $DarkGreyColor;
-                    font-style: normal;
-                    text-transform: uppercase;
-                    display: block;
-                    float: left;
-                }
-                span {
-                    display: block;
-                    width: 583px;
-                    float: left;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-            }
+  &.table-bordered {
+    margin-bottom: 20px;
+    background-color: #eaedf1;
+    tr {
+      td {
+        font-size: 12px;
+        padding: 5px !important;
+        width: auto;
+        .w100 {
+          width: 77px;
+          font-family: $Heebo-Bold;
+          color: $DarkGreyColor;
+          font-style: normal;
+          text-transform: uppercase;
+          display: block;
+          float: left;
         }
+        span {
+          display: block;
+          width: 583px;
+          float: left;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
     }
+  }
 }
