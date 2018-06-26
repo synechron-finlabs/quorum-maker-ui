@@ -179,35 +179,35 @@
   <h2>Contract List</h2>
   <div class="ip-contract-list">
     <div class="table-responsive">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Contract Address</th>
-            <th>Contract Name</th>
-            <th>Sender</th>
-            <th>Contract Type</th>
-            <th>Description</th>
-            <th>ABI</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of contractListData">
-            <td>
-              <div class="eclipse-text">{{item?.contractAddress || '--'}}</div>
-            </td>
-            <td>{{item?.contractName || '--'}}</td>
-            <td title="{{item?.sender}}">
-              <div class="eclipse-text">{{item?.sender || '--'}}</div>
-            </td>
-            <td [ngClass]="checkType(item.contractType)">{{item?.contractType || '--'}}</td>
-            <td title="{{item?.description}}">{{item?.enode || '--'}}</td>
-            <td title="{{item?.abi}}">
-              <code *ngIf="item?.abi != ''" class="eclipse-text">{{item?.abi || '--'}}</code>
-              <a *ngIf="item?.abi == ''" href="javascript:void(0)" (click)="uploadABIModal(item)" class="btn btn-success">Upload ABI</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Contract Address</th>
+                    <th>Contract Name</th>
+                    <th>Sender</th>
+                    <th>Contract Type</th>
+                    <th>Description</th>
+                    <th>ABI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of contractListData">
+                    <td>
+                        <div class="eclipse-text">{{item?.contractAddress || '--'}}</div>
+                    </td>
+                    <td>{{item?.contractName || '--'}}</td>
+                    <td title="{{item?.sender}}">
+                        <div class="eclipse-text">{{item?.sender || '--'}}</div>
+                    </td>
+                    <td [ngClass]="checkType(item.contractType)">{{item?.contractType || '--'}}</td>
+                    <td title="{{item?.description}}">{{item?.description || '--'}}</td>
+                    <td title="{{item?.abi}}">
+                        <code *ngIf="item?.abi != ''" class="eclipse-text">{{item?.abi || '--'}}</code>
+                        <a *ngIf="item?.abi == ''" href="javascript:void(0)" (click)="uploadABIModal(item)" class="btn btn-success">Upload ABI</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
   </div>
 </div>
