@@ -14,14 +14,14 @@ import { HashBlockComponent } from './hash-block/hash-block.component';
 import { TranscationBlockComponent } from './transcation-block/transcation-block.component';
 import { InfoOverlayComponent } from './info-overlay/info-overlay.component';
 import { ContractAbiDeploymentComponent } from './contract-abi-deployment/contract-abi-deployment.component';
-
+import { Ng2OdometerModule } from 'ng2-odometer';
 // import { CommonServiceService } from "../../service/common-service.service";
 // import { MessageService } from '../../service/message.service';
 // import { StatisticsGraphComponent } from './statistics-graph/statistics-graph.component';
 
 
 @NgModule({
-  imports: [BrowserAnimationsModule, HttpModule, CommonModule, FormsModule, RouterModule, ReactiveFormsModule, AccordionModule, InfiniteScrollModule, DialogModule, GrowlModule, ChartModule],
+  imports: [BrowserAnimationsModule, HttpModule, CommonModule, FormsModule, RouterModule, ReactiveFormsModule, AccordionModule, InfiniteScrollModule, DialogModule, GrowlModule, ChartModule, Ng2OdometerModule],
   declarations: [DashboardComponent, HashBlockComponent, TranscationBlockComponent, InfoOverlayComponent, ContractAbiDeploymentComponent],
   exports: [DashboardComponent],
   //providers: [CommonServiceService, MessageService],

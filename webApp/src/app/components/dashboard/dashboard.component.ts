@@ -3,7 +3,7 @@ import { CommonService } from '../../service/common-service';
 import { UtilityService } from "../../service/utility.service";
 import { Message } from 'primeng/api';
 import { MessageService } from '../../service/message.service';
-import { Observable } from "rxjs";
+import {  Observable, Observer } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import 'rxjs/add/operator/takeWhile';
@@ -76,7 +76,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   blockUpdated:boolean = false;
   contractAbiDisplay:boolean = false;
   contractAbi:any;
-  
+  public number: number = 0;
+   
   constructor(private _CommonService: CommonService, private cd: ChangeDetectorRef, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
     this.alive = true;
     this.serviceCallInterval = this.utilityService.serviceCallInterval; // in seconds
@@ -99,6 +100,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //    // //console.log("Error occured", err);
     //  // });
     // });
+    
   }
 
   ngOnInit() {

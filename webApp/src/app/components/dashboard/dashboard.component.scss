@@ -194,6 +194,9 @@ img {
         border-radius: 6px;
         background-color: #222941;
         padding: 15px 12px;
+        &>p {
+          margin-top: 10px;
+        }
         h5 {
             color: $WhiteColor;
             letter-spacing: 0.3px;

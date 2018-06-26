@@ -1,211 +1,217 @@
 <p-growl [value]="msgs"></p-growl>
 <div class="dashboard">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="rect-block" [ngClass]="(isSelected == 'blockClass')?'active':''" (click)="isShowCont('getBlocks')">
-                <div class="rect-block-inner">
-                    <h5>Current Block Number</h5>
-                    <h3>{{latestBlockData?.latestBlockNumber}}</h3>
-                    <p>
-                        <strong>Last Block :</strong>
-                        <span>{{latestTimeElapsedToDisplay}} ago</span>
-                    </p>
-                </div>
-            </div>
-            <div class="rect-block last" [ngClass]="(isSelected == 'nodeClass')?'active':''" (click)="isShowCont('nodeManager')">
-                <div class="rect-block-inner">
-                    <h5 class="active-node">Active Nodes</h5>
-                    <h3 class="active-node">{{getActiveNode?.nodeCount}}</h3>
-                    <p>
-                        <strong>Total Network Nodes :</strong>
-                        <span>{{getActiveNode?.totalNodeCount}}</span>
-                    </p>
-                </div>
-            </div>
-            <div class="pending-transaction">
-                <div class="inner">
-                    <p-chart type="bar" [data]="data" width="378px" height="auto" [responsive]="true" [options]="options" [reverse]="true"></p-chart>
-                </div>
-                <!-- <div class="inner">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="rect-block" [ngClass]="(isSelected == 'blockClass')?'active':''" (click)="isShowCont('getBlocks')">
+        <div class="rect-block-inner">
+          <h5>Current Block Number</h5>
+          <!-- <h3>{{latestBlockData?.latestBlockNumber}}</h3> -->
+          <p><ng2-odometer [number]="latestBlockData?.latestBlockNumber" [config]="{ auto: true }" [theme]="'car'" [format]="'(,ddd)'"></ng2-odometer></p>
+          <p>
+            <strong>Last Block :</strong>
+            <span>{{latestTimeElapsedToDisplay}} ago</span>
+          </p>
+        </div>
+      </div>
+      <div class="rect-block last" [ngClass]="(isSelected == 'nodeClass')?'active':''" (click)="isShowCont('nodeManager')">
+        <div class="rect-block-inner">
+          <h5 class="active-node">Active Nodes</h5>
+          <h3 class="active-node">{{getActiveNode?.nodeCount}}</h3>
+          <p>
+            <strong>Total Network Nodes :</strong>
+            <span>{{getActiveNode?.totalNodeCount}}</span>
+          </p>
+        </div>
+      </div>
+      <div class="pending-transaction">
+        <div class="inner">
+          <p-chart type="bar" [data]="data" width="378px" height="auto" [responsive]="true" [options]="options" [reverse]="true"></p-chart>
+        </div>
+        <!-- <div class="inner">
           <h5>Pending Transactions</h5>
           <h3>{{getNodeInfoList?.pendingTxCount}}</h3>
           <! <span>
             <a href='//{{getLogsList?.statusMessage}}' target="_blank" title="Geth &amp; Constellation Log">Geth &amp; Constellation Log</a>
           </span>
         </div> -->
-            </div>
-            <div class="ip-address" [ngClass]="(isSelected == 'ipClass')?'active':''" (click)="isShowCont('ipBlocks')">
-                <div class="inner">
-                    <h3><span>Total Contracts</span> {{contractCount?.totalContracts}}</h3>
-                    <h3><span>ABI Available</span> {{contractCount?.abis}}</h3>
-                    <p>
-                        <strong>RPC Port:</strong>
-                        <span>{{getNodeInfoList?.connectionInfo?.port}} </span>
-                        <strong>&nbsp;</strong>
-                        <strong> IP Address:</strong>
-                        <span>{{getNodeInfoList?.connectionInfo?.ip}}</span>
-                    </p>
-                </div>
-            </div>
+      </div>
+      <div class="ip-address" [ngClass]="(isSelected == 'ipClass')?'active':''" (click)="isShowCont('ipBlocks')">
+        <div class="inner">
+          <h3>
+            <span>Total Contracts</span> {{contractCount?.totalContracts}}</h3>
+          <h3>
+            <span>ABI Available</span> {{contractCount?.abis}}</h3>
+          <p>
+            <strong>RPC Port:</strong>
+            <span>{{getNodeInfoList?.connectionInfo?.port}} </span>
+            <strong>&nbsp;</strong>
+            <strong> IP Address:</strong>
+            <span>{{getNodeInfoList?.connectionInfo?.ip}}</span>
+          </p>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="grid-container animated " *ngIf="isNodeData" [ngClass]="(isSelected == 'nodeClass')?'fadeIn':''">
-    <h2>Node Table</h2>
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        &nbsp;
-                    </th>
-                    <th>Node Name</th>
-                    <th>Role</th>
-                    <th>Public Key</th>
-                    <th>IP Address</th>
-                    <th>Node Latency</th>
-                    <th>Enode ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let getNodeItem of getNodeListData3;" (click)="getNodeDetails(getNodeItem)">
-                    <td>
-                        <span [ngClass]="{'checkiconCopy': getNodeItem.self=='true', 'checkIcon':getNodeItem.active=='true', 'checkIcon2':getNodeItem.active=='false' }">&nbsp;</span>
-                    </td>
-                    <td>{{getNodeItem?.nodeName}}</td>
-                    <td>{{getNodeItem?.role}}</td>
-                    <td class="node pubkey" title="{{getNodeItem?.publicKey}}">{{getNodeItem?.publicKey}}</td>
-                    <td>{{getNodeItem?.ip}}</td>
-                    <td class="time">
-                        <span class="spinner-bg" *ngIf="!getNodeItem?.time"></span> {{getNodeItem?.time}}</td>
-                    <td class="node enodeid" title="{{getNodeItem?.enode}}">{{getNodeItem?.enode}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <h2>Node Table</h2>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>
+            &nbsp;
+          </th>
+          <th>Node Name</th>
+          <th>Role</th>
+          <th>Public Key</th>
+          <th>IP Address</th>
+          <th>Node Latency</th>
+          <th>Enode ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let getNodeItem of getNodeListData3;" (click)="getNodeDetails(getNodeItem)">
+          <td>
+            <span [ngClass]="{'checkiconCopy': getNodeItem.self=='true', 'checkIcon':getNodeItem.active=='true', 'checkIcon2':getNodeItem.active=='false' }">&nbsp;</span>
+          </td>
+          <td>{{getNodeItem?.nodeName}}</td>
+          <td>{{getNodeItem?.role}}</td>
+          <td class="node pubkey" title="{{getNodeItem?.publicKey}}">{{getNodeItem?.publicKey}}</td>
+          <td>{{getNodeItem?.ip}}</td>
+          <td class="time">
+            <span class="spinner-bg" *ngIf="!getNodeItem?.time"></span> {{getNodeItem?.time}}</td>
+          <td class="node enodeid" title="{{getNodeItem?.enode}}">{{getNodeItem?.enode}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 <div class="block-wrapper animated" *ngIf="isBlocks" [ngClass]="(isSelected == 'blockClass')?'fadeIn':''">
-    <div class="row" (mouseenter)="LoopTimerStop()" (mouseleave)="LoopTimerStart()">
-        <div class="col-md-6">
-            <div class="block-inner">
-                <h3>
-                    <em>
+  <div class="row" (mouseenter)="LoopTimerStop()" (mouseleave)="LoopTimerStart()">
+    <div class="col-md-6">
+      <div class="block-inner">
+        <h3>
+          <em>
             <img src="/assets/images/blockIcons.png" />
           </em>
-                    <span>Blocks</span>
-                    <input (keyup)="getSearchedData(number)" class="serach" [(ngModel)]='number'>
-                </h3>
-                <div class="block-inner-list-wrapper" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" [scrollWindow]="false" (scrolled)="onScroll()">
-                    <div class="loader-bg" *ngIf="!getBlockList"></div>
-                    <div class="block-inner-scroll-space equalHeight">
-                        <p-accordion>
-                            <p-accordionTab class="block-list" *ngFor="let getBlocks of getBlockList">
-                                <p-header class="block-header" (click)="ExpandBlockDetails(getBlocks?.number);blockFilter(getBlocks?.hash);">
-                                    <h4>
-                                        <div class="row">
-                                            <div class="block-title col-sm-8 col-md-8">{{getBlocks?.number}}</div>
-                                            <div class="block-time col-sm-4 col-md-4">{{changeTimeformat(getBlocks?.TimeElapsed)}} ago</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="hash-title col-md-2 col-sm-2">Hash</div>
-                                            <div class="hash-detail col-md-10 col-sm-10" title="{{getBlocks?.hash}}">{{getBlocks?.hash}}</div>
-                                        </div>
-                                    </h4>
-                                </p-header>
-                                <app-hash-block [BlockDetails]="BlockDetails" [getBlocks]="getBlocks"></app-hash-block>
-                            </p-accordionTab>
-                        </p-accordion>
+          <span>Blocks</span>
+          <input (keyup)="getSearchedData(number)" class="serach" [(ngModel)]='number'>
+        </h3>
+        <div class="block-inner-list-wrapper" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" [scrollWindow]="false"
+          (scrolled)="onScroll()">
+          <div class="loader-bg" *ngIf="!getBlockList"></div>
+          <div class="block-inner-scroll-space equalHeight">
+            <p-accordion>
+              <p-accordionTab class="block-list" *ngFor="let getBlocks of getBlockList">
+                <p-header class="block-header" (click)="ExpandBlockDetails(getBlocks?.number);blockFilter(getBlocks?.hash);">
+                  <h4>
+                    <div class="row">
+                      <div class="block-title col-sm-8 col-md-8">{{getBlocks?.number}}</div>
+                      <div class="block-time col-sm-4 col-md-4">{{changeTimeformat(getBlocks?.TimeElapsed)}} ago</div>
                     </div>
-                </div>
-            </div>
+                    <div class="row">
+                      <div class="hash-title col-md-2 col-sm-2">Hash</div>
+                      <div class="hash-detail col-md-10 col-sm-10" title="{{getBlocks?.hash}}">{{getBlocks?.hash}}</div>
+                    </div>
+                  </h4>
+                </p-header>
+                <app-hash-block [BlockDetails]="BlockDetails" [getBlocks]="getBlocks"></app-hash-block>
+              </p-accordionTab>
+            </p-accordion>
+          </div>
         </div>
-        <div class="col-md-6">
-            <div class="block-inner">
-                <h3>
-                    <em>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="block-inner">
+        <h3>
+          <em>
             <img src="/assets/images/transcationIcons.png" />
           </em>
-                    <span>Transactions</span>
-                    <input (keyup)="getSearchedTxNData(transactionHash)" class="serach" [(ngModel)]='transactionHash'>
-                </h3>
-                <div class="block-inner-list-wrapper">
-                    <div class="loader-bg" *ngIf="!getBlockList"></div>
-                    <div class="block-inner-scroll-space">
-                        <p-accordion>
-                            <div *ngFor="let getBlocks of getBlockList">
-                                <p-accordionTab class="block-list" *ngFor="let getTBlocks of getBlocks.transactions" [ngClass]="{'selected': getBlocks?.hash == selectedBlock}">
-                                    <p-header class="block-header" *ngIf="getBlocks.transactions" (click)="ExpandTxNDetails(getTBlocks.hash);">
-                                        <h4>
-                                            <div class="row margin-bottom-0">
-                                                <div class="hash-title col-md-2 col-sm-3">TxnHash</div>
-                                                <div class="hash-detail col-md-10 col-sm-9" title="{{getTBlocks.hash}}">{{getTBlocks.hash}}</div>
-                                            </div>
-                                            <div class="row txn-wrapper">
-                                                <div class="col-md-9 col-sm-9">
-                                                    <div class="col-md-2">From</div>
-                                                    <div class="col-md-4" title="{{getTBlocks.from}}">{{getTBlocks.from}}</div>
-                                                    <div class="col-md-2">To</div>
-                                                    <div class="col-md-4" title="{{getTBlocks.to}}">{{getTBlocks.to}}</div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-3 block-time trans">
-                                                    {{changeTimeformat(getBlocks?.TimeElapsed)}} ago
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 public">
-                                                    <span [ngClass]="checkType(getTBlocks.transactionType)">
-                                                        {{getTBlocks.transactionType}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </h4>
-                                    </p-header>
-                                    <app-transcation-block [TxNDetails]="TxNDetails" [getBlocks]="getBlocks"></app-transcation-block>
-                                </p-accordionTab>
-                            </div>
-                        </p-accordion>
-                    </div>
-                </div>
-            </div>
+          <span>Transactions</span>
+          <input (keyup)="getSearchedTxNData(transactionHash)" class="serach" [(ngModel)]='transactionHash'>
+        </h3>
+        <div class="block-inner-list-wrapper">
+          <div class="loader-bg" *ngIf="!getBlockList"></div>
+          <div class="block-inner-scroll-space">
+            <p-accordion>
+              <div *ngFor="let getBlocks of getBlockList">
+                <p-accordionTab class="block-list" *ngFor="let getTBlocks of getBlocks.transactions" [ngClass]="{'selected': getBlocks?.hash == selectedBlock}">
+                  <p-header class="block-header" *ngIf="getBlocks.transactions" (click)="ExpandTxNDetails(getTBlocks.hash);">
+                    <h4>
+                      <div class="row margin-bottom-0">
+                        <div class="hash-title col-md-2 col-sm-3">TxnHash</div>
+                        <div class="hash-detail col-md-10 col-sm-9" title="{{getTBlocks.hash}}">{{getTBlocks.hash}}</div>
+                      </div>
+                      <div class="row txn-wrapper">
+                        <div class="col-md-9 col-sm-9">
+                          <div class="col-md-2">From</div>
+                          <div class="col-md-4" title="{{getTBlocks.from}}">{{getTBlocks.from}}</div>
+                          <div class="col-md-2">To</div>
+                          <div class="col-md-4" title="{{getTBlocks.to}}">{{getTBlocks.to}}</div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 block-time trans">
+                          {{changeTimeformat(getBlocks?.TimeElapsed)}} ago
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 public">
+                          <span [ngClass]="checkType(getTBlocks.transactionType)">
+                            {{getTBlocks.transactionType}}
+                          </span>
+                        </div>
+                      </div>
+                    </h4>
+                  </p-header>
+                  <app-transcation-block [TxNDetails]="TxNDetails" [getBlocks]="getBlocks"></app-transcation-block>
+                </p-accordionTab>
+              </div>
+            </p-accordion>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="grid-container contract-list-container animated " *ngIf="isIpBlock" [ngClass]="(isSelected == 'ipClass')?'fadeIn':''">
-    <h2>Contract List</h2>
-    <div class="ip-contract-list">
+  <h2>Contract List</h2>
+  <div class="ip-contract-list">
     <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Contract Address</th>
-                    <th>Contract Name</th>
-                    <th>Sender</th>
-                    <th>Contract Type</th>
-                    <th>Description</th>
-                    <th>ABI</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of contractListData">
-                    <td>
-                        <div class="eclipse-text">{{item?.contractAddress || '--'}}</div>
-                    </td>
-                    <td>{{item?.contractName || '--'}}</td>
-                    <td title="{{item?.sender}}">
-                        <div class="eclipse-text">{{item?.sender || '--'}}</div>
-                    </td>
-                    <td [ngClass]="checkType(item.contractType)">{{item?.contractType || '--'}}</td>
-                    <td title="{{item?.description}}">{{item?.enode || '--'}}</td>
-                    <td title="{{item?.abi}}">
-                        <code *ngIf="item?.abi != ''" class="eclipse-text">{{item?.abi || '--'}}</code>
-                        <a *ngIf="item?.abi == ''" href="javascript:void(0)" (click)="uploadABIModal(item)" class="btn btn-success">Upload ABI</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Contract Address</th>
+            <th>Contract Name</th>
+            <th>Sender</th>
+            <th>Contract Type</th>
+            <th>Description</th>
+            <th>ABI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of contractListData">
+            <td>
+              <div class="eclipse-text">{{item?.contractAddress || '--'}}</div>
+            </td>
+            <td>{{item?.contractName || '--'}}</td>
+            <td title="{{item?.sender}}">
+              <div class="eclipse-text">{{item?.sender || '--'}}</div>
+            </td>
+            <td [ngClass]="checkType(item.contractType)">{{item?.contractType || '--'}}</td>
+            <td title="{{item?.description}}">{{item?.enode || '--'}}</td>
+            <td title="{{item?.abi}}">
+              <code *ngIf="item?.abi != ''" class="eclipse-text">{{item?.abi || '--'}}</code>
+              <a *ngIf="item?.abi == ''" href="javascript:void(0)" (click)="uploadABIModal(item)" class="btn btn-success">Upload ABI</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
-</div>
-<app-info-overlay [display]="display" [display2]="display2" [listItem]="getPeerDetails" [listItem2]="getNodeInfoDetails" (showEvent)="closeFlag($event)"></app-info-overlay>
-<app-contract-abi-deployment [contractAbiDisplay]="contractAbiDisplay" *ngIf="contractAbiDisplay" [contractAbi]="contractAbi" (closeEventABI)="closeEventABI($event)"></app-contract-abi-deployment>
+<app-info-overlay [display]="display" [display2]="display2" [listItem]="getPeerDetails" [listItem2]="getNodeInfoDetails"
+  (showEvent)="closeFlag($event)"></app-info-overlay>
+<app-contract-abi-deployment [contractAbiDisplay]="contractAbiDisplay" *ngIf="contractAbiDisplay" [contractAbi]="contractAbi"
+  (closeEventABI)="closeEventABI($event)"></app-contract-abi-deployment>

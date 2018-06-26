@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class ModelOverlayQuorumComponent implements OnInit {
   ShowLoader: any;
   showResponse2: boolean = false;
-  showResponse: boolean = true;;
+  showResponse: boolean = true;
   disabled: boolean = true;
   CompileDeployContractForm: FormGroup;
   private formSubmitAttempt: boolean;
