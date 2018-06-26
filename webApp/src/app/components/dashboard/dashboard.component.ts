@@ -3,7 +3,7 @@ import { CommonService } from '../../service/common-service';
 import { UtilityService } from "../../service/utility.service";
 import { Message } from 'primeng/api';
 import { MessageService } from '../../service/message.service';
-import {  Observable, Observer } from "rxjs";
+import { Observable, Observer } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import 'rxjs/add/operator/takeWhile';
@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ChartData: any;
   contractCount: any;
   getActiveNode: any;
-  totalContracts:any;
+  totalContracts: any;
   //getNodeListData4: any[];
   getNodeListData3: any[];
   getNodeListData2: any;
@@ -68,16 +68,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   counter = 0;
   refSerach: boolean = false;
   data: any;
-  options: any;getLatestTime: any;
+  options: any; getLatestTime: any;
   chartCron: any;
   today: any;
   currentSecond: any;
   latestBlockTimer: any;
-  blockUpdated:boolean = false;
-  contractAbiDisplay:boolean = false;
-  contractAbi:any;
+  blockUpdated: boolean = false;
+  contractAbiDisplay: boolean = false;
+  contractAbi: any;
   public number: number = 0;
-   
+
   constructor(private _CommonService: CommonService, private cd: ChangeDetectorRef, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
     this.alive = true;
     this.serviceCallInterval = this.utilityService.serviceCallInterval; // in seconds
@@ -100,7 +100,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //    // //console.log("Error occured", err);
     //  // });
     // });
-    
+
   }
 
   ngOnInit() {
@@ -140,7 +140,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //console.log("Found the Minute Mark");
   };
 
-  startChartCron(){
+  startChartCron() {
     this.getChartDataList();
     // //console.log("Cron is executed at :", new Date().getSeconds() , " Seconds");
   }
@@ -280,13 +280,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this._CommonService.getLatestBlock().subscribe(data => {
           this.latestBlockData = data.json();
-          if (this.currentBlockNumber != this.latestBlockData.latestBlockNumber) {            
-            if(!this.blockUpdated){
+          if (this.currentBlockNumber != this.latestBlockData.latestBlockNumber) {
+            if (!this.blockUpdated) {
               this.getBlockList = [];
               this.counter = 0
               this.referenceNo = null
               this.getBlocklisting(this.referenceNo);
-            }            
+            }
             this.currentBlockNumber = this.latestBlockData.latestBlockNumber;
             this.getNodeInfo();
             this.getNodeList();
@@ -303,28 +303,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
           });
       });
   }
-  
-  getUpdateBlockMouseOut(){
+
+  getUpdateBlockMouseOut() {
     if (this.currentBlockNumber != this.getBlockList[0].number) {
       this._CommonService.getLatestBlock().subscribe(data => {
         this.latestBlockData = data.json();
-          this.getBlockList = [];
-          // if(this.referenceNo){
-          this.counter = 0
-          this.referenceNo = null
-          this.getBlocklisting(this.referenceNo);
+        this.getBlockList = [];
+        // if(this.referenceNo){
+        this.counter = 0
+        this.referenceNo = null
+        this.getBlocklisting(this.referenceNo);
       });
     }
   }
-  
-  LoopTimerStart(){
+
+  LoopTimerStart() {
     //this.myTimer.unsubscribe();
     //console.log("start");
     this.blockUpdated = false;
     this.getUpdateBlockMouseOut();
   }
-  
-  LoopTimerStop(){
+
+  LoopTimerStop() {
     //console.log("stop");
     //this.getLatestBlock();
     this.blockUpdated = true;
@@ -472,12 +472,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.isIpBlock = true;
         this.getContractList();
         break;
-  }
-  
-    
+    }
+
+
   }
 
-  getContractList(){
+  getContractList() {
     this._CommonService.getContractList().subscribe(data => {
       this.contractListData = data.json();
       console.log('---contractListData ---', this.contractListData);
@@ -491,7 +491,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-    getNodeDetails(item) {
+  getNodeDetails(item) {
     //console.log('item onClick', item);
     if (item.self == 'true' && item.active == 'true') {
       this.display = true;
@@ -591,7 +591,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
           fontColor: '#fff',
           boxWidth: 15
         }
-
       },
       layout: {
         padding: {
@@ -620,49 +619,52 @@ export class DashboardComponent implements OnInit, OnDestroy {
             fontColor: '#fff',
             fontSize: 9,
             callback: (value, index, values) => {
-                if (Math.floor(value) === value) {
-                    return value;
-                }
+              if (Math.floor(value) === value) {
+                return value;
+              }
             }
           }
           // display: false
         }]
+      },
+      animation: {
+        duration: 0
       }
     }
   }
 
-  uploadABIModal(data){
+  uploadABIModal(data) {
     this.contractAbi = data;
     this.contractAbiDisplay = true;
   }
-  
-  closeEventABI(event){
+
+  closeEventABI(event) {
     console.log(event);
     this.contractAbiDisplay = false;
-    if(event.msg){
+    if (event.msg) {
       this.getContractList();
       this.msgs.push({ severity: 'success', summary: event.msg });
-      setTimeout (()=>{
+      setTimeout(() => {
         this.msgs = [];
-      },3000);
+      }, 3000);
     }
   }
 
-  
-  getContractCount(){
+
+  getContractCount() {
     TimerObservable.create(0, this.serviceCallInterval * 1000)
       .takeWhile(() => this.alive)
       .subscribe(() => {
-      this._CommonService.getContractCount().subscribe(data => {
-        console.log(data.json());
-        this.contractCount = data.json();
-        if(this.totalContracts != this.contractCount.totalContracts && this.isIpBlock) { 
-          this.getContractList();
-        }            
+        this._CommonService.getContractCount().subscribe(data => {
+          console.log(data.json());
+          this.contractCount = data.json();
+          if (this.totalContracts != this.contractCount.totalContracts && this.isIpBlock) {
+            this.getContractList();
+          }
           this.totalContracts = this.contractCount.totalContracts;
 
+        });
       });
-    });
   }
 
   ngOnDestroy() {
