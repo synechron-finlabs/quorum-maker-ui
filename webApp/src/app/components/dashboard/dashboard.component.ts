@@ -77,6 +77,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   contractAbiDisplay: boolean = false;
   contractAbi: any;
   public number: number = 0;
+  OrderByType = true;
+  contractFlag = false;
 
   constructor(private _CommonService: CommonService, private cd: ChangeDetectorRef, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {
     this.alive = true;
@@ -106,6 +108,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // //console.log(this.display, "this.display");
     // //console.log(this.display2, "this.display2");
+    
     this.getNodeLatency();
     this.getBlocklisting(null);
     this.getNodeInfo();
@@ -150,7 +153,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     clearInterval(this.getLatestTime);
   }
 
-
+  getMiliSeconds(time){
+    if(time){
+        let timeArray = time.split("ms");
+        return parseInt(timeArray[0].replace(/ /g, '')) / 1000 + " ms";
+    } else {
+      return ""
+    }
+  }
 
   onScroll() {
     //console.log("scrolled Down");
@@ -288,6 +298,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
               this.getBlocklisting(this.referenceNo);
             }
             this.currentBlockNumber = this.latestBlockData.latestBlockNumber;
+
             this.getNodeInfo();
             this.getNodeList();
             this.getNodeLatency();
@@ -405,6 +416,29 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.getNodeListData2 = this.getNodeListData.filter(x => x.self == 'false');
       // this.getNodeListData4 = [this.getNodeListData1, ...this.getNodeListData2];
       this.getNodeListData3 = this.getNodeListData1.concat(this.getNodeListData2);
+
+      // Sort array elements after the first element in Ascending order
+
+      let firstNodeElement = this.getNodeListData3[0];
+      let nodeArrayForSort = this.getNodeListData3;
+      
+      // Remove first element of the array
+      nodeArrayForSort.splice(0,1);
+      
+      //Sort by Name of the node
+      nodeArrayForSort.sort((a: any, b: any) => {
+        var a = a.nodeName.toLowerCase(), b = b.nodeName.toLowerCase();
+        if (a < b) //sort string ascending
+          return -1;
+        if (a > b)
+          return 1;
+        return 0; //default return value (no sorting)
+      });
+
+      // Insert the first element again into the sorted array and reassign to actual array.
+      nodeArrayForSort.splice(0, 0, firstNodeElement);
+      this.getNodeListData3 = nodeArrayForSort;
+
       //console.log('this.getNodeListData3>>>>>>', this.getNodeListData3);
       // this.getNodeListData.forEach((element, index) => {
       //   if (index == 0) {
@@ -633,9 +667,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  uploadABIModal(data) {
+  uploadABIModal(data, flag) {
     this.contractAbi = data;
     this.contractAbiDisplay = true;
+    this.contractFlag = flag;
   }
 
   closeEventABI(event) {
@@ -665,6 +700,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
         });
       });
+  }
+
+  showAbiDetails(){
+    console.log("Inside");
   }
 
   ngOnDestroy() {

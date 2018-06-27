@@ -11,6 +11,7 @@ import { Message } from 'primeng/api';
 export class ContractAbiDeploymentComponent implements OnInit {
   @Input() contractAbiDisplay:boolean;
   @Input() contractAbi;
+  @Input() contractFlag;
   @Output() closeEventABI = new EventEmitter();
 
   deployContractABI: FormGroup;
@@ -18,11 +19,17 @@ export class ContractAbiDeploymentComponent implements OnInit {
   loadingForm:boolean = false;
   filesToUpload:any;
   mesgshow: Message[] = [];
+  title: any;
   constructor(public fb: FormBuilder, private _CommonService: CommonService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.createForm();
     //updateContractDetails 
+    if(this.contractFlag){
+      this.title = "Contract Details";
+    } else{
+      this.title = "Update/Upload Contract Details";
+    }
   }
 
   createForm(){

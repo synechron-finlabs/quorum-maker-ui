@@ -8,7 +8,7 @@ import { DialogModule } from 'primeng/dialog';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
-
+import { OrderByModule } from '../shared/OrderByPipe/OrderByModule';
 import { DashboardComponent } from './dashboard.component';
 import { HashBlockComponent } from './hash-block/hash-block.component';
 import { TranscationBlockComponent } from './transcation-block/transcation-block.component';
@@ -21,7 +21,7 @@ import { Ng2OdometerModule } from 'ng2-odometer';
 
 
 @NgModule({
-  imports: [BrowserAnimationsModule, HttpModule, CommonModule, FormsModule, RouterModule, ReactiveFormsModule, AccordionModule, InfiniteScrollModule, DialogModule, GrowlModule, ChartModule, Ng2OdometerModule],
+  imports: [BrowserAnimationsModule, HttpModule, CommonModule, FormsModule, RouterModule, ReactiveFormsModule, AccordionModule, InfiniteScrollModule, DialogModule, GrowlModule, ChartModule, Ng2OdometerModule, OrderByModule],
   declarations: [DashboardComponent, HashBlockComponent, TranscationBlockComponent, InfoOverlayComponent, ContractAbiDeploymentComponent],
   exports: [DashboardComponent],
   //providers: [CommonServiceService, MessageService],

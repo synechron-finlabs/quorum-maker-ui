@@ -8,10 +8,13 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 })
 export class AppComponent {
   //title = 'app';
-
+  
   //isNode: boolean = true 	// if node is created already(node object present) then change isNode = true;
   isShowHeader: boolean = true;
   constructor(private router: Router) {
+
+    // Only for Production
+    // console.log = () => {};
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         if (this.router.url === '/create-and-join' || this.router.url === '/') {

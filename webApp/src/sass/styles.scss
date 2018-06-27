@@ -811,7 +811,6 @@ body {
 }
 
 ng2-odometer {
-  font-size: 42px;
   color: $WhiteColor;
   .odometer {
     &.odometer-theme-default {
@@ -819,4 +818,21 @@ ng2-odometer {
       font-weight: normal !important;
     }
   }
+}
+
+
+.block-number-size{
+  ng2-odometer{
+    font-size: 42px;
+  }
+}
+
+.updated-block-number-size{
+  ng2-odometer{
+    font-size: 35px;
+  }
+}
+
+.updated-margin{
+  margin-bottom: 18px;
 }
