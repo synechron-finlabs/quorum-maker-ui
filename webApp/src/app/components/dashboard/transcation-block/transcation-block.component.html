@@ -27,7 +27,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.blockNumber || '--'}}</span>
+                                <span title="{{TxNDetails?.blockNumber}}">{{TxNDetails?.blockNumber || '--'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -51,7 +51,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.contractAddress || '--'}}</span>
+                                <span title="{{TxNDetails?.contractAddress}}">{{TxNDetails?.contractAddress || '--'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -63,7 +63,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.cumulativeGasUsed || '0'}}</span>
+                                <span title="{{TxNDetails?.cumulativeGasUsed}}">{{TxNDetails?.cumulativeGasUsed || '0'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -75,7 +75,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.nonce || '0'}}</span>
+                                <span title="{{TxNDetails?.nonce}}">{{TxNDetails?.nonce || '0'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -99,7 +99,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.gas || '--'}}</span>
+                                <span title="{{TxNDetails?.gas}}">{{TxNDetails?.gas || '--'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -111,7 +111,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.transactionIndex || '--'}}</span>
+                                <span title="{{TxNDetails?.transactionIndex}}">{{TxNDetails?.transactionIndex || '--'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -124,7 +124,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.value || '--'}}</span>
+                                <span title="{{TxNDetails?.value}}">{{TxNDetails?.value || '--'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -136,7 +136,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.r || '--'}}</span>
+                                <span title="{{TxNDetails?.r}}">{{TxNDetails?.r || '--'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -176,7 +176,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.logs[0]?.blockNumber || '--'}}</span>
+                                <span title="{{TxNDetails?.logs[0]?.blockNumber}}">{{TxNDetails?.logs[0]?.blockNumber || '--'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -265,7 +265,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.gasUsed || '--'}}</span>
+                                <span title="{{TxNDetails?.gasUsed}}">{{TxNDetails?.gasUsed || '--'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -279,7 +279,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.transactionType || '--'}}</span>
+                                <span title="{{TxNDetails?.transactionType}}">{{TxNDetails?.transactionType || '--'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -291,7 +291,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.v || '--'}}</span>
+                                <span title="{{TxNDetails?.v}}">{{TxNDetails?.v || '--'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -318,7 +318,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.logs[0]?.logIndex || '0'}}</span>
+                                <span title="{{TxNDetails?.logs[0]?.logIndex}}">{{TxNDetails?.logs[0]?.logIndex || '0'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -354,7 +354,7 @@
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span>{{TxNDetails?.logs[0]?.transactionIndex || '0'}}</span>
+                                <span title="{{TxNDetails?.logs[0]?.transactionIndex}}">{{TxNDetails?.logs[0]?.transactionIndex || '0'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -365,7 +365,7 @@
                     <p-accordionTab header="Decoded Inputs" [selected]="false">
                         <div class="item-col-2" *ngFor="let inputItem of TxNDetails?.decodedInputs">
                             <div class="item">
-                                <span>{{inputItem?.key}}</span>
+                                <span title="{{inputItem?.key}}">{{inputItem?.key}}</span>
                             </div>
                             <div class="item">
                                 <span title="{{inputItem?.value}}">{{checkType(inputItem.value)}}</span>

@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   contractAbiDisplay: boolean = false;
   contractAbi: any;
   public number: number = 0;
-  OrderByType = true;
+  OrderByType = false;
   contractFlag = false;
 
   constructor(private _CommonService: CommonService, private cd: ChangeDetectorRef, private messageService: MessageService, private _el: ElementRef, private utilityService: UtilityService) {

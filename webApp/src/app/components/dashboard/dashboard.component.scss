@@ -536,3 +536,28 @@ img {
     text-overflow: ellipsis;
     display: inline-block;
 }
+
+.icon-sort {
+    background: url('/assets/images/order.png') no-repeat 0 0;
+    background-size: cover;
+    height: 14px;
+    margin-left: 10px;
+    width: 14px;
+    line-height: 1;
+    text-indent: 0;
+    display: inline-block;
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+
+}
+
+.icon-sort-rotate{
+    transform: rotate(-180deg);
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+
+}
