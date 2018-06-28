@@ -1,0 +1,23 @@
+.table-logs {
+    td.col-md-4 {
+        width: 25% !important;
+    }
+    td.col-md-8 {
+        width: 75% !important;
+        .item span {
+            width: 300px !important;
+        }
+    }
+}
+
+.function-icon-title {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 10px;
+    &.red {
+        color: #ff6d6d;
+    }
+    &.yellow {
+        color: #f8e71c;
+    }
+}

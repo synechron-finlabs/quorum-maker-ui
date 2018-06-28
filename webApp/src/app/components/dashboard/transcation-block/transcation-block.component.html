@@ -140,55 +140,27 @@
                             </div>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td colspan="2" class="transaction-title col-md-12">Logs</td>
-                    </tr>
                     <tr>
                         <td class="col-md-4">
                             <div class="item">
-                                <span>Address</span>
+                                <span>TransactionHash</span>
                             </div>
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span title="{{TxNDetails?.logs[0]?.address}}">{{TxNDetails?.logs[0]?.address || '--'}}</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="item">
-                                <span>BlockHash</span>
-                            </div>
-                        </td>
-                        <td class="col-md-8">
-                            <div class="item">
-                                <span title="{{TxNDetails?.logs[0]?.blockHash}}">{{TxNDetails?.logs[0]?.blockHash || '--'}}</span>
+                                <span title="{{TxNDetails?.logs[0]?.transactionHash}}">{{TxNDetails?.logs[0]?.transactionHash || '--'}}</span>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
                             <div class="item">
-                                <span>Block Number</span>
+                                <span>TransactionIndex</span>
                             </div>
                         </td>
                         <td class="col-md-8">
                             <div class="item">
-                                <span title="{{TxNDetails?.logs[0]?.blockNumber}}">{{TxNDetails?.logs[0]?.blockNumber || '--'}}</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="item">
-                                <span>Data</span>
-                            </div>
-                        </td>
-                        <td class="col-md-8">
-                            <div class="item">
-                                <span title="{{TxNDetails?.logs[0]?.data}}">{{TxNDetails?.logs[0]?.data || '--'}}</span>
+                                <span title="{{TxNDetails?.logs[0]?.transactionIndex}}">{{TxNDetails?.logs[0]?.transactionIndex || '0'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -334,34 +306,104 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="item">
-                                <span>TransactionHash</span>
-                            </div>
-                        </td>
-                        <td class="col-md-8">
-                            <div class="item">
-                                <span title="{{TxNDetails?.logs[0]?.transactionHash}}">{{TxNDetails?.logs[0]?.transactionHash || '--'}}</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="item">
-                                <span>TransactionIndex</span>
-                            </div>
-                        </td>
-                        <td class="col-md-8">
-                            <div class="item">
-                                <span title="{{TxNDetails?.logs[0]?.transactionIndex}}">{{TxNDetails?.logs[0]?.transactionIndex || '0'}}</span>
-                            </div>
-                        </td>
-                    </tr>
                 </table>
             </div>
-            <div class="col-md-12 col-sm-12 decoded-inputs-column" *ngIf="TxNDetails?.decodedInputs?.length > 0">
-                <p-accordion *ngIf="TxNDetails?.decodedInputs != null">
+            <table class="table bottable table-logs" *ngIf="TxNDetails?.logs?.length > 0">
+                <tr>
+                    <td colspan="2" class="transaction-title col-md-12">Logs</td>
+                </tr>
+                <tr *ngFor="let item of TxNDetails?.logs">
+                    <td class="col-md-4">
+                        <div class="item">
+                            <span>Address</span>
+                        </div>
+                    </td>
+                    <td class="col-md-8">
+                        <div class="item">
+                            <span title="{{item?.address}}">{{item?.address || '--'}}</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="item">
+                            <span>Block Hash</span>
+                        </div>
+                    </td>
+                    <td class="col-md-8">
+                        <div class="item">
+                            <span title="{{item?.blockHash}}">{{item?.blockHash || '--'}}</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="item">
+                            <span>Block Number</span>
+                        </div>
+                    </td>
+                    <td class="col-md-8">
+                        <div class="item">
+                            <span title="{{item?.blockNumber}}">{{item?.blockNumber || '--'}}</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="item">
+                            <span>Data</span>
+                        </div>
+                    </td>
+                    <td class="col-md-8">
+                        <div class="item">
+                            <span title="{{item?.data}}">{{item?.data || '--'}}</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="item">
+                            <span>Topics</span>
+                        </div>
+                    </td>
+                    <td class="col-md-8">
+                        <div class="item">
+                            <span title="{{item?.topics[0]}}">{{item?.topics[0] || '--'}}</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="item">
+                            <span>Transaction Hash</span>
+                        </div>
+                    </td>
+                    <td class="col-md-8">
+                        <div class="item">
+                            <span title="{{item?.transactionHash}}">{{item?.transactionHash || '--'}}</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="item">
+                            <span>Transaction Index</span>
+                        </div>
+                    </td>
+                    <td class="col-md-8">
+                        <div class="item">
+                            <span title="{{item?.transactionIndex}}">{{item?.transactionIndex || '--'}}</span>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="col-md-12 col-sm-12 decoded-inputs-column">
+                <div class="function-icon-title" *ngIf="TxNDetails?.functionDetails">
+                    <span class="icon-function">&nbsp;</span> {{TxNDetails?.functionDetails}}
+                </div>
+                <div class="function-icon-title" *ngIf="TxNDetails?.decodeFailed" [ngClass]="TxNDetails?.decodeFailed.type">{{TxNDetails?.decodeFailed.label}}</div>
+                <p-accordion *ngIf="TxNDetails?.functionDetails">
                     <p-accordionTab header="Decoded Inputs" [selected]="false">
                         <div class="item-col-2" *ngFor="let inputItem of TxNDetails?.decodedInputs">
                             <div class="item">
