@@ -214,7 +214,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.refSerach = true;
       this._CommonService.getTxNblocks(_hashKey).subscribe(result => {
         //console.log('result>>>>>', result)
-        this.getBlockList = []
+        this.getBlockList = [];
         this.getBlockList.push(result);
         this.counter = 0
         this.referenceNo = null
@@ -233,17 +233,32 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this._CommonService.getBlockData(referenceNo).subscribe(result => {
       let data: any = [];
       data = result.json();
+      let tempArray =[];
       //console.log('==this.data==----', data);
-      data.forEach(element => {
-        //console.log('element.transactions.....', element.transactions)
-        if (element.transactions) {
-          this.getBlockList.push(element);
-        }
-      });
       if (this.referenceNo == null) {
-        // this.referenceNo = this.getBlockList[0].number - this._CommonService.showEl;
+        
+        data.forEach((element, i) => {
+          //console.log('element.transactions.....', element.transactions)
+          if (element.transactions) {
+            tempArray.push(element);
+          }
+
+          if(i == data.length - 1){
+            this.getBlockList = tempArray;
+          }
+        });
+        document.getElementsByClassName('block-inner-list-wrapper')[0].scrollTo(0, 0);
+        document.getElementsByClassName('block-inner-list-wrapper')[1].scrollTo(0, 0);
         this.referenceNo = this.getBlockList[0].number;
+      } else {
+        data.forEach(element => {
+          //console.log('element.transactions.....', element.transactions)
+          if (element.transactions) {
+            this.getBlockList.push(element);
+          }
+        });
       }
+
       //console.log(this.getBlockList, '==this.getBlockList==');
       // below logic added to show list with blockNumber greater than 0 
       this.getBlockList = this.getBlockList.filter(
@@ -292,7 +307,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.latestBlockData = data.json();
           if (this.currentBlockNumber != this.latestBlockData.latestBlockNumber) {
             if (!this.blockUpdated) {
-              this.getBlockList = [];
+              // this.getBlockList = [];
               this.counter = 0
               this.referenceNo = null
               this.getBlocklisting(this.referenceNo);
@@ -319,7 +334,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.currentBlockNumber != this.getBlockList[0].number) {
       this._CommonService.getLatestBlock().subscribe(data => {
         this.latestBlockData = data.json();
-        this.getBlockList = [];
+        // this.getBlockList = [];
         // if(this.referenceNo){
         this.counter = 0
         this.referenceNo = null
