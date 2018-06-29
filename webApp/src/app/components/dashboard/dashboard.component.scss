@@ -497,6 +497,10 @@ img {
 }
 
 .contract-list-container {
+    position: relative;
+    .serach {
+        right: 0;
+    }
     .eclipse-text {
         width: 155px;
     }
@@ -550,14 +554,12 @@ img {
     -moz-transition-duration: 0.8s;
     -o-transition-duration: 0.8s;
     transition-duration: 0.8s;
-
 }
 
-.icon-sort-rotate{
+.icon-sort-rotate {
     transform: rotate(-180deg);
     -webkit-transition-duration: 0.8s;
     -moz-transition-duration: 0.8s;
     -o-transition-duration: 0.8s;
     transition-duration: 0.8s;
-
 }

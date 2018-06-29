@@ -165,9 +165,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 public">
-                                                    <span [ngClass]="checkType(getTBlocks.transactionType)">
-                            {{getTBlocks.transactionType}}
-                          </span>
+                                                    <span [ngClass]="checkType(getTBlocks.transactionType)">{{getTBlocks.transactionType}}</span>
                                                 </div>
                                             </div>
                                         </h4>
@@ -184,6 +182,7 @@
 </div>
 <div class="grid-container contract-list-container animated " *ngIf="isIpBlock" [ngClass]="(isSelected == 'ipClass')?'fadeIn':''">
     <h2>Contract List</h2>
+    <input class="serach" [(ngModel)]='searchQuery' placeholder="Search contract list by contract address..." />
     <div class="ip-contract-list">
         <div class="table-responsive">
             <table class="table table-hover">
@@ -200,7 +199,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of contractListData | orderBy : OrderByType;let i=index">
+                    <tr *ngFor="let item of contractListData | orderBy : OrderByType | searchkeyword: 'contractAddress' : searchQuery;let i=index">
                         <td title="Show Details">
                             <span (click)="uploadABIModal(item,true)" [ngClass]="{'icon-contract': item?.abi !=''}">&nbsp;</span>
                         </td>

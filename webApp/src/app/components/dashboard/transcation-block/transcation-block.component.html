@@ -312,90 +312,92 @@
                 <tr>
                     <td colspan="2" class="transaction-title col-md-12">Logs</td>
                 </tr>
-                <tr *ngFor="let item of TxNDetails?.logs">
-                    <td class="col-md-4">
-                        <div class="item">
-                            <span>Address</span>
-                        </div>
-                    </td>
-                    <td class="col-md-8">
-                        <div class="item">
-                            <span title="{{item?.address}}">{{item?.address || '--'}}</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="item">
-                            <span>Block Hash</span>
-                        </div>
-                    </td>
-                    <td class="col-md-8">
-                        <div class="item">
-                            <span title="{{item?.blockHash}}">{{item?.blockHash || '--'}}</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="item">
-                            <span>Block Number</span>
-                        </div>
-                    </td>
-                    <td class="col-md-8">
-                        <div class="item">
-                            <span title="{{item?.blockNumber}}">{{item?.blockNumber || '--'}}</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="item">
-                            <span>Data</span>
-                        </div>
-                    </td>
-                    <td class="col-md-8">
-                        <div class="item">
-                            <span title="{{item?.data}}">{{item?.data || '--'}}</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="item">
-                            <span>Topics</span>
-                        </div>
-                    </td>
-                    <td class="col-md-8">
-                        <div class="item">
-                            <span title="{{item?.topics[0]}}">{{item?.topics[0] || '--'}}</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="item">
-                            <span>Transaction Hash</span>
-                        </div>
-                    </td>
-                    <td class="col-md-8">
-                        <div class="item">
-                            <span title="{{item?.transactionHash}}">{{item?.transactionHash || '--'}}</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="item">
-                            <span>Transaction Index</span>
-                        </div>
-                    </td>
-                    <td class="col-md-8">
-                        <div class="item">
-                            <span title="{{item?.transactionIndex}}">{{item?.transactionIndex || '--'}}</span>
-                        </div>
-                    </td>
-                </tr>
+                <tbody *ngFor="let logItem of TxNDetails?.logs">
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="item">
+                                <span>Address</span>
+                            </div>
+                        </td>
+                        <td class="col-md-8">
+                            <div class="item">
+                                <span title="{{logItem?.address}}">{{logItem?.address || '--'}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="item">
+                                <span>Block Hash</span>
+                            </div>
+                        </td>
+                        <td class="col-md-8">
+                            <div class="item">
+                                <span title="{{logItem?.blockHash}}">{{logItem?.blockHash || '--'}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="item">
+                                <span>Block Number</span>
+                            </div>
+                        </td>
+                        <td class="col-md-8">
+                            <div class="item">
+                                <span title="{{logItem?.blockNumber}}">{{logItem?.blockNumber || '--'}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="item">
+                                <span>Data</span>
+                            </div>
+                        </td>
+                        <td class="col-md-8">
+                            <div class="item">
+                                <span title="{{logItem?.data}}">{{logItem?.data || '--'}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="item">
+                                <span>Topics</span>
+                            </div>
+                        </td>
+                        <td class="col-md-8">
+                            <div class="item">
+                                <span title="{{logItem?.topics[0]}}">{{logItem?.topics[0] || '--'}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="item">
+                                <span>Transaction Hash</span>
+                            </div>
+                        </td>
+                        <td class="col-md-8">
+                            <div class="item">
+                                <span title="{{logItem?.transactionHash}}">{{logItem?.transactionHash || '--'}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="item">
+                                <span>Transaction Index</span>
+                            </div>
+                        </td>
+                        <td class="col-md-8">
+                            <div class="item">
+                                <span title="{{logItem?.transactionIndex}}">{{logItem?.transactionIndex || '--'}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
 
             </table>
             <div class="col-md-12 col-sm-12 decoded-inputs-column">

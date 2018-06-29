@@ -7,7 +7,7 @@ import { Observable, Observer } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import 'rxjs/add/operator/takeWhile';
-
+import { SearchKeywordPipe } from './dashboard-search-pipe';
 
 @Component({
   selector: 'app-dashboard',

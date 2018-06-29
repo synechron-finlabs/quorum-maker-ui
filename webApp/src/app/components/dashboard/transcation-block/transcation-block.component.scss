@@ -1,4 +1,7 @@
 .table-logs {
+    tbody+tbody {
+        border: none;
+    }
     td.col-md-4 {
         width: 25% !important;
     }
