@@ -55,6 +55,7 @@ export class ContractAbiDeploymentComponent implements OnInit {
   onSelectFile(event) {
     if (event.target.files && event.target.files.length > 0) {
       this.filesToUpload = event.target.files[0];
+      this.contractAbi.invalid = false;
       console.log(' this.filesToUpload >>>>>>', this.filesToUpload);
     }
 
