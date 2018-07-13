@@ -1,64 +1,69 @@
 <p-growl [value]="msgs"></p-growl>
 
 <div class="container-fluid header">
-  <div class="navbar-header">
-    <a class="navbar-brand logo">
-      <img src="/assets/images/quorum-maker.svg">
-    </a>
-    <span>{{getNodeInfoList?.nodeName}}</span>
-    <em *ngIf="getNodeInfoList">{{getNodeInfoList?.active}}</em>
-  </div>
-  <div class="iconeRight pull-right">
-    <ul class="nav navbar-nav ">
-      <li class="logs">
-        <div>
-          <em>Logs:&nbsp;</em>
-          <a href='/geth/' target="_blank" title="Geth">Geth</a> |
-          <a href='/constellation/' target="_blank" title="Consetellation">Constellation</a>
-        </div>
-      </li>
-      <li class="compile-deploy">
-        <a href="javascript:void(0)" (click)="emailServerConfig()">Email Server Configuration</a>
-      </li>
-      <li class="compile-deploy">
-        <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
-      </li>
-      <li class="compile-deploy">
-        <a href="/contracts/" target="_blank">Deployed Contracts</a>
-      </li>
-      <li class="dropdown dropdown-click" *ngIf="pendingRequest?.length > 0">
-        <img src="/assets/images/crossroad.png" (click)="toggle()">
-        <span class="count">{{pendingRequest?.length}}</span>
-        <div class="dropdown-menu-list animated" *ngIf="show" (window:click)="autoClose($event)">
-          <h2>Pending Request for join Network</h2>
-          <div class="dropdown-inner" [ngClass]="pendingRequest?.length >= 5 ? 'vscroll' : '' ">
-            <ul>
-              <li *ngFor="let item of pendingRequest" [popover]="myPopover" [popoverOnHover]="true">
-                <span>{{item?.nodeName}}</span>
-                <a class="reject" (click)="submitStatus(item, 'NO')">reject</a>
-                <a class="accept" (click)="submitStatus(item, 'YES')">Accept</a>
-                <popover-content #myPopover placement="left" [animation]="true" class="popover-list">
-                  <span>
+    <div class="navbar-header">
+        <a class="navbar-brand logo">
+            <img src="/assets/images/quorum-maker.svg">
+        </a>
+        <span>{{getNodeInfoList?.nodeName}}</span>
+        <em *ngIf="getNodeInfoList">{{getNodeInfoList?.active}}</em>
+    </div>
+    <div class="iconeRight pull-right">
+        <ul class="nav navbar-nav ">
+            <li class="logs">
+                <div>
+                    <em>Logs:&nbsp;</em>
+                    <a href='/geth/' target="_blank" title="Geth">Geth</a> |
+                    <a href='/constellation/' target="_blank" title="Consetellation">Constellation</a>
+                </div>
+            </li>
+            <li class="compile-deploy">
+                <a href="javascript:void(0)" (click)="emailServerConfig()">Email Server Configuration</a>
+            </li>
+            <li class="compile-deploy">
+                <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
+            </li>
+            <li class="compile-deploy">
+                <a href="/contracts/" target="_blank">Deployed Contracts</a>
+            </li>
+            <li class="dropdown dropdown-click" *ngIf="pendingRequest?.length > 0">
+                <img src="/assets/images/crossroad.png" (click)="toggle()">
+                <span class="count">{{pendingRequest?.length}}</span>
+                <div class="dropdown-menu-list animated" *ngIf="show" (window:click)="autoClose($event)">
+                    <h2>Pending Request for join Network</h2>
+                    <div class="dropdown-inner" [ngClass]="pendingRequest?.length >= 5 ? 'vscroll' : '' ">
+                        <ul>
+                            <li *ngFor="let item of pendingRequest" [popover]="myPopover" [popoverOnHover]="true">
+                                <span>{{item?.nodeName}}</span>
+                                <a class="reject" (click)="submitStatus(item, 'NO')">reject</a>
+                                <a class="accept" (click)="submitStatus(item, 'YES')">Accept</a>
+                                <popover-content #myPopover placement="left" [animation]="true" class="popover-list">
+                                    <span>
                     <strong>Message:</strong>
                     <br>{{item.message}}
                   </span>
-                  <span>
+                                    <span>
                     <strong>Enode : </strong>
                     <br>{{item.enode}}
                   </span>
-                  <span>
+                                    <span>
                     <strong>IP : </strong>
                     <br> {{item.ip}}
                   </span>
-                </popover-content>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
+                                </popover-content>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown dropdown-click" *ngIf="!uploadLogPathStatus">
+                <img src="/assets/images/icon-upload.png" (click)="uploadLogPath()">
+                <span class="count">1</span>
+            </li>
+        </ul>
+    </div>
 </div>
 
 <app-model-overlay-quorum [display]="display" (showOverlay)="closeFlag($event)"></app-model-overlay-quorum>
 <app-email-server-configuration [display2]="display2" (messageEvent)="receiveMessage($event)" (showEvent)="closeFlag($event)"></app-email-server-configuration>
+<app-upload-log-path *ngIf="displayUploadLogs" [displayUploadLogs]="displayUploadLogs" (closeUploadLogsMsg)="closeUploadLogsMsg($event)"></app-upload-log-path>

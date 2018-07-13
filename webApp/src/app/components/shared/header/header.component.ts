@@ -20,10 +20,12 @@ export class HeaderComponent implements OnInit {
   message: any;
   subscription: Subscription;
   public show: boolean = false;
-  msgs: Message[];
+  msgs: Message[] = [];
+  displayUploadLogs: boolean = false;
   display: boolean = false;
   display2: boolean = false;
   serviceCallInterval: number;
+  uploadLogPathStatus:boolean = false;
 
   constructor(private messageService: MessageService, private cd: ChangeDetectorRef, private _CommonService: CommonService, private utilityService: UtilityService) {
 
@@ -35,6 +37,9 @@ export class HeaderComponent implements OnInit {
     });
 
     IntervalObservable.create(15000).subscribe(response => {
+      if(!this.uploadLogPathStatus){
+        this.getUploadLogPathStatus();
+      }
       this._CommonService.getPendingRequest().subscribe(result => {
         this.pendingRequest = result.json();
         //console.log(' this.pendingRequest>>>>>>', this.pendingRequest);
@@ -48,6 +53,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.getLogsInfo();
     this.getPendingRequest();
+    this.getUploadLogPathStatus();
   }
 
   toggle() {
@@ -136,5 +142,38 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
+
+  uploadLogPath(){
+    this.displayUploadLogs = true;
+    this.cd.detectChanges();
+    this.cd.markForCheck();
+  }
+
+  closeUploadLogsMsg(event) {
+    var formMsg = event.msg;
+    console.log("closeUploadLogsMsg>>>> ",event);
+    this.displayUploadLogs = false;
+    if (formMsg) {
+      this.msgs.push({ severity: 'success', summary: formMsg });
+      setTimeout(() => {
+        this.msgs = [];
+        this.cd.detectChanges();
+        this.cd.markForCheck();
+        this.getUploadLogPathStatus();
+      }, 3000);
+    }
+  }
+
+  getUploadLogPathStatus() {
+    this._CommonService.getuploadLogsPath().subscribe(result => {
+      let data:any = result.json();
+      this.uploadLogPathStatus = data.statusMessage;
+    },
+      err => {
+        console.log("Error occured", err);
+      }
+    );
+  }
+
 }
 // }

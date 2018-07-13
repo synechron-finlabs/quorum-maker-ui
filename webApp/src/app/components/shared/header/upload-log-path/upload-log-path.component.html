@@ -1,0 +1,34 @@
+<p-growl [value]="mesgshow"></p-growl>
+<div class="abi-wrapper">
+    <p-dialog [(visible)]="displayUploadLogs" [modal]="true" [responsive]="true" [width]="760" [minWidth]="200" [minY]="70" closeOnEscape="true" dismissableMask="true" (onHide)="onClose()">
+        <p-header class="header">
+            <h4>Upload Log Path</h4>
+        </p-header>
+        <div class="p-dialog-inner">
+            <!-- (ngSubmit)="submitForm()" -->
+            <form novalidate class="form-wrapper-inner" [formGroup]="uploadLogsPathForm" *ngIf="!loadingForm">
+                <div class="row compileDeploy">
+                    <div class="col-md-6 form-group">
+                        <label>Geth Logs Path</label>
+                        <input name="gethPath" type="text" id="gethPath" formControlName="gethPath" class="form-control">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Constellation Logs Path</label>
+                        <input name="constellationPath" type="text" id="constellationPath" formControlName="constellationPath" class="form-control">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label>Upload Genesis File</label>
+                        <div class="custom-upload">
+                            <input name="file" type="file" id="selectFile" formControlName="selectFile" class="form-control" (change)="onSelectFile($event)">
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-footer">
+                    <div class="col-md-12 form-group">
+                        <button type="submit" [disabled]="uploadLogsPathForm.invalid" (click)="submitForm(uploadLogsPathForm.value)" class="btn btn-green pull-right">SUBMIT</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </p-dialog>
+</div>

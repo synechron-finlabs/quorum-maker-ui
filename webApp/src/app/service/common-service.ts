@@ -186,5 +186,15 @@ export class CommonService {
     return this.http.post(this.nodeURL + 'updateContractDetails', params)
   }
 
+  uploadLogsPath(params) {
+    console.log('params >>>>', params)
+    return this.http.post(this.nodeURL + 'attachedNodeDetails', params)
+  }
+
+  getuploadLogsPath() {
+    //console.log('GetLogs----', this.nodeURL + 'logs');
+    return this.http.get(this.nodeURL + 'initialized');
+  }
+
 }
 
