@@ -86,15 +86,16 @@ img {
                 color: $WhiteColor;
                 font-family: $Heebo-Light;
                 border-bottom: 1px solid #222941;
-                border-top: 1px solid #2b3045;
                 padding: 8px 10px 13px 10px;
                 letter-spacing: 0.3px;
+                border-top: none;
             }
         }
         tr {
             background-color: #2b3045;
+            border-top: 1px solid #222941;
             td {
-                border-top: 1px solid #222941;
+                border-top: none;
                 padding: 8px 10px 8px 10px;
                 font-size: 12px;
                 color: #676b7a;
@@ -139,7 +140,7 @@ img {
                 }
                 &.node {
                     white-space: nowrap;
-                    width: 355px;
+                    width: 305px;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     display: inline-block;
@@ -157,6 +158,9 @@ img {
                     @include mq($deskPort) {
                         width: 183px;
                     }
+                }
+                &.ip-addr {
+                    width: 120px;
                 }
             }
         }
@@ -208,7 +212,7 @@ img {
         background-color: #222941;
         padding: 15px 12px;
         p {
-            margin-bottom: 10px;
+            margin-bottom: 13px;
         }
         h5 {
             color: $WhiteColor;
@@ -235,7 +239,7 @@ img {
             font-size: 42px;
             font-family: $Heebo-Light;
             margin: 0;
-            padding: 0 0 8px 0;
+            padding: 0 0 13px 0;
             &.active-node {
                 color: $WhiteColor;
             }
@@ -260,6 +264,7 @@ img {
                 font-family: $Heebo-Light;
                 color: #628fed;
                 font-size: 13px;
+                font-weight: normal;
                 @include mq($deskPort) {
                     margin-right: 6px;
                     font-size: 12px;
@@ -544,7 +549,7 @@ img {
 .icon-sort {
     background: url('/assets/images/order.png') no-repeat 0 0;
     background-size: cover;
-    height: 14px;
+    height: 17px;
     margin-left: 10px;
     width: 14px;
     line-height: 1;

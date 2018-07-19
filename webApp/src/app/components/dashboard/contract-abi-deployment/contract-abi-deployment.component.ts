@@ -57,6 +57,11 @@ export class ContractAbiDeploymentComponent implements OnInit {
       this.filesToUpload = event.target.files[0];
       this.contractAbi.invalid = false;
       console.log(' this.filesToUpload >>>>>>', this.filesToUpload);
+      var fileName = this.filesToUpload.name.substr(0, this.filesToUpload.name.lastIndexOf('.'));
+      console.log(fileName);
+      this.deployContractABI.controls['name'].setValue(fileName);
+  
+
     }
 
   }
