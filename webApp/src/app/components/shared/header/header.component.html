@@ -24,7 +24,7 @@
                 <a href="javascript:void(0)" (click)="compileAndDeployContracts()">Compile & Deploy Contracts</a>
             </li>
             <li class="compile-deploy">
-                <a href="/contracts/" target="_blank">Deployed Contracts</a>
+                <a href="javascript:void(0)" (click)="displayAccounts()" target="_blank">Accounts</a>
             </li>
             <li class="dropdown dropdown-click" *ngIf="pendingRequest?.length > 0">
                 <img src="/assets/images/crossroad.png" (click)="toggle()">
@@ -39,17 +39,17 @@
                                 <a class="accept" (click)="submitStatus(item, 'YES')">Accept</a>
                                 <popover-content #myPopover placement="left" [animation]="true" class="popover-list">
                                     <span>
-                    <strong>Message:</strong>
-                    <br>{{item.message}}
-                  </span>
+                                        <strong>Message:</strong>
+                                        <br>{{item.message}}
+                                    </span>
                                     <span>
-                    <strong>Enode : </strong>
-                    <br>{{item.enode}}
-                  </span>
+                                        <strong>Enode : </strong>
+                                        <br>{{item.enode}}
+                                    </span>
                                     <span>
-                    <strong>IP : </strong>
-                    <br> {{item.ip}}
-                  </span>
+                                        <strong>IP : </strong>
+                                        <br> {{item.ip}}
+                                    </span>
                                 </popover-content>
                             </li>
                         </ul>
@@ -60,6 +60,24 @@
                 <img src="/assets/images/icon-upload.png" (click)="uploadLogPath()">
                 <span class="count">1</span>
             </li>
+            <li class="dropdown dropdown-click" *ngIf="notificationStatus">
+                <img src="/assets/images/bell-2-24.png" (click)="toggleNotification()">
+                <span class="count">1</span>
+                <div *ngIf="showNotification" class="notification-list">
+                    <div *ngIf="notifications.length > 0">
+                        <span> Notifications. </span>
+                        <hr/>
+                        <ul>
+                            <li *ngFor="let notification of notifications">
+                                {{ notification }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="notifications.length==0">
+                        <span>No notifications. </span>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 </div>
@@ -67,3 +85,4 @@
 <app-model-overlay-quorum [display]="display" (showOverlay)="closeFlag($event)"></app-model-overlay-quorum>
 <app-email-server-configuration [display2]="display2" (messageEvent)="receiveMessage($event)" (showEvent)="closeFlag($event)"></app-email-server-configuration>
 <app-upload-log-path *ngIf="displayUploadLogs" [displayUploadLogs]="displayUploadLogs" (closeUploadLogsMsg)="closeUploadLogsMsg($event)"></app-upload-log-path>
+<app-account-list [displayaccount]="displayaccount" (messageEvent)="receiveMessage($event)" (showEvent)="closeFlag($event)"></app-account-list>

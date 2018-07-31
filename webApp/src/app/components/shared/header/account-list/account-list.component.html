@@ -1,0 +1,27 @@
+<div class="p-dialog-wrapper email-server-config">
+  <p-dialog [(visible)]="displayaccount" [modal]="true" [responsive]="true" [width]="600" [height]="510" draggable="true" closeOnEscape="true"
+    dismissableMask="true" (onHide)="onClose()">
+
+    <p-header class="header">
+      <h2>Accounts</h2>
+    </p-header>
+    <div class="p-dialog-inner">
+      <div class="row">
+        <label class="col-md-4 float-left">Create New Account:</label>
+        <input type="password" class="form-control col-md-5 float-left" [(ngModel)]="pwdAccount">
+        <div class="col-md-3 float-left">
+          <button type="button" class="btn btn-green" (click)="addAccount(pwdAccount)">Submit</button>
+        </div>
+      </div>
+      <hr/>
+      <div class="v-scrollbar">
+        <div class="row">
+          <ul>
+            <li class="account-list" *ngFor="let account of accounts;let i = index">
+              {{i+1}} - {{account}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </p-dialog>

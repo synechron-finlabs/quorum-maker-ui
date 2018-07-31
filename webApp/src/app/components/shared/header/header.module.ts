@@ -19,6 +19,7 @@ import { MessageService } from '../../../service/message.service';
 import { UtilityService } from '../../../service/utility.service';
 import { EmailServerConfigurationComponent } from './email-server-configuration/email-server-configuration.component';
 import { UploadLogPathComponent } from './upload-log-path/upload-log-path.component';
+import { AccountListComponent } from './account-list/account-list.component';
 
 @NgModule({
     imports: [
@@ -36,7 +37,7 @@ import { UploadLogPathComponent } from './upload-log-path/upload-log-path.compon
         PopoverModule
     ],
 
-    declarations: [HeaderComponent, ModelOverlayQuorumComponent, EmailServerConfigurationComponent, UploadLogPathComponent],
+    declarations: [HeaderComponent, ModelOverlayQuorumComponent, EmailServerConfigurationComponent, UploadLogPathComponent, AccountListComponent],
     exports: [HeaderComponent],
     providers: [MessageService, UtilityService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

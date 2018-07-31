@@ -196,5 +196,20 @@ export class CommonService {
     return this.http.get(this.nodeURL + 'initialized');
   }
 
+  getAccountList() {
+    //console.log('GetLogs----', this.nodeURL + 'logs');
+    // return this.http.get(environment.testnodeURL + 'getAccounts')
+    // .map(data => data.json());
+    return this.http.get(this.nodeURL + 'getAccounts')
+    .map(data => data.json());
+  }
+
+  addAccount(params) {
+    console.log('params >>>>', params)
+    // return this.http.post(environment.testnodeURL + 'createAccount', params)
+    // .map(data => data.json());
+    return this.http.post(this.nodeURL + 'createAccount', params)
+    .map(data => data.json());
+  }
 }
 

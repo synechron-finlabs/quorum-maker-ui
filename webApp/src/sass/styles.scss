@@ -854,3 +854,7 @@ ng2-odometer {
         cursor: text;
     }
 }
+
+.ui-growl-message p {
+    word-wrap: break-word;
+}

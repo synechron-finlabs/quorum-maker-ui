@@ -24,8 +24,12 @@ export class HeaderComponent implements OnInit {
   displayUploadLogs: boolean = false;
   display: boolean = false;
   display2: boolean = false;
+  displayaccount: boolean = false;
   serviceCallInterval: number;
-  uploadLogPathStatus:boolean = false;
+  uploadLogPathStatus: boolean = false;
+  notificationStatus: boolean = false;
+  showNotification:boolean =false;
+  notifications:any=[];
 
   constructor(private messageService: MessageService, private cd: ChangeDetectorRef, private _CommonService: CommonService, private utilityService: UtilityService) {
 
@@ -37,7 +41,7 @@ export class HeaderComponent implements OnInit {
     });
 
     IntervalObservable.create(15000).subscribe(response => {
-      if(!this.uploadLogPathStatus){
+      if (!this.uploadLogPathStatus) {
         this.getUploadLogPathStatus();
       }
       this._CommonService.getPendingRequest().subscribe(result => {
@@ -54,6 +58,14 @@ export class HeaderComponent implements OnInit {
     this.getLogsInfo();
     this.getPendingRequest();
     this.getUploadLogPathStatus();
+    // this.notifications.push("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.");
+    // this.notifications.push("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.");
+    if(this.notifications.length==0){
+      this.notificationStatus= false;
+    }
+    else{
+      this.notificationStatus= true;
+    }
   }
 
   toggle() {
@@ -85,6 +97,7 @@ export class HeaderComponent implements OnInit {
   closeFlag($event) {
     this.display = $event
     this.display2 = $event
+    this.displayaccount = $event
     //console.log('closeFlag >>>>>>>>>>', this.display)
     //console.log('closeFlag2 >>>>>>>>>>', this.display2)
     // this.cd.detectChanges();
@@ -93,6 +106,8 @@ export class HeaderComponent implements OnInit {
   receiveMessage($event) {
     this.msgs = $event
   }
+
+
 
   getPendingRequest() {
     this._CommonService.getPendingRequest().subscribe(result => {
@@ -143,7 +158,7 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  uploadLogPath(){
+  uploadLogPath() {
     this.displayUploadLogs = true;
     this.cd.detectChanges();
     this.cd.markForCheck();
@@ -151,10 +166,12 @@ export class HeaderComponent implements OnInit {
 
   closeUploadLogsMsg(event) {
     var formMsg = event.msg;
-    console.log("closeUploadLogsMsg>>>> ",event);
+    console.log("closeUploadLogsMsg>>>> ", event);
     this.displayUploadLogs = false;
     if (formMsg) {
       this.msgs.push({ severity: 'success', summary: formMsg });
+      this.notificationStatus= true;
+      this.notifications.push(formMsg);
       setTimeout(() => {
         this.msgs = [];
         this.cd.detectChanges();
@@ -166,7 +183,7 @@ export class HeaderComponent implements OnInit {
 
   getUploadLogPathStatus() {
     this._CommonService.getuploadLogsPath().subscribe(result => {
-      let data:any = result.json();
+      let data: any = result.json();
       this.uploadLogPathStatus = data.statusMessage;
     },
       err => {
@@ -175,5 +192,13 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+
+  displayAccounts() {
+    this.displayaccount = true;
+  }
+
+  toggleNotification(){
+    this.showNotification =!this.showNotification;
+  }
 }
 // }
