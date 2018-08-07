@@ -12,7 +12,7 @@ export class AccountListComponent implements OnInit {
   @Input() displayaccount;
   @Output() showEvent = new EventEmitter();
   @Output() messageEvent = new EventEmitter<any>();
-  accounts: any = [];
+  accounts: any ;
   pwdAccount: string = "";
   response: any = {};
   msgs: Message[];
@@ -28,13 +28,14 @@ export class AccountListComponent implements OnInit {
   getAccountList(){
     this._CommonService.getAccountList().subscribe(
       res => {
-        this.accounts = res.accounts;
+        this.accounts = res.json();
+        console.log("this.accounts>>>>>>>>>>>>",this.accounts);
       });
   }
   addAccount(pwdAccount) {
-    if (pwdAccount != "") {
+    // if (pwdAccount != "") { // pwd can be empty string hence commenting
       let params = {
-        "password": pwdAccount
+        "password": pwdAccount || ""
       }
       this._CommonService.addAccount(params).subscribe(
         res => {
@@ -60,7 +61,7 @@ export class AccountListComponent implements OnInit {
           }
         );
 
-    }
+    // }
   }
 
   onClose() {

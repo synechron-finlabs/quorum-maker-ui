@@ -28,8 +28,9 @@ export class HeaderComponent implements OnInit {
   serviceCallInterval: number;
   uploadLogPathStatus: boolean = false;
   notificationStatus: boolean = false;
-  showNotification:boolean =false;
-  notifications:any=[];
+  showNotification: boolean = false;
+  notifications: any = [];
+  displayWhitelist: boolean = false;
 
   constructor(private messageService: MessageService, private cd: ChangeDetectorRef, private _CommonService: CommonService, private utilityService: UtilityService) {
 
@@ -60,11 +61,11 @@ export class HeaderComponent implements OnInit {
     this.getUploadLogPathStatus();
     // this.notifications.push("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.");
     // this.notifications.push("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.");
-    if(this.notifications.length==0){
-      this.notificationStatus= false;
+    if (this.notifications.length == 0) {
+      this.notificationStatus = false;
     }
-    else{
-      this.notificationStatus= true;
+    else {
+      this.notificationStatus = true;
     }
   }
 
@@ -94,20 +95,22 @@ export class HeaderComponent implements OnInit {
     //console.log('open >>>>>>>>>>', this.display2)
   }
 
-  closeFlag($event) {
-    this.display = $event
-    this.display2 = $event
-    this.displayaccount = $event
+  closeFlag(event) {
+    this.display = event;
+    this.display2 = event;
+    this.displayaccount = event;
     //console.log('closeFlag >>>>>>>>>>', this.display)
-    //console.log('closeFlag2 >>>>>>>>>>', this.display2)
     // this.cd.detectChanges();
+  }
+
+  onCloseWhitelist(event) {
+    this.displayWhitelist = event;
+    console.log('displayWhitelist >>>>>>>>>>', this.displayWhitelist)
   }
 
   receiveMessage($event) {
     this.msgs = $event
   }
-
-
 
   getPendingRequest() {
     this._CommonService.getPendingRequest().subscribe(result => {
@@ -170,7 +173,7 @@ export class HeaderComponent implements OnInit {
     this.displayUploadLogs = false;
     if (formMsg) {
       this.msgs.push({ severity: 'success', summary: formMsg });
-      this.notificationStatus= true;
+      this.notificationStatus = true;
       this.notifications.push(formMsg);
       setTimeout(() => {
         this.msgs = [];
@@ -196,9 +199,11 @@ export class HeaderComponent implements OnInit {
   displayAccounts() {
     this.displayaccount = true;
   }
-
-  toggleNotification(){
-    this.showNotification =!this.showNotification;
+  displayWhitelists() {
+    this.displayWhitelist = true;
+  }
+  toggleNotification() {
+    this.showNotification = !this.showNotification;
   }
 }
 // }

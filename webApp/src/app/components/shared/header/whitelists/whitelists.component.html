@@ -1,0 +1,67 @@
+<div class="p-dialog-wrapper p-dialog-wrapper-ip email-server-config">
+  <p-dialog [(visible)]="displayWhitelist" [modal]="true" [responsive]="true" [width]="600" [height]="510" draggable="true"
+    closeOnEscape="true" dismissableMask="true" (onHide)="onClose()">
+    <p-header class="header">
+      <h2>Whitelist </h2>
+    </p-header>
+    <div class="p-dialog-inner">
+      <div class="ip-boxer">
+        <div class="ip-top">
+          <div class="form-group row" *ngIf="whitelists?.length > 0">
+            <label class="col-md-3">Add New Ip</label>
+            <!-- <p-inputMask [(ngModel)]="val" class="form-control col-md-5" mask="99?.99?.99?.999"></p-inputMask> -->
+            <input type="text" class="form-control col-md-5" [(ngModel)]="listItems">
+            <button type="button" class="btn btn-green col-md-3" (click)="addWhiteListIp(listItems)">Add</button>
+          </div>
+          <div class="v-scrollbar">
+            <div *ngIf="whitelists">
+              <h3 *ngIf="whitelists?.length > 0">Whitelisted IPs</h3>
+              <div class="ip-row">
+                <ul class="list-unstyled list-ips">
+                  <li *ngFor="let item of whitelists;let i = index">
+                    {{item}}
+                    <span class="icon-delete pull-right" (click)="deleteIp(i)">
+                      <i class="fa fa-trash"></i>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="ip-bottom text-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-green" *ngIf="whitelists?.length == 0" (click)="addWhiteListIp(listItems)">Add</button>
+                <button type="button" *ngIf="whitelists?.length > 0" class="btn btn-green" (click)="updateWhiteListIp()">Save</button>
+              </div>
+            </div>
+            <hr>
+            <div *ngIf="connectedList">
+              <h3>Connected Node IPs</h3>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>IP Address</th>
+                      <th>Connected Node Count</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of connectedList;let i = index">
+                      <td>
+                        <span *ngIf="item?.whitelisted==true">
+                          <img src="/assets/images/accept.png" alt="n">
+                        </span>
+                      </td>
+                      <td>{{item.ip}}</td>
+                      <td>{{item.count}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-dialog>

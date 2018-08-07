@@ -200,8 +200,7 @@ export class CommonService {
     //console.log('GetLogs----', this.nodeURL + 'logs');
     // return this.http.get(environment.testnodeURL + 'getAccounts')
     // .map(data => data.json());
-    return this.http.get(this.nodeURL + 'getAccounts')
-    .map(data => data.json());
+    return this.http.get(this.nodeURL + 'getAccounts');
   }
 
   addAccount(params) {
@@ -210,6 +209,15 @@ export class CommonService {
     // .map(data => data.json());
     return this.http.post(this.nodeURL + 'createAccount', params)
     .map(data => data.json());
+  }
+
+  getWhiteListIp() {
+    return this.http.get(this.nodeURL + 'getWhitelist');
+  }
+
+  addWhiteListIp(params) {
+    console.log('params >>>>', params)
+    return this.http.post(this.nodeURL + 'updateWhitelist', params).map(data => data.json());
   }
 }
 

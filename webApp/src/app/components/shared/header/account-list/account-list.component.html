@@ -15,12 +15,37 @@
       </div>
       <hr/>
       <div class="v-scrollbar">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  &nbsp;
+                </th>
+                <th>Account Address</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="accounts" *ngFor="let account of accounts;let i = index">
+                <td>
+                  <span [ngClass]="{'icon-coin': account?.coinbase == true}"></span>
+                </td>
+                <td>
+                  <div class="text-overflow" title="{{account.accountAddress}}">{{account.accountAddress}}</div>
+                </td>
+                <td>{{account.balance}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div class="row">
-          <ul>
+          <!-- <pre>{{accounts |json }}</pre> -->
+          <!-- <ul>
             <li class="account-list" *ngFor="let account of accounts;let i = index">
-              {{i+1}} - {{account}}
+              {{i+1}} - {{account.accountAddress}}
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </div>

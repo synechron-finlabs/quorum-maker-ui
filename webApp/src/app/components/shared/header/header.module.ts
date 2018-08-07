@@ -10,6 +10,7 @@ import { FileUploadModule } from 'primeng/primeng';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { InputMaskModule } from 'primeng/inputmask';
 
 import { HeaderComponent } from './header.component';
 import { ModelOverlayQuorumComponent } from './model-overlay-quorum/model-overlay-quorum.component';
@@ -20,6 +21,7 @@ import { UtilityService } from '../../../service/utility.service';
 import { EmailServerConfigurationComponent } from './email-server-configuration/email-server-configuration.component';
 import { UploadLogPathComponent } from './upload-log-path/upload-log-path.component';
 import { AccountListComponent } from './account-list/account-list.component';
+import { WhitelistsComponent } from './whitelists/whitelists.component';
 
 @NgModule({
     imports: [
@@ -34,10 +36,11 @@ import { AccountListComponent } from './account-list/account-list.component';
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        PopoverModule
+        PopoverModule,
+        InputMaskModule
     ],
 
-    declarations: [HeaderComponent, ModelOverlayQuorumComponent, EmailServerConfigurationComponent, UploadLogPathComponent, AccountListComponent],
+    declarations: [HeaderComponent, ModelOverlayQuorumComponent, EmailServerConfigurationComponent, UploadLogPathComponent, AccountListComponent, WhitelistsComponent],
     exports: [HeaderComponent],
     providers: [MessageService, UtilityService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
