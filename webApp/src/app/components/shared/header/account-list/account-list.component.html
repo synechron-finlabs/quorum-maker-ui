@@ -29,7 +29,8 @@
             <tbody>
               <tr class="accounts" *ngFor="let account of accounts;let i = index">
                 <td>
-                  <span [ngClass]="{'icon-coin': account?.coinbase == true}"></span>
+                  <!-- <span [ngClass]="{'icon-coinbase' ? (account?.coinbase == true) : 'icon-coin' }"></span> -->
+                  <span [ngClass]="{'icon-coin': (account?.coinbase == false),'icon-coinbase':(account?.coinbase == true)}"></span>
                 </td>
                 <td>
                   <div class="text-overflow" title="{{account.accountAddress}}">{{account.accountAddress}}</div>

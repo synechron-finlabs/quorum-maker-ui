@@ -153,15 +153,11 @@
       width: 24px;
       height: 24px;
     }
-    // span {
-    //   height: 20px;
-    //   width: 20px;
-    //   font-size: 0;
-    //   line-height: 0; //   text-indent: -5000px;
-    //   display: block;
-    //   &.coinIcon {
-    //     background: url('/assets/images/ether.png') no-repeat 0 0;
-    //   }
-    // }
+    .icon-coinbase {
+      background: url('/assets/images/ether-miner.png') no-repeat 0 0 / cover;
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
   }
 }

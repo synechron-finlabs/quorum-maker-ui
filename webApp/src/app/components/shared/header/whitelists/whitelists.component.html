@@ -9,8 +9,8 @@
         <div class="ip-top">
           <div class="form-group row" *ngIf="whitelists?.length > 0">
             <label class="col-md-3">Add New Ip</label>
-            <!-- <p-inputMask [(ngModel)]="val" class="form-control col-md-5" mask="99?.99?.99?.999"></p-inputMask> -->
-            <input type="text" class="form-control col-md-5" [(ngModel)]="listItems">
+            <!-- <p-inputMask [(ngModel)]="listItems" required=true class="form-control col-md-5" mask="99.99.99.999"></p-inputMask> -->
+            <input type="text" [required]="true" class="form-control col-md-5" [(ngModel)]="listItems">
             <button type="button" class="btn btn-green col-md-3" (click)="addWhiteListIp(listItems)">Add</button>
           </div>
           <div class="v-scrollbar">
