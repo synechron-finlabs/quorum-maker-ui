@@ -8,7 +8,7 @@
     <div class="p-dialog-inner">
       <div class="row">
         <label class="col-md-4 float-left">Create New Account:</label>
-        <input type="password" class="form-control col-md-5 float-left" [(ngModel)]="pwdAccount">
+        <input type="password" placeholder="Enter Password Here" class="form-control col-md-5 float-left" [(ngModel)]="pwdAccount">
         <div class="col-md-3 float-left">
           <button type="button" class="btn btn-green" (click)="addAccount(pwdAccount)">Submit</button>
         </div>
@@ -29,7 +29,7 @@
             <tbody>
               <tr class="accounts" *ngFor="let account of accounts;let i = index">
                 <td>
-                  <span [ngClass]="{'icon-coin': account?.coinbase == true}"></span>
+                  <span title="{{(account?.coinbase == true) ? 'Coinbase':''}}" [ngClass]="{'icon-coin': (account?.coinbase == false),'icon-coinbase':(account?.coinbase == true)}"></span>
                 </td>
                 <td>
                   <div class="text-overflow" title="{{account.accountAddress}}">{{account.accountAddress}}</div>
@@ -38,14 +38,6 @@
               </tr>
             </tbody>
           </table>
-        </div>
-        <div class="row">
-          <!-- <pre>{{accounts |json }}</pre> -->
-          <!-- <ul>
-            <li class="account-list" *ngFor="let account of accounts;let i = index">
-              {{i+1}} - {{account.accountAddress}}
-            </li>
-          </ul> -->
         </div>
       </div>
     </div>
