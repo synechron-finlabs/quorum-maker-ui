@@ -63,17 +63,6 @@
         box-shadow: none;
       }
     }
-    .info_img {
-      height: 13px;
-      width: 13px;
-      opacity: 0.6;
-    }
-    .icon-background1 {
-      color: #618acd;
-    }
-    .fa-info-circle:before {
-      content: "\f05a";
-    }
     .btn-green {
       border-radius: 4px;
       background-color: $GreenColorBtn;
@@ -110,37 +99,38 @@
       .form-control {
         border-bottom-color: #a94442;
       }
-    }
-    .ng-invalid {
-      animation-name: fadeIn;
-    }
-    .errorMsg {
-      color: #d00;
-      font-family: $Heebo-Light;
-      font-size: 11px;
-      display: none;
-      position: absolute;
-      left: 15px;
-      bottom: -11px;
-    }
-    .has-error .errorMsg {
+    } // .ng-invalid {
+    //   animation-name: fadeIn;
+    // }
+    // .errorMsg {
+    //   color: #d00;
+    //   font-family: $Heebo-Light;
+    //   font-size: 11px;
+    //   display: none;
+    //   position: absolute;
+    //   left: 15px;
+    //   bottom: -11px;
+    // }
+    // .has-error .errorMsg {
+    //   display: block;
+    // }
+    // .float-left {
+    //   float: left;
+    // }
+    .icon-whitelist {
+      background: url('/assets/images/whitelist1.png') no-repeat 0 0 / cover;
       display: block;
+      width: 24px;
+      height: 24px;
     }
-    .float-left {
-      float: left;
-    }
-    .whitelist-ip {
-      letter-spacing: 0.5px;
-      text-align: left;
-      color: #313030;
-      font-family: $Heebo-Bold;
-      font-size: 13px;
-      text-decoration: none;
-      list-style: none;
+    .icon-normal {
+      background: url('/assets/images/normal.png') no-repeat 0 0 / cover;
+      display: block;
+      width: 24px;
+      height: 24px;
     }
   }
 }
-
 
 .p-dialog-wrapper-ip {
   .ip-bottom {
@@ -149,17 +139,17 @@
     border-top: 2px solid #ccc;
   }
   table tr {
-    td:first-child{
+    td:first-child {
       width: 50px;
     }
     td:last-child {
       width: 195px;
     }
-    td{
+    td {
       width: auto;
     }
   }
-  .ip-top{
+  .ip-top {
     ul.list-ips li {
       font-size: 20px;
       width: calc(50% - 2px);
@@ -171,12 +161,12 @@
         cursor: pointer;
       }
     }
-    label{
-          font-size: 17px;
-          margin: 0;
-          line-height: 50px;
+    label {
+      font-size: 17px;
+      margin: 0;
+      line-height: 50px;
     }
-    input.form-control{
+    input.form-control {
       font-size: 18px;
       border-radius: 0;
     }
@@ -184,8 +174,8 @@
       border-radius: 0;
       margin: 0
     }
+    button.btn-footer {
+      margin-left: 10px
+    }
   }
-  
-
-
 }

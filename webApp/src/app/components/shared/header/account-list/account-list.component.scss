@@ -50,6 +50,7 @@
       font-family: $Heebo-Bold;
       text-transform: uppercase;
       font-size: 12px;
+      line-height: 30px;
     }
     input.form-control {
       border-radius: 3px;
@@ -81,7 +82,7 @@
       border: 0;
       color: #fff;
       text-transform: uppercase;
-      padding: 8px 35px;
+      padding: 8px 31px;
       font-weight: 600;
       font-size: 14px;
       margin: 2px 3px 0 0;
@@ -138,15 +139,14 @@
       text-decoration: none;
       list-style: none;
     }
-
     .accounts {
-      .text-overflow{
+      .text-overflow {
         overflow: hidden;
         text-overflow: ellipsis;
         display: inline-block;
         width: 200px;
       }
-    } 
+    }
     .icon-coin {
       background: url('/assets/images/ether.png') no-repeat 0 0 / cover;
       display: block;
