@@ -12,12 +12,14 @@ export class WhitelistsComponent implements OnInit {
   @Output() showEvent = new EventEmitter();
   @Output() msgEvent = new EventEmitter<any>();
   whitelists: any = [];
-  whitelistedIp: any = [];
+  addedwhitelistIp: any = [];
   response: any = {};
   msgs: Message[];
   listItems: any;
   connectedList: any;
   requestIps: any[];
+  enableBtnForDeleted: boolean = false;
+  hideAddNewBtn: boolean;
 
   constructor(private _CommonService: CommonService) { }
 
@@ -31,22 +33,48 @@ export class WhitelistsComponent implements OnInit {
         let data = res.json();
         this.whitelists = data.whiteList;
         this.connectedList = data.connectedList;
+        if (this.whitelists && this.whitelists.length){
+          this.hideAddNewBtn = true;
+        }
         console.log("this.whitelists>>>>>>>>>>>>", this.whitelists);
       });
   }
 
   deleteIp(index) {
     this.whitelists.splice(index, 1);
+    this.enableBtnForDeleted = true;
+    // if (this.whitelists.length == 0) {
+    //   this.enableBtnForDeleted = true;
+    // }
   }
 
   addWhiteListIp(listItems) {
+    // this.hideAddNewBtn = false;
     this.whitelists = this.whitelists || [];
-    this.whitelists.push(listItems);
+    if (listItems) {
+      this.addedwhitelistIp.push(listItems);
+      this.whitelists.push(listItems);
+    }
   }
 
+  addNewWhiteListIp() {
+    this.hideAddNewBtn = true;
+  }
+
+  disableSave() {
+    if (this.addedwhitelistIp.length != 0 || this.enableBtnForDeleted == true) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
   updateWhiteListIp() {
     this._CommonService.addWhiteListIp(this.whitelists).subscribe(
       res => {
+        if (res) {
+          this.enableBtnForDeleted = false;
+        }
         this.response = res;
         console.log(this.response, "=====this.response=====");
         this.msgs = [];

@@ -7,10 +7,10 @@
     <div class="p-dialog-inner">
       <div class="ip-boxer">
         <div class="ip-top">
-          <div class="form-group row" *ngIf="whitelists?.length > 0">
+          <div class="form-group row" *ngIf="whitelists?.length > 0 || hideAddNewBtn == true">
             <label class="col-md-3">Add New Ip</label>
-            <!-- <p-inputMask [(ngModel)]="val" class="form-control col-md-5" mask="99?.99?.99?.999"></p-inputMask> -->
-            <input type="text" class="form-control col-md-5" [(ngModel)]="listItems">
+            <!-- <p-inputMask [(ngModel)]="listItems" required=true class="form-control col-md-5" mask="99.99.99.999"></p-inputMask> -->
+            <input type="text" [required]="true" class="form-control col-md-5" [(ngModel)]="listItems">
             <button type="button" class="btn btn-green col-md-3" (click)="addWhiteListIp(listItems)">Add</button>
           </div>
           <div class="v-scrollbar">
@@ -30,8 +30,9 @@
             </div>
             <div class="ip-bottom text-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-green" *ngIf="whitelists?.length == 0" (click)="addWhiteListIp(listItems)">Add</button>
-                <button type="button" *ngIf="whitelists?.length > 0" class="btn btn-green" (click)="updateWhiteListIp()">Save</button>
+                <button type="button" class="btn btn-green" *ngIf="hideAddNewBtn != true" (click)="addNewWhiteListIp()">Add New Ip</button>
+                <button type="button" *ngIf="whitelists?.length > 0 || enableBtnForDeleted || hideAddNewBtn == true" [disabled]="disableSave()"
+                  class="btn btn-green btn-footer" (click)="updateWhiteListIp()">Save</button>
               </div>
             </div>
             <hr>
@@ -47,11 +48,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of connectedList;let i = index">
+                    <tr *ngFor="let item of connectedList">
                       <td>
-                        <span *ngIf="item?.whitelisted==true">
-                          <img src="/assets/images/accept.png" alt="n">
-                        </span>
+                        <span title="{{(item.whitelisted == true) ? 'Whitelisted':''}}" [ngClass]="{'icon-whitelist':(item.whitelisted == true),'icon-normal':(item.whitelisted != true)}"></span>
                       </td>
                       <td>{{item.ip}}</td>
                       <td>{{item.count}}</td>
