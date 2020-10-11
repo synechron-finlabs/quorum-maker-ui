@@ -3,7 +3,7 @@
 <div class="container-fluid header">
   <div class="navbar-header">
     <a class="navbar-brand logo">
-      <img src="/assets/images/quorum-maker.svg">
+      <img src="/qm/assets/images/quorum-maker.svg">
     </a>
     <span>{{getNodeInfoList?.nodeName}}</span>
     <em *ngIf="getNodeInfoList">{{getNodeInfoList?.active}}</em>
@@ -30,7 +30,7 @@
         <a href="javascript:void(0)" (click)="displayWhitelists()">Whitelist</a>
       </li>
       <li class="dropdown dropdown-click" *ngIf="pendingRequest?.length > 0">
-        <img src="/assets/images/crossroad.png" (click)="toggle()">
+        <img src="/qm/assets/images/crossroad.png" (click)="toggle()">
         <span class="count">{{pendingRequest?.length}}</span>
         <div class="dropdown-menu-list animated" *ngIf="show" (window:click)="autoClose($event)">
           <h2>Pending Request for join Network</h2>
@@ -60,11 +60,11 @@
         </div>
       </li>
       <li class="dropdown dropdown-click" *ngIf="!uploadLogPathStatus">
-        <img src="/assets/images/icon-upload.png" (click)="uploadLogPath()">
+        <img src="/qm/assets/images/icon-upload.png" (click)="uploadLogPath()">
         <span class="count">1</span>
       </li>
       <li class="dropdown dropdown-click" *ngIf="notificationStatus">
-        <img src="/assets/images/bell-2-24.png" (click)="toggleNotification()">
+        <img src="/qm/assets/images/bell-2-24.png" (click)="toggleNotification()">
         <span class="count">1</span>
         <div *ngIf="showNotification" class="notification-list">
           <div *ngIf="notifications.length > 0">
